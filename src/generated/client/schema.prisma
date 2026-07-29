@@ -1,0 +1,292 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ----------------------------------------------------------------------------
+// MODELS (SQLite Compatible)
+// ----------------------------------------------------------------------------
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  role         String // ADMIN, DMC, AGENT
+  status       String   @default("PENDING") // PENDING, ACTIVE, REJECTED, SUSPENDED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  dmcProfile   DMCProfile?
+  agentProfile TravelAgentProfile?
+
+  approvalReqs  ApprovalRequest[]
+  notifications Notification[]
+  auditLogs     AuditLog[]
+}
+
+model DMCProfile {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  companyName   String
+  contactPerson String
+  phone         String
+  country       String
+  address       String
+  taxId         String?
+  website       String?
+  description   String?
+  logoUrl       String?
+
+  packages Package[]
+}
+
+model TravelAgentProfile {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  agencyName    String
+  contactPerson String
+  phone         String
+  country       String
+  address       String
+  licenseNumber String?
+  website       String?
+
+  holds    Hold[]
+  bookings Booking[]
+}
+
+model Destination {
+  id                 String    @id @default(cuid())
+  name               String
+  countryCode        String
+  heroImage          String?
+  visaProcessingDays Int       @default(0)
+  visaType           String
+  active             Boolean   @default(true)
+  packages           Package[]
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+model Package {
+  id    String     @id @default(cuid())
+  dmcId String
+  dmc   DMCProfile @relation(fields: [dmcId], references: [id], onDelete: Cascade)
+
+  destinationId  String?
+  destinationRel Destination? @relation(fields: [destinationId], references: [id])
+
+  title               String
+  destination         String
+  durationDays        Int
+  durationNights      Int
+  description         String
+  inclusions          String
+  exclusions          String
+  pricePerPerson      Float
+  currency            String    @default("USD")
+  minPax              Int       @default(1)
+  maxPax              Int       @default(100)
+  availableDatesStart DateTime?
+  availableDatesEnd   DateTime?
+  termsConditions     String?
+  cancellationPolicy  String?
+  paymentTerms        String?
+  status              String    @default("DRAFT") // DRAFT, PUBLISHED, ARCHIVED
+
+  // Culturally Targeted Fields
+  targetNationalities String // Comma-separated or JSON string e.g. "Indian" or "Saudi, Egyptian" or "All"
+  seasonality         String // e.g. "Winter", "Year-round", "Summer"
+  visaRequired        Boolean @default(false)
+  culturalNotes       String? // e.g. "Near Indian Markets", "Large Family Suites near Mosque"
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  images            PackageImage[]
+  inventoryProducts PackageInventoryProduct[]
+  holds             Hold[]
+  bookings          Booking[]
+  itineraryDays     ItineraryDay[]
+  hotelTiers        PackageHotelTier[]
+}
+
+model PackageHotelTier {
+  id             String  @id @default(cuid())
+  packageId      String
+  package        Package @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  tierName       String // e.g. "3 Star", "4 Star"
+  pricePerPerson Float
+  hotelsList     String // JSON or text describing hotels
+}
+
+model PackageImage {
+  id        String   @id @default(cuid())
+  packageId String
+  package   Package  @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  url       String
+  isPrimary Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Hold {
+  id        String             @id @default(cuid())
+  agentId   String
+  agent     TravelAgentProfile @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  packageId String
+  package   Package            @relation(fields: [packageId], references: [id])
+
+  adults     Int   @default(0)
+  children   Int   @default(0)
+  totalPrice Float @default(0)
+
+  holdExpires     DateTime
+  status          String   @default("HOLD") // HOLD, CONFIRMED, CANCELLED, COMPLETED
+  selectedOptions String? // JSON string of selected options
+  createdAt       DateTime @default(now())
+}
+
+model Booking {
+  id        String             @id @default(cuid())
+  agentId   String
+  agent     TravelAgentProfile @relation(fields: [agentId], references: [id])
+  packageId String
+  package   Package            @relation(fields: [packageId], references: [id])
+
+  paxCount        Int
+  adults          Int      @default(0)
+  children        Int      @default(0)
+  totalPrice      Float
+  status          String   @default("CONFIRMED") // HOLD, CONFIRMED, CANCELLED, COMPLETED
+  selectedOptions String? // JSON string of selected options
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  travelers Traveler[]
+  payments  Payment[]
+}
+
+model Traveler {
+  id        String  @id @default(cuid())
+  bookingId String
+  booking   Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  firstName   String
+  lastName    String
+  passportNum String?
+  nationality String?
+  isLead      Boolean @default(false)
+}
+
+model Payment {
+  id        String   @id @default(cuid())
+  bookingId String?
+  booking   Booking? @relation(fields: [bookingId], references: [id])
+
+  amount    Float
+  currency  String   @default("USD")
+  method    String // e.g. "Stripe", "Bank Transfer"
+  status    String // e.g. "Success", "Pending"
+  reference String?
+  createdAt DateTime @default(now())
+}
+
+model ApprovalRequest {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  requestedAt DateTime  @default(now())
+  resolvedAt  DateTime?
+  status      String    @default("PENDING") // PENDING, APPROVED, REJECTED
+  notes       String?
+}
+
+model Notification {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id     String  @id @default(cuid())
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  action     String
+  entityType String
+  entityId   String?
+  details    String?
+  createdAt  DateTime @default(now())
+}
+
+model ItineraryDay {
+  id          String  @id @default(cuid())
+  packageId   String
+  package     Package @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  dayNumber   Int
+  title       String
+  description String?
+
+  items ItineraryItem[]
+}
+
+model ItineraryItem {
+  id             String       @id @default(cuid())
+  itineraryDayId String
+  itineraryDay   ItineraryDay @relation(fields: [itineraryDayId], references: [id], onDelete: Cascade)
+  type           String // HOTEL, TRANSFER, ACTIVITY, RESTAURANT
+  title          String
+  time           String?
+  optOutDiscount Float        @default(0)
+
+  options ItineraryItemOption[]
+}
+
+model PackageInventoryProduct {
+  id          String  @id @default(cuid())
+  packageId   String
+  package     Package @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  type        String // HOTEL, TRANSFER, ACTIVITY, RESTAURANT
+  name        String
+  description String?
+  roomType    String?
+
+  media   PackageInventoryMedia[]
+  options ItineraryItemOption[] // The slots where this product is used
+}
+
+model PackageInventoryMedia {
+  id        String                  @id @default(cuid())
+  productId String
+  product   PackageInventoryProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  type      String // IMAGE, VIDEO
+  createdAt DateTime                @default(now())
+}
+
+model ItineraryItemOption {
+  id              String        @id @default(cuid())
+  itineraryItemId String
+  itineraryItem   ItineraryItem @relation(fields: [itineraryItemId], references: [id], onDelete: Cascade)
+
+  inventoryProductId String
+  inventoryProduct   PackageInventoryProduct @relation(fields: [inventoryProductId], references: [id], onDelete: Cascade)
+
+  priceAddOn Float   @default(0) // 0 means included
+  isDefault  Boolean @default(false)
+}
