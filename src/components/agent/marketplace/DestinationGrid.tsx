@@ -1,4 +1,4 @@
-import { Destination } from "@prisma/client"
+import { Destination } from "@/generated/client"
 import { VisaEligibilityResult } from "./MarketplaceClient"
 import DestinationCard from "./DestinationCard"
 

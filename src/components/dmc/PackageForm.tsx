@@ -100,7 +100,7 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
     })
     setItineraryDays(newDays)
   }
-  const updateItem = (dayIndex: number, itemIndex: number, field: string, value: string) => {
+  const updateItem = (dayIndex: number, itemIndex: number, field: string, value: any) => {
     const newDays = [...itineraryDays]
     newDays[dayIndex].items[itemIndex][field] = value
     setItineraryDays(newDays)

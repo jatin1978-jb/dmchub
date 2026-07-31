@@ -1,4 +1,4 @@
-import { Destination } from "@prisma/client";
+import { Destination } from "@/generated/client";
 
 export type VisaStatus = "VISA_FREE" | "VOA" | "E_VISA" | "VISA_REQUIRED" | "NOT_ELIGIBLE";
 

@@ -69,7 +69,7 @@ export default function MarketplaceSearch() {
           </div>
           
           <div className="flex flex-wrap gap-2">
-            <Select value={filters.nationality} onValueChange={(val) => setFilters({ ...filters, nationality: val })}>
+            <Select value={filters.nationality} onValueChange={(val) => setFilters({ ...filters, nationality: val || "All" })}>
               <SelectTrigger className="w-[150px] h-12 rounded-xl border-gray-200">
                 <SelectValue placeholder="Nationality" />
               </SelectTrigger>
@@ -83,7 +83,7 @@ export default function MarketplaceSearch() {
               </SelectContent>
             </Select>
 
-            <Select value={filters.passportCountry} onValueChange={(val) => setFilters({ ...filters, passportCountry: val })}>
+            <Select value={filters.passportCountry} onValueChange={(val) => setFilters({ ...filters, passportCountry: val || "All" })}>
               <SelectTrigger className="w-[160px] h-12 rounded-xl border-gray-200">
                 <SelectValue placeholder="Passport" />
               </SelectTrigger>
@@ -98,7 +98,7 @@ export default function MarketplaceSearch() {
               </SelectContent>
             </Select>
 
-            <Select value={filters.seasonality} onValueChange={(val) => setFilters({ ...filters, seasonality: val })}>
+            <Select value={filters.seasonality} onValueChange={(val) => setFilters({ ...filters, seasonality: val || "All" })}>
               <SelectTrigger className="w-[140px] h-12 rounded-xl border-gray-200">
                 <SelectValue placeholder="Seasonality" />
               </SelectTrigger>

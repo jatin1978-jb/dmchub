@@ -41,7 +41,7 @@ export default function SearchTabs({ onSearch, isLoading }: SearchTabsProps) {
       <div className="bg-slate-50/50 rounded-2xl p-6 border border-blue-100">
         <p className="text-xl text-slate-700 leading-loose flex flex-wrap items-center gap-2">
           <span>I am a</span>
-          <Select value={nationality} onValueChange={setNationality}>
+          <Select value={nationality} onValueChange={(val) => setNationality(val || "Indian")}>
             <SelectTrigger className="w-[140px] h-10 bg-white border-blue-200 font-medium text-blue-700 focus:ring-blue-500">
               <SelectValue placeholder="Nationality" />
             </SelectTrigger>
@@ -54,7 +54,7 @@ export default function SearchTabs({ onSearch, isLoading }: SearchTabsProps) {
           </Select>
           
           <span>Resident of</span>
-          <Select value={passportCountry} onValueChange={setPassportCountry}>
+          <Select value={passportCountry} onValueChange={(val) => setPassportCountry(val || "India")}>
             <SelectTrigger className="w-[160px] h-10 bg-white border-blue-200 font-medium text-blue-700 focus:ring-blue-500">
               <SelectValue placeholder="Country" />
             </SelectTrigger>

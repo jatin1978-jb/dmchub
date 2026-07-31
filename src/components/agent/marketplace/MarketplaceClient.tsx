@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react"
-import { Destination, Package } from "@prisma/client"
+import { Destination } from "@/generated/client"
 import SearchTabs from "./SearchTabs"
 import DestinationGrid from "./DestinationGrid"
 import PackageResults from "./PackageResults"

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react"
-import { Destination } from "@prisma/client"
+import { Destination } from "@/generated/client"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Loader2 } from "lucide-react"
 import AgentPackageCard from "../AgentPackageCard"

@@ -66,7 +66,7 @@ export default function ItineraryItemCard({
   }))
   
   const optionsWithNone = item.type !== 'HOTEL' 
-    ? [...mappedOptions, { id: "NONE", name: "None (Opt-out)", priceAddOn: -(item.optOutDiscount || 0), isDefault: false, media: [], description: null }]
+    ? [...mappedOptions, { id: "NONE", name: "None (Opt-out)", roomType: null as string | null | undefined, priceAddOn: -(item.optOutDiscount || 0), isDefault: false, media: [], description: null }]
     : mappedOptions;
     
   const selectedOption = optionsWithNone.find(o => o.id === selectedOptionId) || optionsWithNone.find(o => o.isDefault) || optionsWithNone[0]

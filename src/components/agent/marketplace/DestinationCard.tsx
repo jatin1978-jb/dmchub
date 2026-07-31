@@ -1,4 +1,4 @@
-import { Destination } from "@prisma/client"
+import { Destination } from "@/generated/client"
 import { VisaEligibilityResult } from "./MarketplaceClient"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
