@@ -7,9 +7,17 @@ interface ItineraryViewerProps {
   days: any[];
   onChange: (totalAddOn: number, selectedOptions: Record<string, string>, movedItems: Record<string, number>) => void;
   travelerNationality?: string;
+  preferredStarRating?: string;
+  preferredTransferType?: string;
 }
 
-export default function ItineraryViewer({ days, onChange, travelerNationality }: ItineraryViewerProps) {
+export default function ItineraryViewer({ 
+  days, 
+  onChange, 
+  travelerNationality, 
+  preferredStarRating, 
+  preferredTransferType 
+}: ItineraryViewerProps) {
   // Map of itemId -> selectedOptionId
   const [selections, setSelections] = useState<Record<string, string>>({})
   const [localDays, setLocalDays] = useState<any[]>([])
@@ -20,22 +28,49 @@ export default function ItineraryViewer({ days, onChange, travelerNationality }:
     const initialSelections: Record<string, string> = {}
     days.forEach(day => {
       day.items.forEach((item: any) => {
-        // If travelerNationality is provided (e.g., "Arab"), check for nationality-matched hotel/product option first!
-        let matchedOpt = null
-        if (travelerNationality && travelerNationality !== "All") {
-          matchedOpt = item.options.find((o: any) => 
-            o.inventoryProduct?.targetNationalities?.toLowerCase().includes(travelerNationality.toLowerCase())
-          )
+        let selected = null;
+        
+        // Tier 1: Match Nationality + Star Rating + Transfer Type
+        selected = item.options.find((o: any) => {
+          const prod = o.inventoryProduct;
+          if (!prod) return false;
+          const matchNat = !travelerNationality || travelerNationality === "All" || prod.targetNationalities?.toLowerCase().includes(travelerNationality.toLowerCase());
+          const matchStar = !preferredStarRating || preferredStarRating === "All" || prod.starRating === preferredStarRating;
+          const matchTransfer = !preferredTransferType || preferredTransferType === "All" || prod.transferType === preferredTransferType;
+          return matchNat && matchStar && matchTransfer;
+        });
+
+        // Tier 2: Match Nationality + Star Rating
+        if (!selected) {
+          selected = item.options.find((o: any) => {
+            const prod = o.inventoryProduct;
+            if (!prod) return false;
+            const matchNat = !travelerNationality || travelerNationality === "All" || prod.targetNationalities?.toLowerCase().includes(travelerNationality.toLowerCase());
+            const matchStar = !preferredStarRating || preferredStarRating === "All" || prod.starRating === preferredStarRating;
+            return matchNat && matchStar;
+          });
         }
-        const selected = matchedOpt || item.options.find((o: any) => o.isDefault) || item.options[0]
+
+        // Tier 3: Match Nationality
+        if (!selected && travelerNationality && travelerNationality !== "All") {
+          selected = item.options.find((o: any) => 
+            o.inventoryProduct?.targetNationalities?.toLowerCase().includes(travelerNationality.toLowerCase())
+          );
+        }
+
+        // Tier 4: Fallback to default or first option
+        if (!selected) {
+          selected = item.options.find((o: any) => o.isDefault) || item.options[0];
+        }
+
         if (selected) {
-          initialSelections[item.id] = selected.id
+          initialSelections[item.id] = selected.id;
         }
       })
     })
     setSelections(initialSelections)
     setLocalDays(JSON.parse(JSON.stringify(days)))
-  }, [days, travelerNationality])
+  }, [days, travelerNationality, preferredStarRating, preferredTransferType])
 
   // Setup Intersection Observer for scroll spy
   useEffect(() => {

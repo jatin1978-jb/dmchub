@@ -18,6 +18,8 @@ export default function SearchTabs({ onSearch, isLoading }: SearchTabsProps) {
   const [destination, setDestination] = useState("")
   const [travelDate, setTravelDate] = useState("")
   const [nights, setNights] = useState("")
+  const [starRating, setStarRating] = useState("All")
+  const [transferType, setTransferType] = useState("All")
   
   const handleSearch = () => {
     onSearch({
@@ -25,7 +27,9 @@ export default function SearchTabs({ onSearch, isLoading }: SearchTabsProps) {
       passportCountry,
       travelDate,
       destination: destination.trim() || undefined,
-      nights: nights ? parseInt(nights) : undefined
+      nights: nights ? parseInt(nights) : undefined,
+      starRating: starRating !== "All" ? starRating : undefined,
+      transferType: transferType !== "All" ? transferType : undefined
     })
   }
 
@@ -38,18 +42,20 @@ export default function SearchTabs({ onSearch, isLoading }: SearchTabsProps) {
         <h2 className="text-xl font-bold text-gray-900">Smart Search</h2>
       </div>
 
-      <div className="bg-slate-50/50 rounded-2xl p-6 border border-blue-100">
+      <div className="bg-slate-50/50 rounded-2xl p-6 border border-blue-100 space-y-4">
         <p className="text-xl text-slate-700 leading-loose flex flex-wrap items-center gap-2">
           <span>I am a</span>
           <Select value={nationality} onValueChange={(val) => setNationality(val || "Indian")}>
-            <SelectTrigger className="w-[140px] h-10 bg-white border-blue-200 font-medium text-blue-700 focus:ring-blue-500">
+            <SelectTrigger className="w-[150px] h-10 bg-white border-blue-200 font-medium text-blue-700 focus:ring-blue-500">
               <SelectValue placeholder="Nationality" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="Arab">Arab / GCC</SelectItem>
               <SelectItem value="Indian">Indian</SelectItem>
+              <SelectItem value="European">European</SelectItem>
+              <SelectItem value="Asian">Asian</SelectItem>
               <SelectItem value="American">American</SelectItem>
               <SelectItem value="British">British</SelectItem>
-              <SelectItem value="Saudi">Saudi</SelectItem>
             </SelectContent>
           </Select>
           
@@ -60,10 +66,10 @@ export default function SearchTabs({ onSearch, isLoading }: SearchTabsProps) {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="India">India</SelectItem>
-              <SelectItem value="USA">USA</SelectItem>
-              <SelectItem value="UK">UK</SelectItem>
               <SelectItem value="Saudi Arabia">Saudi Arabia</SelectItem>
               <SelectItem value="UAE">UAE</SelectItem>
+              <SelectItem value="USA">USA</SelectItem>
+              <SelectItem value="UK">UK</SelectItem>
             </SelectContent>
           </Select>
 
@@ -75,6 +81,31 @@ export default function SearchTabs({ onSearch, isLoading }: SearchTabsProps) {
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
           />
+
+          <span>preferring</span>
+          <Select value={starRating} onValueChange={(val) => setStarRating(val || "All")}>
+            <SelectTrigger className="w-[130px] h-10 bg-white border-blue-200 font-medium text-blue-700 focus:ring-blue-500">
+              <SelectValue placeholder="Hotel Tier" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="All">Any Hotel</SelectItem>
+              <SelectItem value="3-Star">3-Star</SelectItem>
+              <SelectItem value="4-Star">4-Star</SelectItem>
+              <SelectItem value="5-Star">5-Star</SelectItem>
+            </SelectContent>
+          </Select>
+
+          <span>hotels with</span>
+          <Select value={transferType} onValueChange={(val) => setTransferType(val || "All")}>
+            <SelectTrigger className="w-[160px] h-10 bg-white border-blue-200 font-medium text-blue-700 focus:ring-blue-500">
+              <SelectValue placeholder="Transfer Mode" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="All">Any Transfer</SelectItem>
+              <SelectItem value="Seat in Coach (SIC)">SIC (Shared)</SelectItem>
+              <SelectItem value="Private SUV">Private Transfer</SelectItem>
+            </SelectContent>
+          </Select>
 
           <span>on</span>
           <Input 

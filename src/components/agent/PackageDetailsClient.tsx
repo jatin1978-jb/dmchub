@@ -10,6 +10,8 @@ import ItineraryViewer from "@/components/agent/itinerary/ItineraryViewer"
 export default function PackageDetailsClient({ pkg, existingHold }: { pkg: any, existingHold: any }) {
   const searchParams = useSearchParams()
   const nationalityParam = searchParams.get("nationality") || searchParams.get("targetNationality")
+  const starRatingParam = searchParams.get("starRating")
+  const transferTypeParam = searchParams.get("transferType")
 
   const [totalAddOn, setTotalAddOn] = useState(0)
   const [selectedOptions, setSelectedOptions] = useState<Record<string, any>>({})
@@ -87,6 +89,8 @@ export default function PackageDetailsClient({ pkg, existingHold }: { pkg: any, 
             days={pkg.itineraryDays} 
             onChange={handleItineraryChange} 
             travelerNationality={nationalityParam || undefined}
+            preferredStarRating={starRatingParam || undefined}
+            preferredTransferType={transferTypeParam || undefined}
           />
         ) : (
           <div className="bg-slate-50 p-8 rounded-3xl border border-gray-100 text-center text-slate-500">

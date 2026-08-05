@@ -20,7 +20,9 @@ export default function MarketplaceSearch() {
     passportCountry: "All",
     seasonality: "All",
     travelDate: "",
-    nights: undefined as number | undefined
+    nights: undefined as number | undefined,
+    starRating: undefined as string | undefined,
+    transferType: undefined as string | undefined
   })
 
   const fetchResults = async () => {
@@ -233,7 +235,7 @@ export default function MarketplaceSearch() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {results.filter(pkg => pkg.destination === selectedDestination).map((pkg) => (
-              <AgentPackageCard key={pkg.id} pkg={pkg} nationality={filters.nationality} />
+              <AgentPackageCard key={pkg.id} pkg={pkg} nationality={filters.nationality} starRating={filters.starRating} transferType={filters.transferType} />
             ))}
           </div>
         )}
