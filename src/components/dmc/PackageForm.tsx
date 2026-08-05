@@ -10,7 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { createPackage, updatePackage } from "@/app/actions/packages"
 import { toast } from "sonner"
-import { Globe, Clock, ShieldCheck, MapPin, Plus, Trash2, CalendarDays, Box, CheckSquare, Image as ImageIcon } from "lucide-react"
+import { Globe, Clock, ShieldCheck, MapPin, Plus, Trash2, CalendarDays, Box, CheckSquare, Image as ImageIcon, Sparkles } from "lucide-react"
 
 export default function PackageForm({ initialData }: { initialData?: any }) {
   // Step 1: Basic Details
@@ -454,29 +454,56 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
 
                     {/* Options Selection from Inventory */}
                     <div className="mt-4 pt-4 border-t border-slate-200">
-                      <Label className="text-xs mb-2 block">Select Options from Inventory (Check all that apply)</Label>
+                      <div className="flex justify-between items-center mb-2">
+                        <Label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Select Options for this Slot (Check all 3★, 4★ & 5★ variants)</Label>
+                      </div>
+
+                      <div className="mb-3 bg-blue-50/70 p-3 rounded-lg border border-blue-100 flex items-start gap-2">
+                        <Sparkles className="w-4 h-4 text-blue-600 mt-0.5 shrink-0" />
+                        <div className="text-xs text-blue-900 leading-relaxed">
+                          <span className="font-bold">Differential Pricing for Star Ratings & Room Types:</span> Check all hotel variants for this slot. Keep <code className="bg-blue-100 px-1 py-0.5 rounded font-mono font-bold">$0</code> for your standard baseline hotel, set <code className="bg-emerald-100 text-emerald-800 px-1 py-0.5 rounded font-mono font-bold">+$150</code> for 5-Star / Suite upgrades, or <code className="bg-rose-100 text-rose-800 px-1 py-0.5 rounded font-mono font-bold">-$50</code> for 3-Star downgrades.
+                        </div>
+                      </div>
+
                       {inventoryProducts.filter(p => p.type === item.type).length === 0 ? (
-                        <p className="text-xs text-red-500 italic">No {item.type}s in inventory. Go to Step 2 to add some.</p>
+                        <p className="text-xs text-red-500 italic">No {item.type}s in inventory pool. Add {item.type}s in Step 2 above first.</p>
                       ) : (
                         <div className="space-y-2">
                           {inventoryProducts.filter(p => p.type === item.type).map(prod => {
                             const isSelected = item.options.some((o: any) => o.inventoryProductId === prod.id)
                             const optData = item.options.find((o: any) => o.inventoryProductId === prod.id)
                             return (
-                              <div key={prod.id} className="flex items-center gap-3 bg-white border p-2 rounded">
-                                <Checkbox checked={isSelected} onCheckedChange={() => toggleOption(dIdx, iIdx, prod.id)} />
-                                <Label htmlFor={`opt-${dIdx}-${iIdx}-${prod.id}`} className="text-sm font-medium flex-1 cursor-pointer">
-                                  {prod.name} {prod.roomType && <span className="text-slate-500 italic">({prod.roomType})</span>}
-                                </Label>
-                                {isSelected && (
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-xs text-slate-500">Price Add-on: $</span>
-                                    <Input 
-                                      type="number" 
-                                      className="h-7 w-20 text-xs" 
-                                      value={optData.priceAddOn} 
-                                      onChange={e => updateOptionPrice(dIdx, iIdx, prod.id, parseFloat(e.target.value) || 0)} 
-                                    />
+                              <div key={prod.id} className={`flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 rounded-xl border transition-all ${isSelected ? 'bg-blue-50/40 border-blue-300 shadow-sm' : 'bg-white border-slate-200'}`}>
+                                <div className="flex items-center gap-3 flex-1">
+                                  <Checkbox id={`opt-${dIdx}-${iIdx}-${prod.id}`} checked={isSelected} onCheckedChange={() => toggleOption(dIdx, iIdx, prod.id)} />
+                                  <div className="space-y-0.5">
+                                    <Label htmlFor={`opt-${dIdx}-${iIdx}-${prod.id}`} className="text-sm font-bold text-slate-800 cursor-pointer flex flex-wrap items-center gap-2">
+                                      {prod.name}
+                                      {prod.starRating && <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-200">★ {prod.starRating}</span>}
+                                      {prod.targetNationalities && prod.targetNationalities !== "All" && <span className="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-purple-200">{prod.targetNationalities} Nationals</span>}
+                                    </Label>
+                                    {prod.roomType && <p className="text-xs font-semibold text-blue-700">Room: {prod.roomType}</p>}
+                                  </div>
+                                </div>
+
+                                {isSelected && optData && (
+                                  <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs shrink-0">
+                                    <div className="text-right">
+                                      <span className="text-[10px] font-bold text-slate-400 block uppercase">Price Delta</span>
+                                      <span className="text-[10px] font-bold text-slate-600">
+                                        {optData.priceAddOn > 0 ? 'Upgrade (+$)' : optData.priceAddOn < 0 ? 'Downgrade (-$)' : 'Included ($0)'}
+                                      </span>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                      <span className="text-xs font-bold text-slate-500">$</span>
+                                      <Input 
+                                        type="number" 
+                                        step="5"
+                                        className="h-8 w-24 text-xs font-bold text-slate-900 border-slate-300" 
+                                        value={optData.priceAddOn} 
+                                        onChange={e => updateOptionPrice(dIdx, iIdx, prod.id, parseFloat(e.target.value) || 0)} 
+                                      />
+                                    </div>
                                   </div>
                                 )}
                               </div>
