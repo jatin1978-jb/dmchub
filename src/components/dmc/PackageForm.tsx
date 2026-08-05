@@ -26,7 +26,7 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
 
   // Step 1: Basic Details
   const [isMultiDestination, setIsMultiDestination] = useState(initialData?.isMultiDestination || false)
-  const [durationNights, setDurationNights] = useState(initialData?.durationNights || 1)
+  const [durationNights, setDurationNights] = useState<number | string>(initialData?.durationNights || 1)
   const [packageImages, setPackageImages] = useState<any[]>(initialData?.images || [])
 
   // Step 2: Inventory Pool
@@ -37,7 +37,9 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
 
   // Auto-generate days based on nights
   useEffect(() => {
-    const targetDays = durationNights + 1;
+    const parsedNights = typeof durationNights === 'number' ? durationNights : parseInt(durationNights as string);
+    if (isNaN(parsedNights) || parsedNights < 1) return;
+    const targetDays = parsedNights + 1;
     setItineraryDays(prev => {
       const newDays = [...prev];
       if (newDays.length < targetDays) {
@@ -235,15 +237,15 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
                   id="durationNights" 
                   name="durationNights" 
                   type="number" 
-                  min="1" 
                   value={durationNights}
-                  onChange={(e) => setDurationNights(parseInt(e.target.value) || 1)}
+                  onChange={(e) => setDurationNights(e.target.value)}
+                  placeholder="e.g. 5"
                   required 
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="durationDays">Days (Auto)</Label>
-                <Input id="durationDays" name="durationDays" type="number" value={durationNights + 1} readOnly className="bg-slate-50" />
+                <Input id="durationDays" name="durationDays" type="number" value={(parseInt(durationNights as string) || 0) + 1} readOnly className="bg-slate-50 font-semibold text-slate-700" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="pricePerPerson">Standard Base Price / Person *</Label>
