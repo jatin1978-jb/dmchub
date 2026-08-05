@@ -11,11 +11,22 @@ async function getAgentProfile() {
     throw new Error("Unauthorized")
   }
   
-  const agent = await prisma.travelAgentProfile.findUnique({
+  let agent = await prisma.travelAgentProfile.findUnique({
     where: { userId: session.user.id }
   })
   
-  if (!agent) throw new Error("Agent Profile not found")
+  if (!agent) {
+    agent = await prisma.travelAgentProfile.create({
+      data: {
+        userId: session.user.id,
+        agencyName: session.user.name || session.user.email?.split('@')[0] || "Global Travel Agency",
+        contactPerson: session.user.name || "Agent User",
+        phone: "+1 555-0199",
+        country: "UAE",
+        address: "Dubai, UAE"
+      }
+    })
+  }
   return agent
 }
 

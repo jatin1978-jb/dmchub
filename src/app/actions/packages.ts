@@ -12,11 +12,22 @@ async function getDMCProfile() {
     throw new Error("Unauthorized")
   }
   
-  const dmc = await prisma.dMCProfile.findUnique({
+  let dmc = await prisma.dMCProfile.findUnique({
     where: { userId: session.user.id }
   })
   
-  if (!dmc) throw new Error("DMC Profile not found")
+  if (!dmc) {
+    dmc = await prisma.dMCProfile.create({
+      data: {
+        userId: session.user.id,
+        companyName: session.user.name || session.user.email?.split('@')[0] || "Global DMC Partner",
+        contactPerson: session.user.name || "DMC Manager",
+        phone: "+1 555-0100",
+        country: "UAE",
+        address: "Dubai, UAE"
+      }
+    })
+  }
   return dmc
 }
 

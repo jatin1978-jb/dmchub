@@ -47,7 +47,7 @@ async function main() {
   console.log("DMC user ready: dmc@example.com / password123");
 
   // 3. Agent
-  await prisma.user.upsert({
+  const agentUser = await prisma.user.upsert({
     where: { email: "agent@example.com" },
     update: { passwordHash: hash123 },
     create: {
@@ -55,9 +55,33 @@ async function main() {
       passwordHash: hash123,
       role: "AGENT",
       status: "ACTIVE",
+      agentProfile: {
+        create: {
+          agencyName: "Global Travel Agency",
+          contactPerson: "Agent User",
+          phone: "+1 555-0199",
+          country: "UAE",
+          address: "Dubai, UAE"
+        }
+      }
     }
   });
-  console.log("Agent user ready: agent@example.com / password123");
+
+  // Ensure TravelAgentProfile exists if user was previously created
+  const existingAgentProfile = await prisma.travelAgentProfile.findUnique({ where: { userId: agentUser.id } });
+  if (!existingAgentProfile) {
+    await prisma.travelAgentProfile.create({
+      data: {
+        userId: agentUser.id,
+        agencyName: "Global Travel Agency",
+        contactPerson: "Agent User",
+        phone: "+1 555-0199",
+        country: "UAE",
+        address: "Dubai, UAE"
+      }
+    });
+  }
+  console.log("Agent user & profile ready: agent@example.com / password123");
 
   // 4. dmc1@example.com
   await prisma.user.upsert({
