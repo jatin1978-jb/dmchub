@@ -42,6 +42,9 @@ export async function createPackage(formData: FormData) {
   const termsConditions = formData.get("termsConditions") as string
   const culturalNotes = formData.get("culturalNotes") as string
   
+  const isMultiDestination = formData.get("isMultiDestination") === "on" || formData.get("isMultiDestination") === "true"
+  const destinationsList = formData.get("destinationsList") as string
+
   const newPackage = await prisma.package.create({
     data: {
       dmcId: dmc.id,
@@ -61,6 +64,8 @@ export async function createPackage(formData: FormData) {
       paymentTerms,
       cancellationPolicy,
       termsConditions,
+      isMultiDestination,
+      destinationsList,
       status: "PUBLISHED", // Auto-publish for MVP
     }
   })
@@ -99,6 +104,9 @@ export async function updatePackage(packageId: string, formData: FormData) {
   const termsConditions = formData.get("termsConditions") as string
   const culturalNotes = formData.get("culturalNotes") as string
 
+  const isMultiDestination = formData.get("isMultiDestination") === "on" || formData.get("isMultiDestination") === "true"
+  const destinationsList = formData.get("destinationsList") as string
+
   // Delete nested relations to recreate them cleanly
   await prisma.packageImage.deleteMany({ where: { packageId } })
   await prisma.packageInventoryProduct.deleteMany({ where: { packageId } })
@@ -111,6 +119,7 @@ export async function updatePackage(packageId: string, formData: FormData) {
       inclusions, exclusions, pricePerPerson, currency,
       targetNationalities, seasonality, visaRequired, culturalNotes,
       paymentTerms, cancellationPolicy, termsConditions,
+      isMultiDestination, destinationsList
     }
   })
 
@@ -145,6 +154,9 @@ async function savePackageRelations(packageId: string, formData: FormData) {
         name: prod.name,
         description: prod.description,
         roomType: prod.roomType,
+        starRating: prod.starRating || null,
+        targetNationalities: prod.targetNationalities || "All",
+        transferType: prod.transferType || null,
         media: {
           create: prod.media?.map((m: any) => ({
             url: m.url,
@@ -165,6 +177,7 @@ async function savePackageRelations(packageId: string, formData: FormData) {
         dayNumber: day.dayNumber,
         title: day.title,
         description: day.description,
+        destinationName: day.destinationName || null,
         items: {
           create: day.items?.map((item: any) => ({
             type: item.type,

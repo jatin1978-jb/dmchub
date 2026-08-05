@@ -191,6 +191,8 @@ exports.Prisma.PackageScalarFieldEnum = {
   seasonality: 'seasonality',
   visaRequired: 'visaRequired',
   culturalNotes: 'culturalNotes',
+  isMultiDestination: 'isMultiDestination',
+  destinationsList: 'destinationsList',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -292,7 +294,8 @@ exports.Prisma.ItineraryDayScalarFieldEnum = {
   packageId: 'packageId',
   dayNumber: 'dayNumber',
   title: 'title',
-  description: 'description'
+  description: 'description',
+  destinationName: 'destinationName'
 };
 
 exports.Prisma.ItineraryItemScalarFieldEnum = {
@@ -310,7 +313,10 @@ exports.Prisma.PackageInventoryProductScalarFieldEnum = {
   type: 'type',
   name: 'name',
   description: 'description',
-  roomType: 'roomType'
+  roomType: 'roomType',
+  starRating: 'starRating',
+  targetNationalities: 'targetNationalities',
+  transferType: 'transferType'
 };
 
 exports.Prisma.PackageInventoryMediaScalarFieldEnum = {

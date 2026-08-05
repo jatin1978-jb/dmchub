@@ -1,12 +1,16 @@
 'use client'
 
 import { useState } from "react"
+import { useSearchParams } from "next/navigation"
 import { Badge } from "@/components/ui/badge"
 import { Clock, Globe, MapPin, CheckCircle2, AlertCircle } from "lucide-react"
 import BookingForm from "@/components/agent/BookingForm"
 import ItineraryViewer from "@/components/agent/itinerary/ItineraryViewer"
 
 export default function PackageDetailsClient({ pkg, existingHold }: { pkg: any, existingHold: any }) {
+  const searchParams = useSearchParams()
+  const nationalityParam = searchParams.get("nationality") || searchParams.get("targetNationality")
+
   const [totalAddOn, setTotalAddOn] = useState(0)
   const [selectedOptions, setSelectedOptions] = useState<Record<string, any>>({})
 
@@ -82,6 +86,7 @@ export default function PackageDetailsClient({ pkg, existingHold }: { pkg: any, 
           <ItineraryViewer 
             days={pkg.itineraryDays} 
             onChange={handleItineraryChange} 
+            travelerNationality={nationalityParam || undefined}
           />
         ) : (
           <div className="bg-slate-50 p-8 rounded-3xl border border-gray-100 text-center text-slate-500">

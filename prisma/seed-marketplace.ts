@@ -100,47 +100,71 @@ async function main() {
         }
       })
 
-      // Create Inventory Products
+      // Create Inventory Products with Star Ratings, Transfer Modes & Nationality Targeting
       const hotel4Star = await prisma.packageInventoryProduct.create({
         data: {
           packageId: pkg.id,
           type: 'HOTEL',
-          name: 'Standard 4-Star Hotel',
+          name: 'Rove Downtown',
+          starRating: '4-Star',
+          targetNationalities: 'All',
+          roomType: 'Standard Room',
         }
       })
-      const hotel5Star = await prisma.packageInventoryProduct.create({
+      const hotel5StarArab = await prisma.packageInventoryProduct.create({
         data: {
           packageId: pkg.id,
           type: 'HOTEL',
-          name: 'Premium 5-Star Resort',
+          name: 'Atlantis The Royal Resort',
+          starRating: '5-Star',
+          targetNationalities: 'Arab',
+          roomType: 'Royal Luxury Suite',
+        }
+      })
+      const hotel5StarIndian = await prisma.packageInventoryProduct.create({
+        data: {
+          packageId: pkg.id,
+          type: 'HOTEL',
+          name: 'JW Marriott Marquis Dubai',
+          starRating: '5-Star',
+          targetNationalities: 'Indian',
+          roomType: 'Deluxe Executive Suite',
+        }
+      })
+      const hotel3Star = await prisma.packageInventoryProduct.create({
+        data: {
+          packageId: pkg.id,
+          type: 'HOTEL',
+          name: 'Citymax Hotel Bur Dubai',
+          starRating: '3-Star',
+          targetNationalities: 'All',
+          roomType: 'Standard City Room',
         }
       })
       const sicTransfer = await prisma.packageInventoryProduct.create({
         data: {
           packageId: pkg.id,
           type: 'TRANSFER',
-          name: 'SIC Shared Transfer',
+          name: 'Seat in Coach (SIC) Transfer',
+          transferType: 'Seat in Coach (SIC)',
+          targetNationalities: 'All',
         }
       })
       const privateTransfer = await prisma.packageInventoryProduct.create({
         data: {
           packageId: pkg.id,
           type: 'TRANSFER',
-          name: 'Private Sedan Transfer',
+          name: 'Private Luxury SUV Transfer',
+          transferType: 'Private SUV',
+          targetNationalities: 'All',
         }
       })
       const cityTour = await prisma.packageInventoryProduct.create({
         data: {
           packageId: pkg.id,
           type: 'ACTIVITY',
-          name: 'Group Tour (SIC)',
-        }
-      })
-      const vipTour = await prisma.packageInventoryProduct.create({
-        data: {
-          packageId: pkg.id,
-          type: 'ACTIVITY',
-          name: 'Private Guided Tour',
+          name: 'Desert Safari with BBQ Dinner',
+          targetNationalities: 'All',
         }
       })
 
@@ -163,21 +187,23 @@ async function main() {
                   options: {
                     create: [
                       { inventoryProductId: hotel4Star.id, isDefault: true, priceAddOn: 0 },
-                      { inventoryProductId: hotel5Star.id, isDefault: false, priceAddOn: 150 },
+                      { inventoryProductId: hotel5StarArab.id, isDefault: false, priceAddOn: 350 },
+                      { inventoryProductId: hotel5StarIndian.id, isDefault: false, priceAddOn: 220 },
+                      { inventoryProductId: hotel3Star.id, isDefault: false, priceAddOn: -50 },
                     ]
                   }
                 },
                 {
                   type: isFirstDay || isLastDay ? 'TRANSFER' : 'ACTIVITY',
-                  title: isFirstDay ? 'Airport Pickup' : isLastDay ? 'Airport Drop-off' : 'Guided City Tour',
-                  time: isFirstDay ? 'Morning/Afternoon' : '09:00 AM',
+                  title: isFirstDay ? 'Airport Pickup' : isLastDay ? 'Airport Drop-off' : 'Desert Safari with BBQ Dinner',
+                  time: isFirstDay ? 'Morning/Afternoon' : '03:00 PM',
+                  optOutDiscount: isFirstDay || isLastDay ? 0 : 40,
                   options: {
                     create: isFirstDay || isLastDay ? [
                       { inventoryProductId: sicTransfer.id, isDefault: true, priceAddOn: 0 },
                       { inventoryProductId: privateTransfer.id, isDefault: false, priceAddOn: 60 }
                     ] : [
-                      { inventoryProductId: cityTour.id, isDefault: true, priceAddOn: 0 },
-                      { inventoryProductId: vipTour.id, isDefault: false, priceAddOn: 60 }
+                      { inventoryProductId: cityTour.id, isDefault: true, priceAddOn: 0 }
                     ]
                   }
                 }

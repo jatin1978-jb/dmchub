@@ -12,9 +12,10 @@ import { useRouter } from "next/navigation"
 
 interface AgentPackageCardProps {
   pkg: any
+  nationality?: string
 }
 
-export default function AgentPackageCard({ pkg }: AgentPackageCardProps) {
+export default function AgentPackageCard({ pkg, nationality }: AgentPackageCardProps) {
   const router = useRouter()
   const visaData = pkg.visaFeasibility;
   const isVisaUnfeasible = visaData && !visaData.feasible;
@@ -42,7 +43,8 @@ export default function AgentPackageCard({ pkg }: AgentPackageCardProps) {
       toast.error("Cannot book this package due to visa processing times.");
       return;
     }
-    router.push(`/agent/search/${pkg.id}`);
+    const query = nationality ? `?nationality=${encodeURIComponent(nationality)}` : '';
+    router.push(`/agent/search/${pkg.id}${query}`);
   }
 
   return (

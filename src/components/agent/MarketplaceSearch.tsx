@@ -233,7 +233,7 @@ export default function MarketplaceSearch() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {results.filter(pkg => pkg.destination === selectedDestination).map((pkg) => (
-              <AgentPackageCard key={pkg.id} pkg={pkg} />
+              <AgentPackageCard key={pkg.id} pkg={pkg} nationality={filters.nationality} />
             ))}
           </div>
         )}

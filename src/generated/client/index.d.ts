@@ -7600,6 +7600,8 @@ export namespace Prisma {
     seasonality: string | null
     visaRequired: boolean | null
     culturalNotes: string | null
+    isMultiDestination: boolean | null
+    destinationsList: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7629,6 +7631,8 @@ export namespace Prisma {
     seasonality: string | null
     visaRequired: boolean | null
     culturalNotes: string | null
+    isMultiDestination: boolean | null
+    destinationsList: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7658,6 +7662,8 @@ export namespace Prisma {
     seasonality: number
     visaRequired: number
     culturalNotes: number
+    isMultiDestination: number
+    destinationsList: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -7705,6 +7711,8 @@ export namespace Prisma {
     seasonality?: true
     visaRequired?: true
     culturalNotes?: true
+    isMultiDestination?: true
+    destinationsList?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7734,6 +7742,8 @@ export namespace Prisma {
     seasonality?: true
     visaRequired?: true
     culturalNotes?: true
+    isMultiDestination?: true
+    destinationsList?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7763,6 +7773,8 @@ export namespace Prisma {
     seasonality?: true
     visaRequired?: true
     culturalNotes?: true
+    isMultiDestination?: true
+    destinationsList?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -7879,6 +7891,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired: boolean
     culturalNotes: string | null
+    isMultiDestination: boolean
+    destinationsList: string | null
     createdAt: Date
     updatedAt: Date
     _count: PackageCountAggregateOutputType | null
@@ -7927,6 +7941,8 @@ export namespace Prisma {
     seasonality?: boolean
     visaRequired?: boolean
     culturalNotes?: boolean
+    isMultiDestination?: boolean
+    destinationsList?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     dmc?: boolean | DMCProfileDefaultArgs<ExtArgs>
@@ -7965,6 +7981,8 @@ export namespace Prisma {
     seasonality?: boolean
     visaRequired?: boolean
     culturalNotes?: boolean
+    isMultiDestination?: boolean
+    destinationsList?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     dmc?: boolean | DMCProfileDefaultArgs<ExtArgs>
@@ -7996,6 +8014,8 @@ export namespace Prisma {
     seasonality?: boolean
     visaRequired?: boolean
     culturalNotes?: boolean
+    isMultiDestination?: boolean
+    destinationsList?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     dmc?: boolean | DMCProfileDefaultArgs<ExtArgs>
@@ -8027,11 +8047,13 @@ export namespace Prisma {
     seasonality?: boolean
     visaRequired?: boolean
     culturalNotes?: boolean
+    isMultiDestination?: boolean
+    destinationsList?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PackageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "dmcId" | "destinationId" | "title" | "destination" | "durationDays" | "durationNights" | "description" | "inclusions" | "exclusions" | "pricePerPerson" | "currency" | "minPax" | "maxPax" | "availableDatesStart" | "availableDatesEnd" | "termsConditions" | "cancellationPolicy" | "paymentTerms" | "status" | "targetNationalities" | "seasonality" | "visaRequired" | "culturalNotes" | "createdAt" | "updatedAt", ExtArgs["result"]["package"]>
+  export type PackageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "dmcId" | "destinationId" | "title" | "destination" | "durationDays" | "durationNights" | "description" | "inclusions" | "exclusions" | "pricePerPerson" | "currency" | "minPax" | "maxPax" | "availableDatesStart" | "availableDatesEnd" | "termsConditions" | "cancellationPolicy" | "paymentTerms" | "status" | "targetNationalities" | "seasonality" | "visaRequired" | "culturalNotes" | "isMultiDestination" | "destinationsList" | "createdAt" | "updatedAt", ExtArgs["result"]["package"]>
   export type PackageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     dmc?: boolean | DMCProfileDefaultArgs<ExtArgs>
     destinationRel?: boolean | Package$destinationRelArgs<ExtArgs>
@@ -8089,6 +8111,8 @@ export namespace Prisma {
       seasonality: string
       visaRequired: boolean
       culturalNotes: string | null
+      isMultiDestination: boolean
+      destinationsList: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["package"]>
@@ -8546,6 +8570,8 @@ export namespace Prisma {
     readonly seasonality: FieldRef<"Package", 'String'>
     readonly visaRequired: FieldRef<"Package", 'Boolean'>
     readonly culturalNotes: FieldRef<"Package", 'String'>
+    readonly isMultiDestination: FieldRef<"Package", 'Boolean'>
+    readonly destinationsList: FieldRef<"Package", 'String'>
     readonly createdAt: FieldRef<"Package", 'DateTime'>
     readonly updatedAt: FieldRef<"Package", 'DateTime'>
   }
@@ -19181,6 +19207,7 @@ export namespace Prisma {
     dayNumber: number | null
     title: string | null
     description: string | null
+    destinationName: string | null
   }
 
   export type ItineraryDayMaxAggregateOutputType = {
@@ -19189,6 +19216,7 @@ export namespace Prisma {
     dayNumber: number | null
     title: string | null
     description: string | null
+    destinationName: string | null
   }
 
   export type ItineraryDayCountAggregateOutputType = {
@@ -19197,6 +19225,7 @@ export namespace Prisma {
     dayNumber: number
     title: number
     description: number
+    destinationName: number
     _all: number
   }
 
@@ -19215,6 +19244,7 @@ export namespace Prisma {
     dayNumber?: true
     title?: true
     description?: true
+    destinationName?: true
   }
 
   export type ItineraryDayMaxAggregateInputType = {
@@ -19223,6 +19253,7 @@ export namespace Prisma {
     dayNumber?: true
     title?: true
     description?: true
+    destinationName?: true
   }
 
   export type ItineraryDayCountAggregateInputType = {
@@ -19231,6 +19262,7 @@ export namespace Prisma {
     dayNumber?: true
     title?: true
     description?: true
+    destinationName?: true
     _all?: true
   }
 
@@ -19326,6 +19358,7 @@ export namespace Prisma {
     dayNumber: number
     title: string
     description: string | null
+    destinationName: string | null
     _count: ItineraryDayCountAggregateOutputType | null
     _avg: ItineraryDayAvgAggregateOutputType | null
     _sum: ItineraryDaySumAggregateOutputType | null
@@ -19353,6 +19386,7 @@ export namespace Prisma {
     dayNumber?: boolean
     title?: boolean
     description?: boolean
+    destinationName?: boolean
     package?: boolean | PackageDefaultArgs<ExtArgs>
     items?: boolean | ItineraryDay$itemsArgs<ExtArgs>
     _count?: boolean | ItineraryDayCountOutputTypeDefaultArgs<ExtArgs>
@@ -19364,6 +19398,7 @@ export namespace Prisma {
     dayNumber?: boolean
     title?: boolean
     description?: boolean
+    destinationName?: boolean
     package?: boolean | PackageDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["itineraryDay"]>
 
@@ -19373,6 +19408,7 @@ export namespace Prisma {
     dayNumber?: boolean
     title?: boolean
     description?: boolean
+    destinationName?: boolean
     package?: boolean | PackageDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["itineraryDay"]>
 
@@ -19382,9 +19418,10 @@ export namespace Prisma {
     dayNumber?: boolean
     title?: boolean
     description?: boolean
+    destinationName?: boolean
   }
 
-  export type ItineraryDayOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "packageId" | "dayNumber" | "title" | "description", ExtArgs["result"]["itineraryDay"]>
+  export type ItineraryDayOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "packageId" | "dayNumber" | "title" | "description" | "destinationName", ExtArgs["result"]["itineraryDay"]>
   export type ItineraryDayInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     package?: boolean | PackageDefaultArgs<ExtArgs>
     items?: boolean | ItineraryDay$itemsArgs<ExtArgs>
@@ -19409,6 +19446,7 @@ export namespace Prisma {
       dayNumber: number
       title: string
       description: string | null
+      destinationName: string | null
     }, ExtArgs["result"]["itineraryDay"]>
     composites: {}
   }
@@ -19839,6 +19877,7 @@ export namespace Prisma {
     readonly dayNumber: FieldRef<"ItineraryDay", 'Int'>
     readonly title: FieldRef<"ItineraryDay", 'String'>
     readonly description: FieldRef<"ItineraryDay", 'String'>
+    readonly destinationName: FieldRef<"ItineraryDay", 'String'>
   }
     
 
@@ -21425,6 +21464,9 @@ export namespace Prisma {
     name: string | null
     description: string | null
     roomType: string | null
+    starRating: string | null
+    targetNationalities: string | null
+    transferType: string | null
   }
 
   export type PackageInventoryProductMaxAggregateOutputType = {
@@ -21434,6 +21476,9 @@ export namespace Prisma {
     name: string | null
     description: string | null
     roomType: string | null
+    starRating: string | null
+    targetNationalities: string | null
+    transferType: string | null
   }
 
   export type PackageInventoryProductCountAggregateOutputType = {
@@ -21443,6 +21488,9 @@ export namespace Prisma {
     name: number
     description: number
     roomType: number
+    starRating: number
+    targetNationalities: number
+    transferType: number
     _all: number
   }
 
@@ -21454,6 +21502,9 @@ export namespace Prisma {
     name?: true
     description?: true
     roomType?: true
+    starRating?: true
+    targetNationalities?: true
+    transferType?: true
   }
 
   export type PackageInventoryProductMaxAggregateInputType = {
@@ -21463,6 +21514,9 @@ export namespace Prisma {
     name?: true
     description?: true
     roomType?: true
+    starRating?: true
+    targetNationalities?: true
+    transferType?: true
   }
 
   export type PackageInventoryProductCountAggregateInputType = {
@@ -21472,6 +21526,9 @@ export namespace Prisma {
     name?: true
     description?: true
     roomType?: true
+    starRating?: true
+    targetNationalities?: true
+    transferType?: true
     _all?: true
   }
 
@@ -21554,6 +21611,9 @@ export namespace Prisma {
     name: string
     description: string | null
     roomType: string | null
+    starRating: string | null
+    targetNationalities: string | null
+    transferType: string | null
     _count: PackageInventoryProductCountAggregateOutputType | null
     _min: PackageInventoryProductMinAggregateOutputType | null
     _max: PackageInventoryProductMaxAggregateOutputType | null
@@ -21580,6 +21640,9 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     roomType?: boolean
+    starRating?: boolean
+    targetNationalities?: boolean
+    transferType?: boolean
     package?: boolean | PackageDefaultArgs<ExtArgs>
     media?: boolean | PackageInventoryProduct$mediaArgs<ExtArgs>
     options?: boolean | PackageInventoryProduct$optionsArgs<ExtArgs>
@@ -21593,6 +21656,9 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     roomType?: boolean
+    starRating?: boolean
+    targetNationalities?: boolean
+    transferType?: boolean
     package?: boolean | PackageDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packageInventoryProduct"]>
 
@@ -21603,6 +21669,9 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     roomType?: boolean
+    starRating?: boolean
+    targetNationalities?: boolean
+    transferType?: boolean
     package?: boolean | PackageDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packageInventoryProduct"]>
 
@@ -21613,9 +21682,12 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     roomType?: boolean
+    starRating?: boolean
+    targetNationalities?: boolean
+    transferType?: boolean
   }
 
-  export type PackageInventoryProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "packageId" | "type" | "name" | "description" | "roomType", ExtArgs["result"]["packageInventoryProduct"]>
+  export type PackageInventoryProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "packageId" | "type" | "name" | "description" | "roomType" | "starRating" | "targetNationalities" | "transferType", ExtArgs["result"]["packageInventoryProduct"]>
   export type PackageInventoryProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     package?: boolean | PackageDefaultArgs<ExtArgs>
     media?: boolean | PackageInventoryProduct$mediaArgs<ExtArgs>
@@ -21643,6 +21715,9 @@ export namespace Prisma {
       name: string
       description: string | null
       roomType: string | null
+      starRating: string | null
+      targetNationalities: string | null
+      transferType: string | null
     }, ExtArgs["result"]["packageInventoryProduct"]>
     composites: {}
   }
@@ -22075,6 +22150,9 @@ export namespace Prisma {
     readonly name: FieldRef<"PackageInventoryProduct", 'String'>
     readonly description: FieldRef<"PackageInventoryProduct", 'String'>
     readonly roomType: FieldRef<"PackageInventoryProduct", 'String'>
+    readonly starRating: FieldRef<"PackageInventoryProduct", 'String'>
+    readonly targetNationalities: FieldRef<"PackageInventoryProduct", 'String'>
+    readonly transferType: FieldRef<"PackageInventoryProduct", 'String'>
   }
     
 
@@ -24785,6 +24863,8 @@ export namespace Prisma {
     seasonality: 'seasonality',
     visaRequired: 'visaRequired',
     culturalNotes: 'culturalNotes',
+    isMultiDestination: 'isMultiDestination',
+    destinationsList: 'destinationsList',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -24916,7 +24996,8 @@ export namespace Prisma {
     packageId: 'packageId',
     dayNumber: 'dayNumber',
     title: 'title',
-    description: 'description'
+    description: 'description',
+    destinationName: 'destinationName'
   };
 
   export type ItineraryDayScalarFieldEnum = (typeof ItineraryDayScalarFieldEnum)[keyof typeof ItineraryDayScalarFieldEnum]
@@ -24940,7 +25021,10 @@ export namespace Prisma {
     type: 'type',
     name: 'name',
     description: 'description',
-    roomType: 'roomType'
+    roomType: 'roomType',
+    starRating: 'starRating',
+    targetNationalities: 'targetNationalities',
+    transferType: 'transferType'
   };
 
   export type PackageInventoryProductScalarFieldEnum = (typeof PackageInventoryProductScalarFieldEnum)[keyof typeof PackageInventoryProductScalarFieldEnum]
@@ -25378,6 +25462,8 @@ export namespace Prisma {
     seasonality?: StringFilter<"Package"> | string
     visaRequired?: BoolFilter<"Package"> | boolean
     culturalNotes?: StringNullableFilter<"Package"> | string | null
+    isMultiDestination?: BoolFilter<"Package"> | boolean
+    destinationsList?: StringNullableFilter<"Package"> | string | null
     createdAt?: DateTimeFilter<"Package"> | Date | string
     updatedAt?: DateTimeFilter<"Package"> | Date | string
     dmc?: XOR<DMCProfileScalarRelationFilter, DMCProfileWhereInput>
@@ -25415,6 +25501,8 @@ export namespace Prisma {
     seasonality?: SortOrder
     visaRequired?: SortOrder
     culturalNotes?: SortOrderInput | SortOrder
+    isMultiDestination?: SortOrder
+    destinationsList?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     dmc?: DMCProfileOrderByWithRelationInput
@@ -25455,6 +25543,8 @@ export namespace Prisma {
     seasonality?: StringFilter<"Package"> | string
     visaRequired?: BoolFilter<"Package"> | boolean
     culturalNotes?: StringNullableFilter<"Package"> | string | null
+    isMultiDestination?: BoolFilter<"Package"> | boolean
+    destinationsList?: StringNullableFilter<"Package"> | string | null
     createdAt?: DateTimeFilter<"Package"> | Date | string
     updatedAt?: DateTimeFilter<"Package"> | Date | string
     dmc?: XOR<DMCProfileScalarRelationFilter, DMCProfileWhereInput>
@@ -25492,6 +25582,8 @@ export namespace Prisma {
     seasonality?: SortOrder
     visaRequired?: SortOrder
     culturalNotes?: SortOrderInput | SortOrder
+    isMultiDestination?: SortOrder
+    destinationsList?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PackageCountOrderByAggregateInput
@@ -25529,6 +25621,8 @@ export namespace Prisma {
     seasonality?: StringWithAggregatesFilter<"Package"> | string
     visaRequired?: BoolWithAggregatesFilter<"Package"> | boolean
     culturalNotes?: StringNullableWithAggregatesFilter<"Package"> | string | null
+    isMultiDestination?: BoolWithAggregatesFilter<"Package"> | boolean
+    destinationsList?: StringNullableWithAggregatesFilter<"Package"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Package"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Package"> | Date | string
   }
@@ -26157,6 +26251,7 @@ export namespace Prisma {
     dayNumber?: IntFilter<"ItineraryDay"> | number
     title?: StringFilter<"ItineraryDay"> | string
     description?: StringNullableFilter<"ItineraryDay"> | string | null
+    destinationName?: StringNullableFilter<"ItineraryDay"> | string | null
     package?: XOR<PackageScalarRelationFilter, PackageWhereInput>
     items?: ItineraryItemListRelationFilter
   }
@@ -26167,6 +26262,7 @@ export namespace Prisma {
     dayNumber?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
+    destinationName?: SortOrderInput | SortOrder
     package?: PackageOrderByWithRelationInput
     items?: ItineraryItemOrderByRelationAggregateInput
   }
@@ -26180,6 +26276,7 @@ export namespace Prisma {
     dayNumber?: IntFilter<"ItineraryDay"> | number
     title?: StringFilter<"ItineraryDay"> | string
     description?: StringNullableFilter<"ItineraryDay"> | string | null
+    destinationName?: StringNullableFilter<"ItineraryDay"> | string | null
     package?: XOR<PackageScalarRelationFilter, PackageWhereInput>
     items?: ItineraryItemListRelationFilter
   }, "id">
@@ -26190,6 +26287,7 @@ export namespace Prisma {
     dayNumber?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
+    destinationName?: SortOrderInput | SortOrder
     _count?: ItineraryDayCountOrderByAggregateInput
     _avg?: ItineraryDayAvgOrderByAggregateInput
     _max?: ItineraryDayMaxOrderByAggregateInput
@@ -26206,6 +26304,7 @@ export namespace Prisma {
     dayNumber?: IntWithAggregatesFilter<"ItineraryDay"> | number
     title?: StringWithAggregatesFilter<"ItineraryDay"> | string
     description?: StringNullableWithAggregatesFilter<"ItineraryDay"> | string | null
+    destinationName?: StringNullableWithAggregatesFilter<"ItineraryDay"> | string | null
   }
 
   export type ItineraryItemWhereInput = {
@@ -26283,6 +26382,9 @@ export namespace Prisma {
     name?: StringFilter<"PackageInventoryProduct"> | string
     description?: StringNullableFilter<"PackageInventoryProduct"> | string | null
     roomType?: StringNullableFilter<"PackageInventoryProduct"> | string | null
+    starRating?: StringNullableFilter<"PackageInventoryProduct"> | string | null
+    targetNationalities?: StringNullableFilter<"PackageInventoryProduct"> | string | null
+    transferType?: StringNullableFilter<"PackageInventoryProduct"> | string | null
     package?: XOR<PackageScalarRelationFilter, PackageWhereInput>
     media?: PackageInventoryMediaListRelationFilter
     options?: ItineraryItemOptionListRelationFilter
@@ -26295,6 +26397,9 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     roomType?: SortOrderInput | SortOrder
+    starRating?: SortOrderInput | SortOrder
+    targetNationalities?: SortOrderInput | SortOrder
+    transferType?: SortOrderInput | SortOrder
     package?: PackageOrderByWithRelationInput
     media?: PackageInventoryMediaOrderByRelationAggregateInput
     options?: ItineraryItemOptionOrderByRelationAggregateInput
@@ -26310,6 +26415,9 @@ export namespace Prisma {
     name?: StringFilter<"PackageInventoryProduct"> | string
     description?: StringNullableFilter<"PackageInventoryProduct"> | string | null
     roomType?: StringNullableFilter<"PackageInventoryProduct"> | string | null
+    starRating?: StringNullableFilter<"PackageInventoryProduct"> | string | null
+    targetNationalities?: StringNullableFilter<"PackageInventoryProduct"> | string | null
+    transferType?: StringNullableFilter<"PackageInventoryProduct"> | string | null
     package?: XOR<PackageScalarRelationFilter, PackageWhereInput>
     media?: PackageInventoryMediaListRelationFilter
     options?: ItineraryItemOptionListRelationFilter
@@ -26322,6 +26430,9 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     roomType?: SortOrderInput | SortOrder
+    starRating?: SortOrderInput | SortOrder
+    targetNationalities?: SortOrderInput | SortOrder
+    transferType?: SortOrderInput | SortOrder
     _count?: PackageInventoryProductCountOrderByAggregateInput
     _max?: PackageInventoryProductMaxOrderByAggregateInput
     _min?: PackageInventoryProductMinOrderByAggregateInput
@@ -26337,6 +26448,9 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"PackageInventoryProduct"> | string
     description?: StringNullableWithAggregatesFilter<"PackageInventoryProduct"> | string | null
     roomType?: StringNullableWithAggregatesFilter<"PackageInventoryProduct"> | string | null
+    starRating?: StringNullableWithAggregatesFilter<"PackageInventoryProduct"> | string | null
+    targetNationalities?: StringNullableWithAggregatesFilter<"PackageInventoryProduct"> | string | null
+    transferType?: StringNullableWithAggregatesFilter<"PackageInventoryProduct"> | string | null
   }
 
   export type PackageInventoryMediaWhereInput = {
@@ -26847,6 +26961,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     dmc: DMCProfileCreateNestedOneWithoutPackagesInput
@@ -26884,6 +27000,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     images?: PackageImageUncheckedCreateNestedManyWithoutPackageInput
@@ -26917,6 +27035,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dmc?: DMCProfileUpdateOneRequiredWithoutPackagesNestedInput
@@ -26954,6 +27074,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     images?: PackageImageUncheckedUpdateManyWithoutPackageNestedInput
@@ -26989,6 +27111,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -27016,6 +27140,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -27045,6 +27171,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -27695,6 +27823,7 @@ export namespace Prisma {
     dayNumber: number
     title: string
     description?: string | null
+    destinationName?: string | null
     package: PackageCreateNestedOneWithoutItineraryDaysInput
     items?: ItineraryItemCreateNestedManyWithoutItineraryDayInput
   }
@@ -27705,6 +27834,7 @@ export namespace Prisma {
     dayNumber: number
     title: string
     description?: string | null
+    destinationName?: string | null
     items?: ItineraryItemUncheckedCreateNestedManyWithoutItineraryDayInput
   }
 
@@ -27713,6 +27843,7 @@ export namespace Prisma {
     dayNumber?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationName?: NullableStringFieldUpdateOperationsInput | string | null
     package?: PackageUpdateOneRequiredWithoutItineraryDaysNestedInput
     items?: ItineraryItemUpdateManyWithoutItineraryDayNestedInput
   }
@@ -27723,6 +27854,7 @@ export namespace Prisma {
     dayNumber?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationName?: NullableStringFieldUpdateOperationsInput | string | null
     items?: ItineraryItemUncheckedUpdateManyWithoutItineraryDayNestedInput
   }
 
@@ -27732,6 +27864,7 @@ export namespace Prisma {
     dayNumber: number
     title: string
     description?: string | null
+    destinationName?: string | null
   }
 
   export type ItineraryDayUpdateManyMutationInput = {
@@ -27739,6 +27872,7 @@ export namespace Prisma {
     dayNumber?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationName?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ItineraryDayUncheckedUpdateManyInput = {
@@ -27747,6 +27881,7 @@ export namespace Prisma {
     dayNumber?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationName?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ItineraryItemCreateInput = {
@@ -27821,6 +27956,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     roomType?: string | null
+    starRating?: string | null
+    targetNationalities?: string | null
+    transferType?: string | null
     package: PackageCreateNestedOneWithoutInventoryProductsInput
     media?: PackageInventoryMediaCreateNestedManyWithoutProductInput
     options?: ItineraryItemOptionCreateNestedManyWithoutInventoryProductInput
@@ -27833,6 +27971,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     roomType?: string | null
+    starRating?: string | null
+    targetNationalities?: string | null
+    transferType?: string | null
     media?: PackageInventoryMediaUncheckedCreateNestedManyWithoutProductInput
     options?: ItineraryItemOptionUncheckedCreateNestedManyWithoutInventoryProductInput
   }
@@ -27843,6 +27984,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
     package?: PackageUpdateOneRequiredWithoutInventoryProductsNestedInput
     media?: PackageInventoryMediaUpdateManyWithoutProductNestedInput
     options?: ItineraryItemOptionUpdateManyWithoutInventoryProductNestedInput
@@ -27855,6 +27999,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
     media?: PackageInventoryMediaUncheckedUpdateManyWithoutProductNestedInput
     options?: ItineraryItemOptionUncheckedUpdateManyWithoutInventoryProductNestedInput
   }
@@ -27866,6 +28013,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     roomType?: string | null
+    starRating?: string | null
+    targetNationalities?: string | null
+    transferType?: string | null
   }
 
   export type PackageInventoryProductUpdateManyMutationInput = {
@@ -27874,6 +28024,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PackageInventoryProductUncheckedUpdateManyInput = {
@@ -27883,6 +28036,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PackageInventoryMediaCreateInput = {
@@ -28450,6 +28606,8 @@ export namespace Prisma {
     seasonality?: SortOrder
     visaRequired?: SortOrder
     culturalNotes?: SortOrder
+    isMultiDestination?: SortOrder
+    destinationsList?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28487,6 +28645,8 @@ export namespace Prisma {
     seasonality?: SortOrder
     visaRequired?: SortOrder
     culturalNotes?: SortOrder
+    isMultiDestination?: SortOrder
+    destinationsList?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28516,6 +28676,8 @@ export namespace Prisma {
     seasonality?: SortOrder
     visaRequired?: SortOrder
     culturalNotes?: SortOrder
+    isMultiDestination?: SortOrder
+    destinationsList?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28937,6 +29099,7 @@ export namespace Prisma {
     dayNumber?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    destinationName?: SortOrder
   }
 
   export type ItineraryDayAvgOrderByAggregateInput = {
@@ -28949,6 +29112,7 @@ export namespace Prisma {
     dayNumber?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    destinationName?: SortOrder
   }
 
   export type ItineraryDayMinOrderByAggregateInput = {
@@ -28957,6 +29121,7 @@ export namespace Prisma {
     dayNumber?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    destinationName?: SortOrder
   }
 
   export type ItineraryDaySumOrderByAggregateInput = {
@@ -29030,6 +29195,9 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     roomType?: SortOrder
+    starRating?: SortOrder
+    targetNationalities?: SortOrder
+    transferType?: SortOrder
   }
 
   export type PackageInventoryProductMaxOrderByAggregateInput = {
@@ -29039,6 +29207,9 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     roomType?: SortOrder
+    starRating?: SortOrder
+    targetNationalities?: SortOrder
+    transferType?: SortOrder
   }
 
   export type PackageInventoryProductMinOrderByAggregateInput = {
@@ -29048,6 +29219,9 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     roomType?: SortOrder
+    starRating?: SortOrder
+    targetNationalities?: SortOrder
+    transferType?: SortOrder
   }
 
   export type PackageInventoryProductScalarRelationFilter = {
@@ -30862,6 +31036,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     destinationRel?: DestinationCreateNestedOneWithoutPackagesInput
@@ -30897,6 +31073,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     images?: PackageImageUncheckedCreateNestedManyWithoutPackageInput
@@ -30999,6 +31177,8 @@ export namespace Prisma {
     seasonality?: StringFilter<"Package"> | string
     visaRequired?: BoolFilter<"Package"> | boolean
     culturalNotes?: StringNullableFilter<"Package"> | string | null
+    isMultiDestination?: BoolFilter<"Package"> | boolean
+    destinationsList?: StringNullableFilter<"Package"> | string | null
     createdAt?: DateTimeFilter<"Package"> | Date | string
     updatedAt?: DateTimeFilter<"Package"> | Date | string
   }
@@ -31235,6 +31415,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     dmc: DMCProfileCreateNestedOneWithoutPackagesInput
@@ -31270,6 +31452,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     images?: PackageImageUncheckedCreateNestedManyWithoutPackageInput
@@ -31396,6 +31580,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     roomType?: string | null
+    starRating?: string | null
+    targetNationalities?: string | null
+    transferType?: string | null
     media?: PackageInventoryMediaCreateNestedManyWithoutProductInput
     options?: ItineraryItemOptionCreateNestedManyWithoutInventoryProductInput
   }
@@ -31406,6 +31593,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     roomType?: string | null
+    starRating?: string | null
+    targetNationalities?: string | null
+    transferType?: string | null
     media?: PackageInventoryMediaUncheckedCreateNestedManyWithoutProductInput
     options?: ItineraryItemOptionUncheckedCreateNestedManyWithoutInventoryProductInput
   }
@@ -31496,6 +31686,7 @@ export namespace Prisma {
     dayNumber: number
     title: string
     description?: string | null
+    destinationName?: string | null
     items?: ItineraryItemCreateNestedManyWithoutItineraryDayInput
   }
 
@@ -31504,6 +31695,7 @@ export namespace Prisma {
     dayNumber: number
     title: string
     description?: string | null
+    destinationName?: string | null
     items?: ItineraryItemUncheckedCreateNestedManyWithoutItineraryDayInput
   }
 
@@ -31666,6 +31858,9 @@ export namespace Prisma {
     name?: StringFilter<"PackageInventoryProduct"> | string
     description?: StringNullableFilter<"PackageInventoryProduct"> | string | null
     roomType?: StringNullableFilter<"PackageInventoryProduct"> | string | null
+    starRating?: StringNullableFilter<"PackageInventoryProduct"> | string | null
+    targetNationalities?: StringNullableFilter<"PackageInventoryProduct"> | string | null
+    transferType?: StringNullableFilter<"PackageInventoryProduct"> | string | null
   }
 
   export type HoldUpsertWithWhereUniqueWithoutPackageInput = {
@@ -31725,6 +31920,7 @@ export namespace Prisma {
     dayNumber?: IntFilter<"ItineraryDay"> | number
     title?: StringFilter<"ItineraryDay"> | string
     description?: StringNullableFilter<"ItineraryDay"> | string | null
+    destinationName?: StringNullableFilter<"ItineraryDay"> | string | null
   }
 
   export type PackageHotelTierUpsertWithWhereUniqueWithoutPackageInput = {
@@ -31777,6 +31973,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     dmc: DMCProfileCreateNestedOneWithoutPackagesInput
@@ -31813,6 +32011,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     images?: PackageImageUncheckedCreateNestedManyWithoutPackageInput
@@ -31861,6 +32061,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dmc?: DMCProfileUpdateOneRequiredWithoutPackagesNestedInput
@@ -31897,6 +32099,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     images?: PackageImageUncheckedUpdateManyWithoutPackageNestedInput
@@ -31929,6 +32133,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     dmc: DMCProfileCreateNestedOneWithoutPackagesInput
@@ -31965,6 +32171,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     inventoryProducts?: PackageInventoryProductUncheckedCreateNestedManyWithoutPackageInput
@@ -32013,6 +32221,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dmc?: DMCProfileUpdateOneRequiredWithoutPackagesNestedInput
@@ -32049,6 +32259,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryProducts?: PackageInventoryProductUncheckedUpdateManyWithoutPackageNestedInput
@@ -32112,6 +32324,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     dmc: DMCProfileCreateNestedOneWithoutPackagesInput
@@ -32148,6 +32362,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     images?: PackageImageUncheckedCreateNestedManyWithoutPackageInput
@@ -32233,6 +32449,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dmc?: DMCProfileUpdateOneRequiredWithoutPackagesNestedInput
@@ -32269,6 +32487,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     images?: PackageImageUncheckedUpdateManyWithoutPackageNestedInput
@@ -32332,6 +32552,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     dmc: DMCProfileCreateNestedOneWithoutPackagesInput
@@ -32368,6 +32590,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     images?: PackageImageUncheckedCreateNestedManyWithoutPackageInput
@@ -32509,6 +32733,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dmc?: DMCProfileUpdateOneRequiredWithoutPackagesNestedInput
@@ -32545,6 +32771,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     images?: PackageImageUncheckedUpdateManyWithoutPackageNestedInput
@@ -33004,6 +33232,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     dmc: DMCProfileCreateNestedOneWithoutPackagesInput
@@ -33040,6 +33270,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     images?: PackageImageUncheckedCreateNestedManyWithoutPackageInput
@@ -33115,6 +33347,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dmc?: DMCProfileUpdateOneRequiredWithoutPackagesNestedInput
@@ -33151,6 +33385,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     images?: PackageImageUncheckedUpdateManyWithoutPackageNestedInput
@@ -33193,6 +33429,7 @@ export namespace Prisma {
     dayNumber: number
     title: string
     description?: string | null
+    destinationName?: string | null
     package: PackageCreateNestedOneWithoutItineraryDaysInput
   }
 
@@ -33202,6 +33439,7 @@ export namespace Prisma {
     dayNumber: number
     title: string
     description?: string | null
+    destinationName?: string | null
   }
 
   export type ItineraryDayCreateOrConnectWithoutItemsInput = {
@@ -33248,6 +33486,7 @@ export namespace Prisma {
     dayNumber?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationName?: NullableStringFieldUpdateOperationsInput | string | null
     package?: PackageUpdateOneRequiredWithoutItineraryDaysNestedInput
   }
 
@@ -33257,6 +33496,7 @@ export namespace Prisma {
     dayNumber?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationName?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ItineraryItemOptionUpsertWithWhereUniqueWithoutItineraryItemInput = {
@@ -33309,6 +33549,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     dmc: DMCProfileCreateNestedOneWithoutPackagesInput
@@ -33345,6 +33587,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     images?: PackageImageUncheckedCreateNestedManyWithoutPackageInput
@@ -33439,6 +33683,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dmc?: DMCProfileUpdateOneRequiredWithoutPackagesNestedInput
@@ -33475,6 +33721,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     images?: PackageImageUncheckedUpdateManyWithoutPackageNestedInput
@@ -33533,6 +33781,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     roomType?: string | null
+    starRating?: string | null
+    targetNationalities?: string | null
+    transferType?: string | null
     package: PackageCreateNestedOneWithoutInventoryProductsInput
     options?: ItineraryItemOptionCreateNestedManyWithoutInventoryProductInput
   }
@@ -33544,6 +33795,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     roomType?: string | null
+    starRating?: string | null
+    targetNationalities?: string | null
+    transferType?: string | null
     options?: ItineraryItemOptionUncheckedCreateNestedManyWithoutInventoryProductInput
   }
 
@@ -33569,6 +33823,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
     package?: PackageUpdateOneRequiredWithoutInventoryProductsNestedInput
     options?: ItineraryItemOptionUpdateManyWithoutInventoryProductNestedInput
   }
@@ -33580,6 +33837,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ItineraryItemOptionUncheckedUpdateManyWithoutInventoryProductNestedInput
   }
 
@@ -33612,6 +33872,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     roomType?: string | null
+    starRating?: string | null
+    targetNationalities?: string | null
+    transferType?: string | null
     package: PackageCreateNestedOneWithoutInventoryProductsInput
     media?: PackageInventoryMediaCreateNestedManyWithoutProductInput
   }
@@ -33623,6 +33886,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     roomType?: string | null
+    starRating?: string | null
+    targetNationalities?: string | null
+    transferType?: string | null
     media?: PackageInventoryMediaUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -33677,6 +33943,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
     package?: PackageUpdateOneRequiredWithoutInventoryProductsNestedInput
     media?: PackageInventoryMediaUpdateManyWithoutProductNestedInput
   }
@@ -33688,6 +33957,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
     media?: PackageInventoryMediaUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -33815,6 +34087,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33842,6 +34116,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     destinationRel?: DestinationUpdateOneWithoutPackagesNestedInput
@@ -33877,6 +34153,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     images?: PackageImageUncheckedUpdateManyWithoutPackageNestedInput
@@ -33911,6 +34189,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34043,6 +34323,8 @@ export namespace Prisma {
     seasonality: string
     visaRequired?: boolean
     culturalNotes?: string | null
+    isMultiDestination?: boolean
+    destinationsList?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -34070,6 +34352,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dmc?: DMCProfileUpdateOneRequiredWithoutPackagesNestedInput
@@ -34105,6 +34389,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     images?: PackageImageUncheckedUpdateManyWithoutPackageNestedInput
@@ -34139,6 +34425,8 @@ export namespace Prisma {
     seasonality?: StringFieldUpdateOperationsInput | string
     visaRequired?: BoolFieldUpdateOperationsInput | boolean
     culturalNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    isMultiDestination?: BoolFieldUpdateOperationsInput | boolean
+    destinationsList?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34156,6 +34444,9 @@ export namespace Prisma {
     name: string
     description?: string | null
     roomType?: string | null
+    starRating?: string | null
+    targetNationalities?: string | null
+    transferType?: string | null
   }
 
   export type HoldCreateManyPackageInput = {
@@ -34188,6 +34479,7 @@ export namespace Prisma {
     dayNumber: number
     title: string
     description?: string | null
+    destinationName?: string | null
   }
 
   export type PackageHotelTierCreateManyPackageInput = {
@@ -34224,6 +34516,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
     media?: PackageInventoryMediaUpdateManyWithoutProductNestedInput
     options?: ItineraryItemOptionUpdateManyWithoutInventoryProductNestedInput
   }
@@ -34234,6 +34529,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
     media?: PackageInventoryMediaUncheckedUpdateManyWithoutProductNestedInput
     options?: ItineraryItemOptionUncheckedUpdateManyWithoutInventoryProductNestedInput
   }
@@ -34244,6 +34542,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomType?: NullableStringFieldUpdateOperationsInput | string | null
+    starRating?: NullableStringFieldUpdateOperationsInput | string | null
+    targetNationalities?: NullableStringFieldUpdateOperationsInput | string | null
+    transferType?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type HoldUpdateWithoutPackageInput = {
@@ -34330,6 +34631,7 @@ export namespace Prisma {
     dayNumber?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationName?: NullableStringFieldUpdateOperationsInput | string | null
     items?: ItineraryItemUpdateManyWithoutItineraryDayNestedInput
   }
 
@@ -34338,6 +34640,7 @@ export namespace Prisma {
     dayNumber?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationName?: NullableStringFieldUpdateOperationsInput | string | null
     items?: ItineraryItemUncheckedUpdateManyWithoutItineraryDayNestedInput
   }
 
@@ -34346,6 +34649,7 @@ export namespace Prisma {
     dayNumber?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationName?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PackageHotelTierUpdateWithoutPackageInput = {

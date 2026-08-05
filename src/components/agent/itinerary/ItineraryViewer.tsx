@@ -6,9 +6,10 @@ import ItineraryItemCard from "./ItineraryItemCard"
 interface ItineraryViewerProps {
   days: any[];
   onChange: (totalAddOn: number, selectedOptions: Record<string, string>, movedItems: Record<string, number>) => void;
+  travelerNationality?: string;
 }
 
-export default function ItineraryViewer({ days, onChange }: ItineraryViewerProps) {
+export default function ItineraryViewer({ days, onChange, travelerNationality }: ItineraryViewerProps) {
   // Map of itemId -> selectedOptionId
   const [selections, setSelections] = useState<Record<string, string>>({})
   const [localDays, setLocalDays] = useState<any[]>([])
@@ -19,15 +20,22 @@ export default function ItineraryViewer({ days, onChange }: ItineraryViewerProps
     const initialSelections: Record<string, string> = {}
     days.forEach(day => {
       day.items.forEach((item: any) => {
-        const defaultOpt = item.options.find((o: any) => o.isDefault) || item.options[0]
-        if (defaultOpt) {
-          initialSelections[item.id] = defaultOpt.id
+        // If travelerNationality is provided (e.g., "Arab"), check for nationality-matched hotel/product option first!
+        let matchedOpt = null
+        if (travelerNationality && travelerNationality !== "All") {
+          matchedOpt = item.options.find((o: any) => 
+            o.inventoryProduct?.targetNationalities?.toLowerCase().includes(travelerNationality.toLowerCase())
+          )
+        }
+        const selected = matchedOpt || item.options.find((o: any) => o.isDefault) || item.options[0]
+        if (selected) {
+          initialSelections[item.id] = selected.id
         }
       })
     })
     setSelections(initialSelections)
     setLocalDays(JSON.parse(JSON.stringify(days)))
-  }, [days])
+  }, [days, travelerNationality])
 
   // Setup Intersection Observer for scroll spy
   useEffect(() => {
@@ -179,6 +187,11 @@ export default function ItineraryViewer({ days, onChange }: ItineraryViewerProps
                   <span className="bg-slate-900 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm shrink-0">
                     Day {day.dayNumber}
                   </span>
+                  {day.destinationName && (
+                    <span className="bg-blue-100 text-blue-800 text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full border border-blue-200 shrink-0">
+                      📍 {day.destinationName}
+                    </span>
+                  )}
                   <h3 className="font-black text-slate-900 text-xl tracking-tight">{day.title}</h3>
                 </div>
                 
@@ -208,6 +221,7 @@ export default function ItineraryViewer({ days, onChange }: ItineraryViewerProps
                     availableDays={availableDays}
                     currentDayNumber={day.dayNumber}
                     onMoveItem={handleMoveItem}
+                    travelerNationality={travelerNationality}
                   />
                 ))}
                 {day.items.length === 0 && (

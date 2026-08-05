@@ -108,6 +108,8 @@ model Package {
   seasonality         String   // e.g. "Winter", "Year-round", "Summer"
   visaRequired        Boolean  @default(false)
   culturalNotes       String?  // e.g. "Near Indian Markets", "Large Family Suites near Mosque"
+  isMultiDestination  Boolean  @default(false)
+  destinationsList    String?  // e.g. "Bangkok, Phuket"
   
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
@@ -241,6 +243,7 @@ model ItineraryDay {
   dayNumber   Int
   title       String
   description String?
+  destinationName String? // Segment e.g. "Bangkok" vs "Phuket"
   
   items       ItineraryItem[]
 }
@@ -265,6 +268,9 @@ model PackageInventoryProduct {
   name        String
   description String?
   roomType    String?
+  starRating  String?  // e.g. "3-Star", "4-Star", "5-Star"
+  targetNationalities String? @default("All") // e.g. "Arab", "Indian", "European", "Asian", "All"
+  transferType String? // e.g. "Seat in Coach (SIC)", "Private Sedan", "Private SUV"
   
   media       PackageInventoryMedia[]
   options     ItineraryItemOption[] // The slots where this product is used

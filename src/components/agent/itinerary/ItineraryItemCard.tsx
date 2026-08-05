@@ -21,6 +21,9 @@ interface ItineraryItemOption {
     name: string;
     roomType?: string | null;
     description?: string | null;
+    starRating?: string | null;
+    targetNationalities?: string | null;
+    transferType?: string | null;
     media: { url: string; type: string }[];
   }
 }
@@ -39,6 +42,7 @@ interface ItineraryItemProps {
   availableDays?: number[];
   currentDayNumber?: number;
   onMoveItem?: (itemId: string, targetDayNumber: number) => void;
+  travelerNationality?: string;
 }
 
 type ModifyMode = 'NONE' | 'HOTELS' | 'ROOMS' | 'STANDARD'
@@ -49,7 +53,8 @@ export default function ItineraryItemCard({
   onOptionChange,
   availableDays = [],
   currentDayNumber,
-  onMoveItem
+  onMoveItem,
+  travelerNationality
 }: ItineraryItemProps) {
   const [modifyMode, setModifyMode] = useState<ModifyMode>('NONE')
   const [viewingHotelName, setViewingHotelName] = useState<string | null>(null)
@@ -59,6 +64,9 @@ export default function ItineraryItemCard({
     id: opt.id,
     name: opt.inventoryProduct?.name || "Unnamed Product",
     roomType: opt.inventoryProduct?.roomType,
+    starRating: opt.inventoryProduct?.starRating,
+    targetNationalities: opt.inventoryProduct?.targetNationalities || "All",
+    transferType: opt.inventoryProduct?.transferType,
     description: opt.inventoryProduct?.description,
     priceAddOn: opt.priceAddOn,
     isDefault: opt.isDefault,
@@ -66,7 +74,7 @@ export default function ItineraryItemCard({
   }))
   
   const optionsWithNone = item.type !== 'HOTEL' 
-    ? [...mappedOptions, { id: "NONE", name: "None (Opt-out)", roomType: null as string | null | undefined, priceAddOn: -(item.optOutDiscount || 0), isDefault: false, media: [], description: null }]
+    ? [...mappedOptions, { id: "NONE", name: "None (Opt-out)", roomType: null as string | null | undefined, starRating: null as string | null | undefined, targetNationalities: "All", transferType: null as string | null | undefined, priceAddOn: -(item.optOutDiscount || 0), isDefault: false, media: [], description: null }]
     : mappedOptions;
     
   const selectedOption = optionsWithNone.find(o => o.id === selectedOptionId) || optionsWithNone.find(o => o.isDefault) || optionsWithNone[0]
@@ -129,11 +137,28 @@ export default function ItineraryItemCard({
             {selectedOption.name !== "None (Opt-out)" ? selectedOption.name : item.title}
           </h4>
           
-          {selectedOption.roomType && (
-            <div className="mb-3 flex items-center gap-3">
-              <span className="font-bold text-blue-700 text-xs bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">{selectedOption.roomType}</span>
-            </div>
-          )}
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            {selectedOption.starRating && (
+              <span className="font-bold text-amber-800 text-xs bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">
+                ★ {selectedOption.starRating}
+              </span>
+            )}
+            {selectedOption.roomType && (
+              <span className="font-bold text-blue-700 text-xs bg-blue-50 border border-blue-100 px-2.5 py-0.5 rounded-full">
+                {selectedOption.roomType}
+              </span>
+            )}
+            {selectedOption.transferType && (
+              <span className="font-bold text-emerald-700 text-xs bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-full">
+                🚌 {selectedOption.transferType}
+              </span>
+            )}
+            {selectedOption.targetNationalities && selectedOption.targetNationalities !== "All" && (
+              <span className="font-bold text-purple-700 text-xs bg-purple-50 border border-purple-100 px-2.5 py-0.5 rounded-full">
+                👤 {selectedOption.targetNationalities} Nationals
+              </span>
+            )}
+          </div>
 
           {selectedOption.name !== "None (Opt-out)" && !selectedOption.roomType && (
             <h5 className="font-bold text-slate-500 mb-3">{item.title}</h5>

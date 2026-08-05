@@ -21,7 +21,11 @@ export async function searchPackages(filters: {
   }
 
   if (filters.nationality && filters.nationality !== "All") {
-    where.targetNationalities = { contains: filters.nationality }
+    where.OR = [
+      { targetNationalities: { contains: filters.nationality } },
+      { targetNationalities: { contains: "All" } },
+      { targetNationalities: { contains: "Global" } }
+    ]
   }
 
   if (filters.seasonality && filters.seasonality !== "All") {

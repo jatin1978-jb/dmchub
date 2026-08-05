@@ -14,6 +14,7 @@ import { Globe, Clock, ShieldCheck, MapPin, Plus, Trash2, CalendarDays, Box, Che
 
 export default function PackageForm({ initialData }: { initialData?: any }) {
   // Step 1: Basic Details
+  const [isMultiDestination, setIsMultiDestination] = useState(initialData?.isMultiDestination || false)
   const [durationNights, setDurationNights] = useState(initialData?.durationNights || 1)
   const [packageImages, setPackageImages] = useState<any[]>(initialData?.images || [])
 
@@ -224,22 +225,44 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
               </div>
             </div>
             
-            {/* Cultural Targeting */}
-            <div className="pt-6 border-t border-slate-100 grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="targetNationalities">Target Nationalities *</Label>
-                <Input id="targetNationalities" name="targetNationalities" defaultValue={initialData?.targetNationalities} placeholder="e.g. Indian, Saudi, Egyptian" required />
+            {/* Multi-Destination & Cultural Targeting */}
+            <div className="pt-6 border-t border-slate-100 space-y-4">
+              <div className="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <Checkbox 
+                  id="isMultiDestination" 
+                  name="isMultiDestination" 
+                  checked={isMultiDestination}
+                  onCheckedChange={(checked) => setIsMultiDestination(!!checked)}
+                />
+                <div>
+                  <Label htmlFor="isMultiDestination" className="font-bold text-slate-800 cursor-pointer">Multi-Destination Package</Label>
+                  <p className="text-xs text-slate-500">Check this if the package spans multiple destinations (e.g. Bangkok + Phuket or Dubai + Abu Dhabi)</p>
+                </div>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="seasonality">Seasonality *</Label>
-                <Select name="seasonality" defaultValue={initialData?.seasonality || "Year-round"}>
-                  <SelectTrigger><SelectValue placeholder="Select Season" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Summer">Summer (April - July)</SelectItem>
-                    <SelectItem value="Winter">Winter (October - March)</SelectItem>
-                    <SelectItem value="Year-round">Year-round (All Months)</SelectItem>
-                  </SelectContent>
-                </Select>
+
+              {isMultiDestination && (
+                <div className="space-y-2 bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+                  <Label htmlFor="destinationsList">Destinations List *</Label>
+                  <Input id="destinationsList" name="destinationsList" defaultValue={initialData?.destinationsList} placeholder="e.g. Bangkok, Phuket, Chiang Mai" required={isMultiDestination} />
+                </div>
+              )}
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="targetNationalities">Target Nationalities *</Label>
+                  <Input id="targetNationalities" name="targetNationalities" defaultValue={initialData?.targetNationalities || "All"} placeholder="e.g. Arab, Indian, European, All" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="seasonality">Seasonality *</Label>
+                  <Select name="seasonality" defaultValue={initialData?.seasonality || "Year-round"}>
+                    <SelectTrigger><SelectValue placeholder="Select Season" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Summer">Summer (April - July)</SelectItem>
+                      <SelectItem value="Winter">Winter (October - March)</SelectItem>
+                      <SelectItem value="Year-round">Year-round (All Months)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -285,11 +308,55 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
                     <Textarea value={prod.description || ''} onChange={e => updateInventoryProduct(pIdx, 'description', e.target.value)} placeholder="Product description..." className="h-16 text-sm resize-none" />
                   </div>
                   {prod.type === 'HOTEL' && (
-                    <div className="space-y-1 mt-2">
-                      <Label className="text-xs">Room Type</Label>
-                      <Input value={prod.roomType || ''} onChange={e => updateInventoryProduct(pIdx, 'roomType', e.target.value)} placeholder="e.g. Standard Room, Sea View Suite" className="h-8 text-sm" />
+                    <div className="grid grid-cols-2 gap-2 mt-2">
+                      <div className="space-y-1">
+                        <Label className="text-xs">Star Rating</Label>
+                        <Select value={prod.starRating || '4-Star'} onValueChange={v => updateInventoryProduct(pIdx, 'starRating', v)}>
+                          <SelectTrigger className="h-8 text-sm"><SelectValue placeholder="Rating" /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="3-Star">3-Star</SelectItem>
+                            <SelectItem value="4-Star">4-Star</SelectItem>
+                            <SelectItem value="5-Star">5-Star</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-1">
+                        <Label className="text-xs">Room Type</Label>
+                        <Input value={prod.roomType || ''} onChange={e => updateInventoryProduct(pIdx, 'roomType', e.target.value)} placeholder="e.g. Standard Room, Sea View Suite" className="h-8 text-sm" />
+                      </div>
                     </div>
                   )}
+
+                  {prod.type === 'TRANSFER' && (
+                    <div className="space-y-1 mt-2">
+                      <Label className="text-xs">Transfer Mode</Label>
+                      <Select value={prod.transferType || 'Seat in Coach (SIC)'} onValueChange={v => updateInventoryProduct(pIdx, 'transferType', v)}>
+                        <SelectTrigger className="h-8 text-sm"><SelectValue placeholder="Transfer Mode" /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Seat in Coach (SIC)">Seat in Coach (SIC)</SelectItem>
+                          <SelectItem value="Private Sedan">Private Sedan</SelectItem>
+                          <SelectItem value="Private SUV">Private SUV</SelectItem>
+                          <SelectItem value="Speedboat / Flight">Speedboat / Flight</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+
+                  {/* Nationality Restriction for Hotel / Product */}
+                  <div className="space-y-1 mt-2 bg-slate-50 p-2 rounded border border-slate-100">
+                    <Label className="text-xs font-semibold text-slate-700">Target Nationality Target</Label>
+                    <Select value={prod.targetNationalities || 'All'} onValueChange={v => updateInventoryProduct(pIdx, 'targetNationalities', v)}>
+                      <SelectTrigger className="h-8 text-sm"><SelectValue placeholder="Target Nationality" /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="All">All Nationalities (Global)</SelectItem>
+                        <SelectItem value="Arab">Arab / GCC Nationals Only</SelectItem>
+                        <SelectItem value="Indian">Indian Nationals Only</SelectItem>
+                        <SelectItem value="European">European Nationals Only</SelectItem>
+                        <SelectItem value="Asian">Asian Nationals Only</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
                   <div className="space-y-1 mt-2">
                     <Label className="text-xs flex justify-between items-center">
                       Product Media
@@ -334,7 +401,12 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
                   Day {day.dayNumber}
                 </div>
                 <div className="flex-grow space-y-2">
-                  <Input value={day.title} onChange={e => updateDay(dIdx, 'title', e.target.value)} placeholder="Day Title (e.g. Arrival & Leisure)" className="font-semibold" />
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                    <Input value={day.title} onChange={e => updateDay(dIdx, 'title', e.target.value)} placeholder="Day Title (e.g. Arrival & Leisure)" className="font-semibold md:col-span-2" />
+                    {isMultiDestination && (
+                      <Input value={day.destinationName || ''} onChange={e => updateDay(dIdx, 'destinationName', e.target.value)} placeholder="Destination (e.g. Bangkok)" className="text-sm font-semibold border-blue-200 bg-blue-50/30" />
+                    )}
+                  </div>
                   <Input value={day.description} onChange={e => updateDay(dIdx, 'description', e.target.value)} placeholder="Brief description of the day's events..." className="text-sm text-slate-600" />
                 </div>
               </div>
