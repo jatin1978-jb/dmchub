@@ -1,9 +1,12 @@
 import { PrismaClient } from '../src/generated/client/index.js'
+import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient()
 
 async function main() {
   console.log('Seeding marketplace data...')
+
+  const passwordHash = await bcrypt.hash('password123', 10)
 
   // Clean up existing data to avoid conflicts with new schema
   console.log('Cleaning existing data...')
@@ -20,7 +23,48 @@ async function main() {
   await prisma.package.deleteMany({})
   await prisma.destination.deleteMany({})
   await prisma.dMCProfile.deleteMany({})
-  await prisma.user.deleteMany({ where: { role: 'DMC' } })
+  await prisma.user.deleteMany({})
+
+  console.log('Creating Test Users (DMC, Agent, Admin)...')
+  // Standard DMC user
+  const primaryDmcUser = await prisma.user.create({
+    data: {
+      email: 'dmc@example.com',
+      passwordHash: passwordHash,
+      role: 'DMC',
+      status: 'ACTIVE',
+      dmcProfile: {
+        create: {
+          companyName: 'Global DMC Hub Ltd',
+          contactPerson: 'Master DMC Manager',
+          phone: '+123456789',
+          country: 'Global',
+          address: '100 World Trade Tower',
+        }
+      }
+    },
+    include: { dmcProfile: true }
+  })
+
+  // Standard Agent user
+  await prisma.user.create({
+    data: {
+      email: 'agent@example.com',
+      passwordHash: passwordHash,
+      role: 'AGENT',
+      status: 'ACTIVE',
+    }
+  })
+
+  // Standard Admin user
+  await prisma.user.create({
+    data: {
+      email: 'admin@example.com',
+      passwordHash: passwordHash,
+      role: 'ADMIN',
+      status: 'ACTIVE',
+    }
+  })
 
   console.log('Creating Destinations...')
   const destinationsData = [
@@ -39,13 +83,13 @@ async function main() {
     destinations.push(created)
   }
 
-  console.log('Creating DMCs...')
-  const dmcUsers = []
+  console.log('Creating Additional DMCs...')
+  const dmcUsers = [primaryDmcUser]
   for (let i = 1; i <= 5; i++) {
     const user = await prisma.user.create({
       data: {
         email: `dmc${i}@example.com`,
-        passwordHash: 'dummyhash',
+        passwordHash: passwordHash,
         role: 'DMC',
         status: 'ACTIVE',
         dmcProfile: {
