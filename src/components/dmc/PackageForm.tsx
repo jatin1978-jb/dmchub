@@ -10,9 +10,20 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { createPackage, updatePackage } from "@/app/actions/packages"
 import { toast } from "sonner"
-import { Globe, Clock, ShieldCheck, MapPin, Plus, Trash2, CalendarDays, Box, CheckSquare, Image as ImageIcon, Sparkles } from "lucide-react"
+import { Globe, Clock, ShieldCheck, MapPin, Plus, Trash2, CalendarDays, Box, CheckSquare, Image as ImageIcon, Sparkles, Check } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 export default function PackageForm({ initialData }: { initialData?: any }) {
+  // Wizard Navigation
+  const [currentStep, setCurrentStep] = useState(1)
+
+  const steps = [
+    { number: 1, title: "1. Basic & Destination", desc: "Title, Route & Base Rate" },
+    { number: 2, title: "2. Hotels & Services Pool", desc: "3★/4★/5★ & Transfers Pool" },
+    { number: 3, title: "3. Daily Itinerary", desc: "Build Schedule & Add-ons" },
+    { number: 4, title: "4. Policies & Publish", desc: "Terms & Final Publish" },
+  ]
+
   // Step 1: Basic Details
   const [isMultiDestination, setIsMultiDestination] = useState(initialData?.isMultiDestination || false)
   const [durationNights, setDurationNights] = useState(initialData?.durationNights || 1)
@@ -156,12 +167,47 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
   }
 
   return (
-    <form action={handleSubmit} className="max-w-4xl mx-auto space-y-12 pb-24">
+    <form action={handleSubmit} className="max-w-4xl mx-auto pb-24">
+      {/* STEPPER HEADER */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-4 shadow-sm mb-8 sticky top-4 z-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {steps.map((s) => (
+            <div 
+              key={s.number} 
+              onClick={() => setCurrentStep(s.number)}
+              className={cn(
+                "flex items-center gap-3 p-3 rounded-2xl cursor-pointer transition-all border",
+                currentStep === s.number
+                  ? "bg-slate-900 text-white border-slate-900 shadow-lg scale-[1.02]"
+                  : currentStep > s.number
+                  ? "bg-emerald-50 text-emerald-900 border-emerald-200"
+                  : "bg-slate-50 text-slate-500 border-slate-100 hover:bg-slate-100"
+              )}
+            >
+              <div className={cn(
+                "w-8 h-8 rounded-xl font-black text-xs flex items-center justify-center shrink-0 shadow-sm",
+                currentStep === s.number
+                  ? "bg-blue-600 text-white"
+                  : currentStep > s.number
+                  ? "bg-emerald-600 text-white"
+                  : "bg-slate-200 text-slate-600"
+              )}>
+                {currentStep > s.number ? "✓" : s.number}
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-black uppercase tracking-wider">{s.title}</p>
+                <p className={cn("text-[10px] truncate font-medium", currentStep === s.number ? "text-slate-300" : "text-slate-400")}>{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* STEP 1: BASIC DETAILS */}
-      <div className="space-y-6">
+      <div className={currentStep === 1 ? "space-y-6" : "hidden"}>
         <div className="border-b pb-2">
-          <h2 className="text-2xl font-bold text-slate-800">1. Basic Package Details</h2>
-          <p className="text-slate-500">The core information and hero images.</p>
+          <h2 className="text-2xl font-bold text-slate-800">1. Basic Package Details & Route</h2>
+          <p className="text-slate-500">Define the package title, destination route, base rate, and hero images.</p>
         </div>
         
         <Card className="border-none shadow-sm">
@@ -173,7 +219,7 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
             
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="destination">Destination *</Label>
+                <Label htmlFor="destination">Primary Destination *</Label>
                 <Input id="destination" name="destination" defaultValue={initialData?.destination} placeholder="e.g. Dubai, UAE" required />
               </div>
               <div className="space-y-2">
@@ -200,7 +246,7 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
                 <Input id="durationDays" name="durationDays" type="number" value={durationNights + 1} readOnly className="bg-slate-50" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="pricePerPerson">Starting Price / Person *</Label>
+                <Label htmlFor="pricePerPerson">Standard Base Price / Person *</Label>
                 <Input id="pricePerPerson" name="pricePerPerson" type="number" step="0.01" defaultValue={initialData?.pricePerPerson} required />
               </div>
             </div>
@@ -273,11 +319,11 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
       </div>
 
       {/* STEP 2: PRODUCTS INVENTORY */}
-      <div className="space-y-6">
+      <div className={currentStep === 2 ? "space-y-6" : "hidden"}>
         <div className="border-b pb-2 flex justify-between items-end">
           <div>
-            <h2 className="text-2xl font-bold text-slate-800">2. Products Inventory</h2>
-            <p className="text-slate-500">Define the pool of hotels, transfers, and activities available in this package.</p>
+            <h2 className="text-2xl font-bold text-slate-800">2. Hotels & Services Inventory Pool</h2>
+            <p className="text-slate-500">Add 3★, 4★, 5★ hotels, room types, and transfer options into your package pool.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Button type="button" variant="outline" size="sm" className="border-amber-300 text-amber-900 bg-amber-50 hover:bg-amber-100 font-bold" onClick={() => addInventoryProduct("HOTEL", "3-Star")}>+ 3★ Hotel</Button>
@@ -397,10 +443,10 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
       </div>
 
       {/* STEP 3: ITINERARY BUILDER */}
-      <div className="space-y-6">
+      <div className={currentStep === 3 ? "space-y-6" : "hidden"}>
         <div className="border-b pb-2">
-          <h2 className="text-2xl font-bold text-slate-800">3. Day-by-Day Itinerary</h2>
-          <p className="text-slate-500">Build the daily schedule by selecting from your Products Inventory.</p>
+          <h2 className="text-2xl font-bold text-slate-800">3. Day-by-Day Itinerary & Differential Prices</h2>
+          <p className="text-slate-500">Link your pool options to daily slots and set differential add-on prices.</p>
         </div>
 
         <div className="space-y-6 border-l-2 border-blue-100 pl-6 ml-2">
@@ -538,11 +584,13 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
         </div>
       </div>
 
-      {/* STEP 4: INCLUSIONS / EXCLUSIONS */}
-      <div className="space-y-6">
+      {/* STEP 4: INCLUSIONS & POLICIES */}
+      <div className={currentStep === 4 ? "space-y-6" : "hidden"}>
         <div className="border-b pb-2">
-          <h2 className="text-2xl font-bold text-slate-800">4. Inclusions & Exclusions</h2>
+          <h2 className="text-2xl font-bold text-slate-800">4. Inclusions, Terms & Policies</h2>
+          <p className="text-slate-500">Define package inclusions, payment terms, and cancellation policies before publishing.</p>
         </div>
+
         <Card className="border-none shadow-sm">
           <CardContent className="space-y-4 pt-6">
             <div className="space-y-2">
@@ -555,13 +603,7 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
             </div>
           </CardContent>
         </Card>
-      </div>
 
-      {/* STEP 5: TERMS & CONDITIONS */}
-      <div className="space-y-6">
-        <div className="border-b pb-2">
-          <h2 className="text-2xl font-bold text-slate-800">5. Terms & Conditions</h2>
-        </div>
         <Card className="border-none shadow-sm bg-slate-50/50">
           <CardContent className="space-y-4 pt-6">
             <div className="space-y-2">
@@ -580,10 +622,23 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
         </Card>
       </div>
 
-      <div className="pt-8 border-t border-slate-200 sticky bottom-0 bg-white/80 backdrop-blur-md p-4 -mx-4 shadow-[0_-10px_30px_rgba(0,0,0,0.05)] rounded-t-2xl z-10">
-        <Button type="submit" className="w-full h-14 text-lg font-bold bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-200">
-          {initialData ? "Save Package Changes" : "Publish Package"}
-        </Button>
+      {/* STEP NAVIGATION ACTION BAR */}
+      <div className="pt-6 border-t border-slate-200 sticky bottom-0 bg-white/95 backdrop-blur-md p-4 shadow-[0_-10px_30px_rgba(0,0,0,0.08)] rounded-t-2xl z-20 flex justify-between items-center mt-8">
+        {currentStep > 1 ? (
+          <Button type="button" variant="outline" onClick={() => setCurrentStep(currentStep - 1)} className="px-6 h-12 font-bold rounded-xl border-slate-300">
+            ← Back
+          </Button>
+        ) : <div />}
+
+        {currentStep < 4 ? (
+          <Button type="button" onClick={() => setCurrentStep(currentStep + 1)} className="px-8 h-12 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-bold text-sm shadow-md transition-colors">
+            Continue to {steps[currentStep].title.split('.')[1]} ➔
+          </Button>
+        ) : (
+          <Button type="submit" className="px-10 h-12 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base shadow-xl">
+            🚀 {initialData ? "Save Package Changes" : "Publish Master Package"}
+          </Button>
+        )}
       </div>
     </form>
   )
