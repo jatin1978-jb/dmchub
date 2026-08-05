@@ -50,12 +50,15 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
   }
 
   // --- Inventory Handlers ---
-  const addInventoryProduct = (type: string) => {
+  const addInventoryProduct = (type: string, presetStarRating?: string) => {
     setInventoryProducts([...inventoryProducts, { 
       id: crypto.randomUUID(), // Temp ID for matching in UI
       type, 
       name: "", 
       description: "", 
+      starRating: presetStarRating || (type === "HOTEL" ? "4-Star" : undefined),
+      targetNationalities: "All",
+      transferType: type === "TRANSFER" ? "Seat in Coach (SIC)" : undefined,
       media: [] 
     }])
   }
@@ -276,8 +279,10 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
             <h2 className="text-2xl font-bold text-slate-800">2. Products Inventory</h2>
             <p className="text-slate-500">Define the pool of hotels, transfers, and activities available in this package.</p>
           </div>
-          <div className="flex gap-2">
-            <Button type="button" variant="outline" size="sm" onClick={() => addInventoryProduct("HOTEL")}>+ Hotel</Button>
+          <div className="flex flex-wrap gap-2">
+            <Button type="button" variant="outline" size="sm" className="border-amber-300 text-amber-900 bg-amber-50 hover:bg-amber-100 font-bold" onClick={() => addInventoryProduct("HOTEL", "3-Star")}>+ 3★ Hotel</Button>
+            <Button type="button" variant="outline" size="sm" className="border-blue-300 text-blue-900 bg-blue-50 hover:bg-blue-100 font-bold" onClick={() => addInventoryProduct("HOTEL", "4-Star")}>+ 4★ Hotel</Button>
+            <Button type="button" variant="outline" size="sm" className="border-purple-300 text-purple-900 bg-purple-50 hover:bg-purple-100 font-bold" onClick={() => addInventoryProduct("HOTEL", "5-Star")}>+ 5★ Hotel</Button>
             <Button type="button" variant="outline" size="sm" onClick={() => addInventoryProduct("TRANSFER")}>+ Transfer</Button>
             <Button type="button" variant="outline" size="sm" onClick={() => addInventoryProduct("ACTIVITY")}>+ Activity</Button>
             <Button type="button" variant="outline" size="sm" onClick={() => addInventoryProduct("RESTAURANT")}>+ Restaurant</Button>
@@ -287,42 +292,51 @@ export default function PackageForm({ initialData }: { initialData?: any }) {
         {inventoryProducts.length === 0 ? (
           <div className="text-center p-12 border-2 border-dashed border-gray-200 rounded-xl text-gray-400">
             <Box className="w-8 h-8 mx-auto mb-2 text-slate-300" />
-            No products defined. Add products here to select them in the itinerary builder.
+            No products defined. Click <strong>+ 3★ Hotel</strong>, <strong>+ 4★ Hotel</strong>, or <strong>+ 5★ Hotel</strong> above to add hotel variants.
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {inventoryProducts.map((prod, pIdx) => (
               <Card key={prod.id} className="border-slate-200 shadow-sm relative group overflow-hidden">
-                <div className={`absolute top-0 left-0 w-1 h-full ${prod.type === 'HOTEL' ? 'bg-indigo-500' : prod.type === 'TRANSFER' ? 'bg-emerald-500' : prod.type === 'RESTAURANT' ? 'bg-orange-500' : 'bg-pink-500'}`} />
+                <div className={`absolute top-0 left-0 w-1.5 h-full ${prod.type === 'HOTEL' ? 'bg-indigo-500' : prod.type === 'TRANSFER' ? 'bg-emerald-500' : prod.type === 'RESTAURANT' ? 'bg-orange-500' : 'bg-pink-500'}`} />
                 <Button type="button" variant="ghost" size="icon" className="absolute top-2 right-2 text-red-400 opacity-0 group-hover:opacity-100" onClick={() => removeInventoryProduct(pIdx)}>
                   <Trash2 className="w-4 h-4" />
                 </Button>
                 <CardContent className="pt-4 space-y-3">
-                  <div className="text-xs font-bold text-slate-400 tracking-wider">{prod.type}</div>
-                  <div className="space-y-1">
-                    <Label className="text-xs">Product Name</Label>
-                    <Input value={prod.name || ''} onChange={e => updateInventoryProduct(pIdx, 'name', e.target.value)} placeholder="e.g. Marriott Resort" className="h-8 text-sm" />
+                  <div className="text-xs font-bold text-slate-400 tracking-wider flex items-center gap-2">
+                    {prod.type}
+                    {prod.type === 'HOTEL' && <span className="text-amber-600 font-bold">• {prod.starRating || '4-Star'} Hotel Variant</span>}
                   </div>
                   <div className="space-y-1">
-                    <Label className="text-xs">Description</Label>
-                    <Textarea value={prod.description || ''} onChange={e => updateInventoryProduct(pIdx, 'description', e.target.value)} placeholder="Product description..." className="h-16 text-sm resize-none" />
+                    <Label className="text-xs font-bold">Hotel / Product Name *</Label>
+                    <Input value={prod.name || ''} onChange={e => updateInventoryProduct(pIdx, 'name', e.target.value)} placeholder="e.g. Marriott Resort & Spa" className="h-8 text-sm font-semibold" />
                   </div>
+
                   {prod.type === 'HOTEL' && (
-                    <div className="grid grid-cols-2 gap-2 mt-2">
+                    <div className="space-y-3 bg-amber-50/60 p-3 rounded-xl border border-amber-200/70">
                       <div className="space-y-1">
-                        <Label className="text-xs">Star Rating</Label>
-                        <Select value={prod.starRating || '4-Star'} onValueChange={v => updateInventoryProduct(pIdx, 'starRating', v)}>
-                          <SelectTrigger className="h-8 text-sm"><SelectValue placeholder="Rating" /></SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="3-Star">3-Star</SelectItem>
-                            <SelectItem value="4-Star">4-Star</SelectItem>
-                            <SelectItem value="5-Star">5-Star</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <Label className="text-xs font-bold text-amber-900 flex items-center gap-1">★ Hotel Star Rating Category</Label>
+                        <div className="flex gap-1.5 pt-0.5">
+                          {["3-Star", "4-Star", "5-Star"].map((rating) => (
+                            <button
+                              key={rating}
+                              type="button"
+                              onClick={() => updateInventoryProduct(pIdx, 'starRating', rating)}
+                              className={`flex-1 py-1.5 px-2 text-xs font-black rounded-lg border transition-all flex items-center justify-center gap-1 ${
+                                (prod.starRating || "4-Star") === rating
+                                  ? 'bg-amber-500 text-white border-amber-600 shadow-md ring-2 ring-amber-300'
+                                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                              }`}
+                            >
+                              ★ {rating}
+                            </button>
+                          ))}
+                        </div>
                       </div>
+                      
                       <div className="space-y-1">
-                        <Label className="text-xs">Room Type</Label>
-                        <Input value={prod.roomType || ''} onChange={e => updateInventoryProduct(pIdx, 'roomType', e.target.value)} placeholder="e.g. Standard Room, Sea View Suite" className="h-8 text-sm" />
+                        <Label className="text-xs font-bold text-slate-700">Room Type Category</Label>
+                        <Input value={prod.roomType || ''} onChange={e => updateInventoryProduct(pIdx, 'roomType', e.target.value)} placeholder="e.g. Deluxe Sea View Suite, Standard Room" className="h-8 text-sm bg-white" />
                       </div>
                     </div>
                   )}
