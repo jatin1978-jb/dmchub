@@ -25,96 +25,101 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const email = credentials.email.trim().toLowerCase();
-        let user = await prisma.user.findUnique({
-          where: { email }
-        });
+        try {
+          const email = credentials.email.trim().toLowerCase();
+          let user = await prisma.user.findUnique({
+            where: { email }
+          });
 
-        // Dynamic auto-creation fallback for seed users if DB was reset on production host
-        if (!user) {
-          if (email === "agent@example.com" && credentials.password === "password123") {
-            const hash = await bcrypt.hash("password123", 10);
-            user = await prisma.user.create({
-              data: {
-                email: "agent@example.com",
-                passwordHash: hash,
-                role: "AGENT",
-                status: "ACTIVE",
-                agentProfile: {
-                  create: {
-                    agencyName: "Global Travel Agency",
-                    contactPerson: "Agent User",
-                    phone: "+1 555-0199",
-                    country: "UAE",
-                    address: "Dubai, UAE"
+          // Dynamic auto-creation fallback for seed users if DB was reset on production host
+          if (!user) {
+            if (email === "agent@example.com" && credentials.password === "password123") {
+              const hash = await bcrypt.hash("password123", 10);
+              user = await prisma.user.create({
+                data: {
+                  email: "agent@example.com",
+                  passwordHash: hash,
+                  role: "AGENT",
+                  status: "ACTIVE",
+                  agentProfile: {
+                    create: {
+                      agencyName: "Global Travel Agency",
+                      contactPerson: "Agent User",
+                      phone: "+1 555-0199",
+                      country: "UAE",
+                      address: "Dubai, UAE"
+                    }
                   }
                 }
-              }
-            });
-          } else if (email === "admin@dmchub.com" && credentials.password === "admin123") {
-            const hash = await bcrypt.hash("admin123", 10);
-            user = await prisma.user.create({
-              data: {
-                email: "admin@dmchub.com",
-                passwordHash: hash,
-                role: "ADMIN",
-                status: "ACTIVE"
-              }
-            });
-          } else if (email === "dmc@example.com" && credentials.password === "password123") {
-            const hash = await bcrypt.hash("password123", 10);
-            user = await prisma.user.create({
-              data: {
-                email: "dmc@example.com",
-                passwordHash: hash,
-                role: "DMC",
-                status: "ACTIVE",
-                dmcProfile: {
-                  create: {
-                    companyName: "Global DMC Hub",
-                    contactPerson: "DMC Manager",
-                    phone: "+123456789",
-                    country: "Global",
-                    address: "100 World Trade Tower"
+              });
+            } else if (email === "admin@dmchub.com" && credentials.password === "admin123") {
+              const hash = await bcrypt.hash("admin123", 10);
+              user = await prisma.user.create({
+                data: {
+                  email: "admin@dmchub.com",
+                  passwordHash: hash,
+                  role: "ADMIN",
+                  status: "ACTIVE"
+                }
+              });
+            } else if (email === "dmc@example.com" && credentials.password === "password123") {
+              const hash = await bcrypt.hash("password123", 10);
+              user = await prisma.user.create({
+                data: {
+                  email: "dmc@example.com",
+                  passwordHash: hash,
+                  role: "DMC",
+                  status: "ACTIVE",
+                  dmcProfile: {
+                    create: {
+                      companyName: "Global DMC Hub",
+                      contactPerson: "DMC Manager",
+                      phone: "+123456789",
+                      country: "Global",
+                      address: "100 World Trade Tower"
+                    }
                   }
                 }
-              }
-            });
+              });
+            }
           }
-        }
 
-        if (!user || !user.passwordHash) {
-          return null;
-        }
-
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.passwordHash
-        );
-
-        if (!isPasswordValid) {
-          // Self-healing password check for default test accounts
-          if (
-            (email === "agent@example.com" && credentials.password === "password123") ||
-            (email === "admin@dmchub.com" && credentials.password === "admin123") ||
-            (email === "dmc@example.com" && credentials.password === "password123")
-          ) {
-            const newHash = await bcrypt.hash(credentials.password, 10);
-            user = await prisma.user.update({
-              where: { id: user.id },
-              data: { passwordHash: newHash, status: "ACTIVE" }
-            });
-          } else {
+          if (!user || !user.passwordHash) {
             return null;
           }
-        }
 
-        return {
-          id: user.id,
-          email: user.email,
-          role: user.role,
-          status: user.status
-        };
+          const isPasswordValid = await bcrypt.compare(
+            credentials.password,
+            user.passwordHash
+          );
+
+          if (!isPasswordValid) {
+            // Self-healing password check for default test accounts
+            if (
+              (email === "agent@example.com" && credentials.password === "password123") ||
+              (email === "admin@dmchub.com" && credentials.password === "admin123") ||
+              (email === "dmc@example.com" && credentials.password === "password123")
+            ) {
+              const newHash = await bcrypt.hash(credentials.password, 10);
+              user = await prisma.user.update({
+                where: { id: user.id },
+                data: { passwordHash: newHash, status: "ACTIVE" }
+              });
+            } else {
+              return null;
+            }
+          }
+
+          return {
+            id: user.id,
+            email: user.email,
+            role: user.role,
+            status: user.status
+          };
+        } catch (error) {
+          console.error("Authorize error:", error);
+          return null;
+        }
       }
     })
   ],

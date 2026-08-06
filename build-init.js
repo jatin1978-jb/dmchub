@@ -1,6 +1,8 @@
+const path = require('path');
 const { execSync } = require('child_process');
 
-process.env.DATABASE_URL = process.env.DATABASE_URL || "file:./dev.db";
+const dbPath = path.resolve(process.cwd(), "dev.db");
+process.env.DATABASE_URL = process.env.DATABASE_URL || `file:${dbPath}`;
 process.env.NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || "dmchub-secret-key-12345";
 if (process.env.RENDER_EXTERNAL_URL) {
   process.env.NEXTAUTH_URL = process.env.RENDER_EXTERNAL_URL;
