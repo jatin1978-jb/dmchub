@@ -22,7 +22,7 @@ export default function Logo({
 
   const currentSize = sizeMap[size];
 
-  // SVG Mark matching exact proportions of the uploaded logo image with zero clipping
+  // SVG Mark matching exact proportions and gap geometry of the uploaded logo image
   const IconMark = () => (
     <svg
       width={currentSize.icon}
@@ -45,50 +45,39 @@ export default function Logo({
           <stop offset="100%" stopColor="#162B44" />
         </linearGradient>
         <filter id="arrowGlow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="1" stdDeviation="1.5" floodColor="#D4AF37" floodOpacity="0.4" />
+          <feDropShadow dx="0" dy="1" stdDeviation="1" floodColor="#D4AF37" floodOpacity="0.3" />
         </filter>
       </defs>
 
-      {/* Outer Metallic Gold Square Frame with Bottom Center Gap */}
-      {/* Top Border */}
+      {/* 1. Outer Metallic Gold Square Frame with Bottom Gap */}
       <line x1="20" y1="20" x2="120" y2="20" stroke="url(#logoGoldGrad)" strokeWidth="5.5" strokeLinecap="square" />
-      {/* Right Border */}
       <line x1="120" y1="20" x2="120" y2="120" stroke="url(#logoGoldGrad)" strokeWidth="5.5" strokeLinecap="square" />
-      {/* Left Border */}
       <line x1="20" y1="20" x2="20" y2="120" stroke="url(#logoGoldGrad)" strokeWidth="5.5" strokeLinecap="square" />
-      {/* Bottom Left Segment */}
       <line x1="20" y1="120" x2="52" y2="120" stroke="url(#logoGoldGrad)" strokeWidth="5.5" strokeLinecap="square" />
-      {/* Bottom Right Segment */}
       <line x1="88" y1="120" x2="120" y2="120" stroke="url(#logoGoldGrad)" strokeWidth="5.5" strokeLinecap="square" />
 
-      {/* Dark Navy Serif Diagonal Stroke (\) */}
+      {/* 2. Solid Continuous Navy Diagonal Stroke (\) */}
       <g>
         {/* Top Serif */}
-        <path d="M 32 34 L 62 34 L 62 39 L 32 39 Z" fill={darkNav ? "#64748B" : "url(#logoNavyGrad)"} />
-        {/* Upper diagonal section */}
-        <path d="M 40 39 L 54 39 L 68 62 L 56 69 Z" fill={darkNav ? "#64748B" : "url(#logoNavyGrad)"} />
-        {/* Lower diagonal section */}
-        <path d="M 68 76 L 80 83 L 94 105 L 80 105 Z" fill={darkNav ? "#64748B" : "url(#logoNavyGrad)"} />
+        <path d="M 30 32 L 64 32 L 64 37 L 30 37 Z" fill={darkNav ? "#64748B" : "url(#logoNavyGrad)"} />
+        {/* Solid Main Navy Bar */}
+        <path d="M 38 37 L 54 37 L 102 103 L 86 103 Z" fill={darkNav ? "#64748B" : "url(#logoNavyGrad)"} />
         {/* Bottom Serif */}
-        <path d="M 68 105 L 102 105 L 102 100 L 68 100 Z" fill={darkNav ? "#64748B" : "url(#logoNavyGrad)"} />
+        <path d="M 76 103 L 110 103 L 110 108 L 76 108 Z" fill={darkNav ? "#64748B" : "url(#logoNavyGrad)"} />
       </g>
 
-      {/* Gold Arrow Diagonal Stroke (/) - Continuous line crossing over */}
-      {/* Bottom-left Serif foot */}
-      <path d="M 32 105 L 56 105 L 56 101 L 32 101 Z" fill="url(#logoGoldGrad)" />
-      
-      {/* Main Diagonal Shaft */}
-      <path
-        d="M 38 101 L 48 101 L 104 36 L 95 28 Z"
-        fill="url(#logoGoldGrad)"
-      />
+      {/* 3. Gold Arrow Stroke (/) with Center Gap Cutover */}
+      {/* Bottom-left Serif Foot */}
+      <path d="M 30 103 L 54 103 L 54 99 L 30 99 Z" fill="url(#logoGoldGrad)" />
 
-      {/* Sharp Arrowhead pointing Up-Right (Completely visible, zero clipping) */}
-      <path
-        d="M 90 42 L 118 24 L 100 52 L 96 43 Z"
-        fill="url(#logoGoldGrad)"
-        filter="url(#arrowGlow)"
-      />
+      {/* Lower Gold Segment (stopping before navy bar with elegant gap) */}
+      <path d="M 36 99 L 45 99 L 63 74 L 56 69 Z" fill="url(#logoGoldGrad)" />
+
+      {/* Upper Gold Segment (resuming above navy bar with elegant gap) */}
+      <path d="M 76 56 L 83 61 L 101 35 L 94 30 Z" fill="url(#logoGoldGrad)" />
+
+      {/* Sharp Golden Arrowhead pointing Up-Right */}
+      <path d="M 88 38 L 116 20 L 98 48 L 94 40 Z" fill="url(#logoGoldGrad)" filter="url(#arrowGlow)" />
     </svg>
   );
 
@@ -118,7 +107,7 @@ export default function Logo({
           </span>
         </div>
 
-        {/* Subtitle / Tagline with Gold Side Lines */}
+        {/* Subtitle / Tagline */}
         <div className="flex items-center gap-2 mt-2">
           <span className={`h-[1.5px] w-6 bg-gradient-to-r ${lineBg} opacity-80`} />
           <span className={`uppercase tracking-[0.26em] font-semibold ${currentSize.sub} ${subTextColor}`}>

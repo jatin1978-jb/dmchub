@@ -12,25 +12,25 @@
     </linearGradient>
   </defs>
 
-  <!-- Box Mark (Unclipped) -->
+  <!-- Box Mark -->
   <g transform="translate(5, 5)">
-    {/* Frame lines with bottom gap */}
+    {/* Outer frame lines with bottom gap */}
     <line x1="10" y1="10" x2="55" y2="10" stroke="url(#logoGoldGrad)" stroke-width="3"/>
     <line x1="55" y1="10" x2="55" y2="55" stroke="url(#logoGoldGrad)" stroke-width="3"/>
     <line x1="10" y1="10" x2="10" y2="55" stroke="url(#logoGoldGrad)" stroke-width="3"/>
     <line x1="10" y1="55" x2="24" y2="55" stroke="url(#logoGoldGrad)" stroke-width="3"/>
     <line x1="41" y1="55" x2="55" y2="55" stroke="url(#logoGoldGrad)" stroke-width="3"/>
 
-    {/* Navy Serif Stroke */}
+    {/* Solid Navy Diagonal */}
     <path d="M 16 17 L 30 17 L 30 19 L 16 19 Z" fill="url(#logoNavyGrad)"/>
-    <path d="M 20 19 L 26 19 L 33 30 L 27 33 Z" fill="url(#logoNavyGrad)"/>
-    <path d="M 32 36 L 38 40 L 45 50 L 38 50 Z" fill="url(#logoNavyGrad)"/>
-    <path d="M 32 50 L 48 50 L 48 48 L 32 48 Z" fill="url(#logoNavyGrad)"/>
+    <path d="M 19 19 L 26 19 L 47 48 L 40 48 Z" fill="url(#logoNavyGrad)"/>
+    <path d="M 36 48 L 50 48 L 50 50 L 36 50 Z" fill="url(#logoNavyGrad)"/>
 
-    {/* Gold Arrow Diagonal & Arrow Head */}
-    <path d="M 16 50 L 27 50 L 27 48 L 16 48 Z" fill="url(#logoGoldGrad)"/>
-    <path d="M 19 48 L 24 48 L 50 18 L 46 14 Z" fill="url(#logoGoldGrad)"/>
-    <path d="M 44 21 L 57 12 L 49 26 L 47 21 Z" fill="url(#logoGoldGrad)"/>
+    {/* Gold Arrow Diagonal with Center Gap Cut */}
+    <path d="M 16 48 L 26 48 L 26 46 L 16 46 Z" fill="url(#logoGoldGrad)"/>
+    <path d="M 18 46 L 22 46 L 31 34 L 28 32 Z" fill="url(#logoGoldGrad)"/>
+    <path d="M 37 26 L 40 28 L 48 18 L 45 16 Z" fill="url(#logoGoldGrad)"/>
+    <path d="M 43 20 L 56 12 L 48 24 L 46 20 Z" fill="url(#logoGoldGrad)"/>
   </g>
 
   <!-- Typography -->
