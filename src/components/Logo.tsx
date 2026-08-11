@@ -67,38 +67,29 @@ export default function Logo({
           <path d="M 108 143 L 152 143 L 152 149 L 108 149 Z" fill={navyFill} />
 
           {/* Gold Arrow Diagonal (/) with Crossover Gap */}
-          {/* Bottom-left foot */}
           <path d="M 28 143 L 60 143 L 60 137 L 28 137 Z" fill="url(#brandGoldGrad)" />
-          {/* Lower segment */}
           <path d="M 36 137 L 48 137 L 82 95 L 70 87 Z" fill="url(#brandGoldGrad)" />
-          {/* Upper segment */}
           <path d="M 98 68 L 110 76 L 142 36 L 130 28 Z" fill="url(#brandGoldGrad)" />
-          {/* Sharp Arrowhead pointing Up-Right */}
           <path d="M 124 44 L 164 16 L 138 58 L 132 46 Z" fill="url(#brandGoldGrad)" filter="url(#goldGlowEffect)" />
         </g>
 
         {/* 2. Text "DMC X change" with Custom Arrow X */}
         <g transform="translate(20, 235)">
-          {/* DMC Text */}
-          <text x="0" y="0" font-family="Times New Roman, Georgia, serif" font-size="54" font-weight="bold" fill={textColor}>DMC</text>
+          <text x="0" y="0" fontFamily="Times New Roman, Georgia, serif" fontSize="54" fontWeight="bold" fill={textColor}>DMC</text>
           
-          {/* Custom Arrow X in Text */}
           <g transform="translate(136, -42) scale(0.36)">
-            {/* Navy left stroke */}
             <path d="M 10 10 L 40 10 L 100 110 L 70 110 Z" fill={navyFill} />
-            {/* Gold right stroke with arrow */}
             <path d="M 70 10 L 100 10 L 40 110 L 10 110 Z" fill="url(#brandGoldGrad)" />
             <path d="M 85 25 L 115 5 L 95 35 Z" fill="url(#brandGoldGrad)" />
           </g>
 
-          {/* change Text */}
-          <text x="182" y="0" font-family="Times New Roman, Georgia, serif" font-size="54" font-weight="normal" fill={textColor}>change</text>
+          <text x="182" y="0" fontFamily="Times New Roman, Georgia, serif" fontSize="54" fontWeight="normal" fill={textColor}>change</text>
         </g>
 
         {/* 3. Subtitle / Tagline */}
         <g transform="translate(20, 275)">
           <line x1="0" y1="-6" x2="45" y2="-6" stroke="url(#brandGoldGrad)" strokeWidth="1.5" />
-          <text x="55" y="0" font-family="Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="4.5" fill={subTextColor}>GLOBAL DMC MARKETPLACE</text>
+          <text x="55" y="0" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="600" letterSpacing="4.5" fill={subTextColor}>GLOBAL DMC MARKETPLACE</text>
           <line x1="315" y1="-6" x2="360" y2="-6" stroke="url(#brandGoldGrad)" strokeWidth="1.5" />
         </g>
       </svg>
@@ -203,25 +194,23 @@ export default function Logo({
       {/* Right Brand Name & Subtitle */}
       <g transform="translate(118, 52)">
         {/* DMC Text */}
-        <text x="0" y="0" font-family="Times New Roman, Georgia, serif" font-size="46" font-weight="bold" fill={textColor}>DMC</text>
+        <text x="0" y="0" fontFamily="Times New Roman, Georgia, serif" fontSize="46" fontWeight="bold" fill={textColor}>DMC</text>
 
         {/* Custom Gold Arrow X in Text */}
         <g transform="translate(116, -37) scale(0.32)">
-          {/* Left Navy stroke */}
           <path d="M 10 10 L 36 10 L 90 100 L 64 100 Z" fill={navyFill} />
-          {/* Right Gold stroke with arrow */}
           <path d="M 64 10 L 90 10 L 36 100 L 10 100 Z" fill="url(#hGoldGrad)" />
           <path d="M 78 22 L 106 4 L 88 32 Z" fill="url(#hGoldGrad)" />
         </g>
 
         {/* change Text */}
-        <text x="156" y="0" font-family="Times New Roman, Georgia, serif" font-size="46" font-weight="normal" fill={textColor}>change</text>
+        <text x="156" y="0" fontFamily="Times New Roman, Georgia, serif" fontSize="46" fontWeight="normal" fill={textColor}>change</text>
       </g>
 
       {/* Subtitle / Tagline */}
       <g transform="translate(118, 85)">
         <line x1="0" y1="-5" x2="35" y2="-5" stroke="url(#hGoldGrad)" strokeWidth="1.2" opacity="0.8" />
-        <text x="43" y="0" font-family="Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="3.2" fill={subTextColor}>GLOBAL DMC MARKETPLACE</text>
+        <text x="43" y="0" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="600" letterSpacing="3.2" fill={subTextColor}>GLOBAL DMC MARKETPLACE</text>
         <line x1="285" y1="-5" x2="320" y2="-5" stroke="url(#hGoldGrad)" strokeWidth="1.2" opacity="0.8" />
       </g>
     </svg>
