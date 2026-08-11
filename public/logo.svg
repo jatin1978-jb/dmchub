@@ -1,0 +1,34 @@
+<svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9A7B38"/>
+      <stop offset="35%" stop-color="#C5A059"/>
+      <stop offset="70%" stop-color="#F5D77F"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2537"/>
+      <stop offset="100%" stop-color="#0B1D3A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Box Mark -->
+  <g transform="translate(5, 5)">
+    <rect x="5" y="5" width="40" height="40" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" rx="1"/>
+    <path d="M 15 12 L 20 12 L 35 38 L 30 38 Z" fill="url(#navyGrad)"/>
+    <path d="M 13 12 L 23 12 L 23 13.5 L 13 13.5 Z" fill="url(#navyGrad)"/>
+    <path d="M 27 38 L 37 38 L 37 36.5 L 27 36.5 Z" fill="url(#navyGrad)"/>
+    <path d="M 13 38 L 17 38 L 34 16 L 32 14 Z" fill="url(#goldGrad)"/>
+    <path d="M 27 19 L 38 12 L 32 24 L 29 20 Z" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Text -->
+  <text x="60" y="34" font-family="Times New Roman, Georgia, serif" font-size="24" font-weight="bold" fill="#FFFFFF">DMC</text>
+  <text x="120" y="34" font-family="Times New Roman, Georgia, serif" font-size="24" font-weight="bold" fill="#D4AF37">X</text>
+  <text x="138" y="34" font-family="Times New Roman, Georgia, serif" font-size="24" font-weight="normal" fill="#FFFFFF">change</text>
+
+  <!-- Tagline -->
+  <line x1="60" y1="44" x2="72" y2="44" stroke="#D4AF37" stroke-width="0.8" opacity="0.7"/>
+  <text x="76" y="47" font-family="Arial, sans-serif" font-size="7" font-weight="600" letter-spacing="1.8" fill="#C5A059">GLOBAL DMC MARKETPLACE</text>
+  <line x1="208" y1="44" x2="220" y2="44" stroke="#D4AF37" stroke-width="0.8" opacity="0.7"/>
+</svg>

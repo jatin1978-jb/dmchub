@@ -7,8 +7,9 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/components/ui/card"
 import { AlertCircle, CheckCircle2 } from "lucide-react"
+import Logo from "@/components/Logo"
 
 function LoginForm() {
   const router = useRouter()
@@ -35,8 +36,6 @@ function LoginForm() {
         setError("Invalid email or password")
         setLoading(false)
       } else {
-        // Redirect based on role logic will happen in a middleware or here
-        // Force a hard navigation to ensure session cookie is sent to server
         window.location.href = "/dashboard"
       }
     } catch (err) {
@@ -46,41 +45,44 @@ function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-md border-gray-200 shadow-xl">
-      <CardHeader className="space-y-1 text-center">
-        <CardTitle className="text-2xl font-bold text-blue-600">DMC Hub</CardTitle>
-        <CardDescription>Enter your credentials to access your portal</CardDescription>
+    <Card className="w-full max-w-md border border-[#C5A059]/40 bg-[#0B1B2D] text-slate-100 shadow-2xl">
+      <CardHeader className="space-y-3 text-center pb-2">
+        <div className="flex justify-center pb-2">
+          <Logo size="md" darkNav={true} />
+        </div>
+        <CardDescription className="text-slate-300 text-xs font-medium">Enter your credentials to access your portal</CardDescription>
       </CardHeader>
       <CardContent>
         {registered && (
-          <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-md flex items-center gap-3 text-green-700 text-sm animate-in fade-in slide-in-from-top-2">
-            <CheckCircle2 className="w-5 h-5 shrink-0" />
-            <span>Registration successful! Your account is pending admin approval. You can try logging in once approved.</span>
+          <div className="mb-4 p-3 bg-emerald-950/60 border border-emerald-500/40 rounded-lg flex items-center gap-3 text-emerald-300 text-xs animate-in fade-in">
+            <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-400" />
+            <span>Registration successful! Your account is pending admin approval. You can log in once approved.</span>
           </div>
         )}
         {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md flex items-center gap-3 text-red-700 text-sm">
-            <AlertCircle className="w-5 h-5 shrink-0" />
+          <div className="mb-4 p-3 bg-red-950/60 border border-red-500/40 rounded-lg flex items-center gap-3 text-red-300 text-xs">
+            <AlertCircle className="w-5 h-5 shrink-0 text-red-400" />
             <span>{error}</span>
           </div>
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="text-xs font-semibold text-slate-200">Email Address</Label>
             <Input 
               id="email" 
               type="email" 
-              placeholder="name@example.com" 
+              placeholder="name@company.com" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
+              className="bg-[#162B44] border-slate-700 text-white focus:border-[#C5A059]"
               required 
             />
           </div>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="password">Password</Label>
-              <Link href="#" className="text-xs text-blue-600 hover:underline">Forgot password?</Link>
+              <Label htmlFor="password" className="text-xs font-semibold text-slate-200">Password</Label>
+              <Link href="#" className="text-xs text-[#C5A059] hover:underline">Forgot password?</Link>
             </div>
             <Input 
               id="password" 
@@ -88,22 +90,27 @@ function LoginForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
+              className="bg-[#162B44] border-slate-700 text-white focus:border-[#C5A059]"
               required 
             />
           </div>
-          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={loading}>
-            {loading ? "Signing in..." : "Sign In"}
+          <Button 
+            type="submit" 
+            className="w-full bg-[#C5A059] text-[#0B1B2D] font-bold hover:bg-[#D4AF37] shadow-lg transition-all py-5" 
+            disabled={loading}
+          >
+            {loading ? "Signing in..." : "Sign In to Marketplace"}
           </Button>
         </form>
       </CardContent>
-      <CardFooter className="flex flex-col space-y-4 text-center">
-        <div className="text-sm text-gray-500">
-          Don't have an account?
+      <CardFooter className="flex flex-col space-y-4 text-center border-t border-slate-800 pt-6">
+        <div className="text-xs text-slate-400">
+          Don't have an account yet?
         </div>
         <div className="flex gap-4">
-          <Link href="/auth/register/agent" className="text-sm font-semibold text-blue-600 hover:underline">Register as Agent</Link>
-          <span className="text-gray-300">|</span>
-          <Link href="/auth/register/dmc" className="text-sm font-semibold text-blue-600 hover:underline">Register as DMC</Link>
+          <Link href="/auth/register/agent" className="text-xs font-semibold text-[#C5A059] hover:underline">Register as Travel Agent</Link>
+          <span className="text-slate-700">|</span>
+          <Link href="/auth/register/dmc" className="text-xs font-semibold text-[#C5A059] hover:underline">Register as DMC</Link>
         </div>
       </CardFooter>
     </Card>
@@ -112,10 +119,10 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-slate-50 px-4">
+    <div className="flex items-center justify-center min-h-screen bg-[#F8FAFC] px-4">
       <Suspense fallback={
-        <Card className="w-full max-w-md border-gray-200 shadow-xl p-8 text-center">
-          <div>Loading...</div>
+        <Card className="w-full max-w-md border border-slate-200 bg-[#0B1B2D] p-8 text-center text-slate-300">
+          <div>Loading portal...</div>
         </Card>
       }>
         <LoginForm />
@@ -123,4 +130,3 @@ export default function LoginPage() {
     </div>
   )
 }
-
