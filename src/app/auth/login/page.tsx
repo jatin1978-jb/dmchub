@@ -48,9 +48,7 @@ function LoginForm() {
     <Card className="w-full max-w-md border border-[#C5A059]/40 bg-[#0B1B2D] text-slate-100 shadow-2xl">
       <CardHeader className="space-y-4 text-center pb-2">
         <div className="flex justify-center pb-2">
-          <div className="rounded-2xl bg-white p-3 shadow-lg">
-            <Logo size="lg" />
-          </div>
+          <Logo size="lg" darkNav={true} />
         </div>
         <CardDescription className="text-slate-300 text-xs font-medium">Enter your credentials to access your portal</CardDescription>
       </CardHeader>

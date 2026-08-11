@@ -8,21 +8,23 @@ interface LogoProps {
 }
 
 export default function Logo({
+  variant = 'horizontal',
   className = '',
   size = 'md',
+  darkNav = false,
 }: LogoProps) {
   const heightMap = {
-    sm: 'h-16 sm:h-20',
-    md: 'h-24 sm:h-32',
-    lg: 'h-36 sm:h-44 lg:h-48',
-    xl: 'h-56 sm:h-72',
+    sm: 'h-10 sm:h-12',
+    md: 'h-14 sm:h-16',
+    lg: 'h-20 sm:h-24 lg:h-28',
+    xl: 'h-32 sm:h-40',
   };
 
   return (
     <img
-      src="/logo.png"
+      src="/logo-transparent.png"
       alt="DMCXchange - Global DMC Marketplace"
-      className={`${heightMap[size]} w-auto object-contain shrink-0 max-w-full drop-shadow-md transition-all ${className}`}
+      className={`${heightMap[size]} w-auto object-contain shrink-0 max-w-full transition-all ${darkNav ? 'brightness-125 contrast-125' : ''} ${className}`}
     />
   );
 }
