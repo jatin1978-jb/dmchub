@@ -798,8 +798,8 @@ export default function LandingPage() {
         <div className="w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
             <div className="lg:col-span-2">
-              <Link href="/" className="inline-block mb-6">
-                <Logo size="lg" darkNav={true} />
+              <Link href="/" className="inline-block mb-6 rounded-2xl bg-white p-2.5 shadow-md">
+                <Logo size="lg" />
               </Link>
               <p className="text-sm text-slate-400 leading-relaxed max-w-md">
                 The global B2B marketplace connecting Destination Management Companies with the world's leading travel buyers.

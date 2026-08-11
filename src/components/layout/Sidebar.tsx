@@ -59,9 +59,9 @@ export default function Sidebar() {
 
   return (
     <div className="flex flex-col w-64 bg-[#0B1B2D] text-white min-h-screen sticky top-0 border-r border-[#C5A059]/20">
-      <div className="p-6">
-        <Link href="/" className="block">
-          <Logo size="sm" darkNav={true} />
+      <div className="p-5">
+        <Link href="/" className="block rounded-xl bg-white p-2 shadow-md">
+          <Logo size="md" />
         </Link>
         <div className="text-[10px] uppercase tracking-[0.2em] text-[#C5A059] mt-3 font-semibold px-2 py-0.5 rounded bg-[#C5A059]/10 inline-block border border-[#C5A059]/30">
           {role} PORTAL
