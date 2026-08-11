@@ -36,10 +36,10 @@ export default function LandingPage() {
       {/* Header / Navbar */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[#C5A059]/25 bg-white/95 backdrop-blur-md shadow-sm">
         <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-16">
-          <div className="flex items-center justify-between h-20 sm:h-24 lg:h-28">
-            {/* Logo */}
-            <Link href="/" className="flex items-center shrink-0 py-2">
-              <Logo size="lg" darkNav={false} />
+          <div className="flex items-center justify-between min-h-[110px] lg:min-h-[135px] py-3 sm:py-4">
+            {/* Prominent Large Logo */}
+            <Link href="/" className="flex items-center shrink-0 py-1">
+              <Logo size="lg" />
             </Link>
 
             {/* Desktop Navigation Links */}
@@ -64,35 +64,32 @@ export default function LandingPage() {
               </a>
             </nav>
 
-            {/* Action Buttons - SIGN IN ALWAYS VISIBLE ON ALL SCREENS */}
+            {/* Action Buttons - SIGN IN ALWAYS VISIBLE */}
             <div className="flex items-center gap-3 sm:gap-4">
-              {/* Prominent Sign In Button - ALWAYS VISIBLE */}
               <Link
                 href="/auth/login"
-                className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-[#0B1B2D] bg-[#C5A059]/15 border-2 border-[#C5A059] hover:bg-[#C5A059] hover:text-[#0B1B2D] px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all duration-150 shadow-sm"
+                className="inline-flex items-center gap-2 text-base font-bold text-[#0B1B2D] bg-[#C5A059]/15 border-2 border-[#C5A059] hover:bg-[#C5A059] hover:text-[#0B1B2D] px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl transition-all duration-150 shadow-sm"
               >
-                <LogIn className="w-4 h-4 sm:w-5 sm:h-5 text-[#9E782F] shrink-0" />
+                <LogIn className="w-5 h-5 text-[#9E782F] shrink-0" />
                 <span>Sign In</span>
               </Link>
 
-              {/* Registration Buttons - Visible on MD and up */}
               <Link
                 href="/auth/register/agent"
-                className="hidden md:inline-flex text-sm sm:text-base font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-slate-300 text-[#0B1B2D] hover:bg-slate-100 transition-all duration-150"
+                className="hidden md:inline-flex text-base font-bold px-6 py-3 sm:py-3.5 rounded-xl border border-slate-300 text-[#0B1B2D] hover:bg-slate-100 transition-all duration-150"
               >
                 Join as Travel Agent
               </Link>
               <Link
                 href="/auth/register/dmc"
-                className="hidden lg:inline-flex text-sm sm:text-base font-bold px-6 sm:px-7 py-2.5 sm:py-3 rounded-xl bg-[#0B1B2D] text-white hover:bg-[#162B44] shadow-md shadow-[#0B1B2D]/20 transition-all duration-150"
+                className="hidden lg:inline-flex text-base font-bold px-7 py-3 sm:py-3.5 rounded-xl bg-[#0B1B2D] text-white hover:bg-[#162B44] shadow-md shadow-[#0B1B2D]/20 transition-all duration-150"
               >
                 Join as a DMC
               </Link>
 
-              {/* Mobile Menu Toggle Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="xl:hidden p-2.5 rounded-xl border border-slate-200 text-[#0B1B2D] hover:bg-slate-100 transition-colors"
+                className="xl:hidden p-3 rounded-xl border border-slate-200 text-[#0B1B2D] hover:bg-slate-100 transition-colors"
                 aria-label="Toggle Navigation Menu"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -117,14 +114,14 @@ export default function LandingPage() {
               <Link
                 href="/auth/register/agent"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center text-base font-bold py-3 rounded-xl border-2 border-[#C5A059] text-[#0B1B2D]"
+                className="w-full text-center text-base font-bold py-3.5 rounded-xl border-2 border-[#C5A059] text-[#0B1B2D]"
               >
                 Join as Travel Agent
               </Link>
               <Link
                 href="/auth/register/dmc"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center text-base font-bold py-3 rounded-xl bg-[#0B1B2D] text-white shadow-md"
+                className="w-full text-center text-base font-bold py-3.5 rounded-xl bg-[#0B1B2D] text-white shadow-md"
               >
                 Join as a DMC Supplier
               </Link>
@@ -134,10 +131,10 @@ export default function LandingPage() {
       </header>
 
       {/* Main Content */}
-      <div className="pt-24 lg:pt-28">
+      <div className="pt-32 sm:pt-36 lg:pt-44">
         <main>
           {/* Hero Section */}
-          <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-[#F8FAFC] via-[#F1F5F9] to-white py-16 lg:py-24" aria-label="Hero">
+          <section className="relative min-h-[85vh] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-[#F8FAFC] via-[#F1F5F9] to-white py-16 lg:py-24" aria-label="Hero">
             {/* Subtle Grid overlay */}
             <svg aria-hidden="true" className="absolute inset-0 w-full h-full pointer-events-none opacity-40" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -798,7 +795,7 @@ export default function LandingPage() {
         <div className="w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
             <div className="lg:col-span-2">
-              <Link href="/" className="inline-block mb-6 rounded-2xl bg-white p-2.5 shadow-md">
+              <Link href="/" className="inline-block mb-6 rounded-2xl bg-white p-3 shadow-md">
                 <Logo size="lg" />
               </Link>
               <p className="text-sm text-slate-400 leading-relaxed max-w-md">
