@@ -18,6 +18,7 @@ import {
   MapPin,
   Zap,
   ShieldCheck,
+  Building2,
   Sparkles,
   LogIn,
   Menu,
