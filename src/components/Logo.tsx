@@ -14,17 +14,27 @@ export default function Logo({
   darkNav = false,
 }: LogoProps) {
   const heightMap = {
-    sm: 'h-9 sm:h-10',
-    md: 'h-12 sm:h-14',
-    lg: 'h-16 sm:h-18 lg:h-20',
-    xl: 'h-24 sm:h-28',
+    sm: 'h-8 sm:h-9',
+    md: 'h-10 sm:h-12',
+    lg: 'h-14 sm:h-16 lg:h-18',
+    xl: 'h-20 sm:h-24',
   };
 
-  return (
+  const imgElement = (
     <img
       src="/logo-transparent.png"
       alt="DMCXchange - Global DMC Marketplace"
-      className={`${heightMap[size]} w-auto object-contain shrink-0 max-w-full transition-all ${darkNav ? 'brightness-125 contrast-125' : ''} ${className}`}
+      className={`${heightMap[size]} w-auto object-contain shrink-0 max-w-full transition-all ${className}`}
     />
   );
+
+  if (darkNav) {
+    return (
+      <div className="inline-block rounded-xl bg-white p-2 sm:p-2.5 shadow-md border border-[#C5A059]/35">
+        {imgElement}
+      </div>
+    );
+  }
+
+  return imgElement;
 }
