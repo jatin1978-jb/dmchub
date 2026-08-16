@@ -340,63 +340,82 @@ export default function LandingPage() {
             </div>
           </section>
 
-          {/* Section 1: What is DMCXchange? (#about) */}
-          <section id="about" className="py-8 sm:py-10 lg:py-12 bg-white border-t border-b border-slate-200">
+          {/* Section 1: What is DMCXchange? (#about) - Clean Redesigned Layout */}
+          <section id="about" className="py-10 sm:py-12 lg:py-16 bg-white border-t border-b border-slate-200">
             <div className="w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-12">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
                 
-                <div className="lg:col-span-7 space-y-4">
-                  <p className="text-[11px] font-bold tracking-widest uppercase text-[#9E782F]">Overview</p>
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B1B2D] leading-snug font-serif">
-                    What is DMCXchange?
-                  </h2>
-                  
-                  <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#C5A059]/30 text-sm font-semibold text-[#0B1B2D] leading-relaxed">
-                    DMCXchange is an intelligent global B2B marketplace connecting Destination Management Companies (DMCs) with Travel Agents, enabling them to create, discover, customize, and sell destination experiences through one connected platform.
+                {/* Left Column: Clean Editorial Copy & 3 Pillars (No Boxes) */}
+                <div className="lg:col-span-7 space-y-6">
+                  <div>
+                    <span className="text-[11px] font-bold tracking-widest uppercase text-[#9E782F] block mb-1.5">Overview</span>
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0B1B2D] leading-tight font-serif">
+                      What is DMCXchange?
+                    </h2>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
+                    DMCXchange is an intelligent global B2B marketplace connecting Destination Management Companies (DMCs) with Travel Agents, enabling them to create, discover, customize, and sell destination experiences through one connected platform.
+                  </p>
+
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                     DMCXchange is built around a simple idea: <strong className="text-[#0B1B2D]">the right destination product should reach the right traveller, through the right Travel Agent, at the right time.</strong>
                   </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-                    <div className="p-3.5 rounded-xl bg-[#F8FAFC] border border-slate-200">
-                      <Building2 className="w-5 h-5 text-[#9E782F] mb-1.5" />
-                      <h4 className="font-bold text-[#0B1B2D] font-serif text-xs mb-0.5">DMCs Bring</h4>
-                      <p className="text-[10px] text-slate-600 leading-tight">Destination expertise, products & inventory.</p>
+                  {/* 3-Pillar Clean Flow (Line Divided - Zero Cards) */}
+                  <div className="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div className="border-l-2 border-[#C5A059] pl-3.5 space-y-1">
+                      <div className="text-xs font-bold text-[#0B1B2D] uppercase tracking-wider flex items-center gap-1.5">
+                        <Building2 className="w-3.5 h-3.5 text-[#9E782F]" />
+                        <span>DMCs Bring</span>
+                      </div>
+                      <p className="text-xs text-slate-600 leading-relaxed">Destination expertise, products & inventory.</p>
                     </div>
-                    <div className="p-3.5 rounded-xl bg-[#F8FAFC] border border-slate-200">
-                      <Users className="w-5 h-5 text-[#9E782F] mb-1.5" />
-                      <h4 className="font-bold text-[#0B1B2D] font-serif text-xs mb-0.5">Travel Agents Bring</h4>
-                      <p className="text-[10px] text-slate-600 leading-tight">The traveller & customer requirement.</p>
+
+                    <div className="border-l-2 border-slate-400 pl-3.5 space-y-1">
+                      <div className="text-xs font-bold text-[#0B1B2D] uppercase tracking-wider flex items-center gap-1.5">
+                        <Users className="w-3.5 h-3.5 text-[#9E782F]" />
+                        <span>Agents Bring</span>
+                      </div>
+                      <p className="text-xs text-slate-600 leading-relaxed">The traveller & customer requirement.</p>
                     </div>
-                    <div className="p-3.5 rounded-xl bg-[#0B1B2D] text-white border border-[#C5A059]/40">
-                      <Cpu className="w-5 h-5 text-[#C5A059] mb-1.5" />
-                      <h4 className="font-bold text-[#C5A059] font-serif text-xs mb-0.5">DMCXchange Brings</h4>
-                      <p className="text-[10px] text-slate-300 leading-tight">The technology that connects the two.</p>
+
+                    <div className="border-l-2 border-[#C5A059] pl-3.5 space-y-1">
+                      <div className="text-xs font-bold text-[#0B1B2D] uppercase tracking-wider flex items-center gap-1.5">
+                        <Cpu className="w-3.5 h-3.5 text-[#9E782F]" />
+                        <span>Platform Brings</span>
+                      </div>
+                      <p className="text-xs text-slate-600 leading-relaxed">Technology connecting demand & supply.</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="lg:col-span-5 space-y-4">
-                  {/* Vision Card */}
-                  <div className="rounded-xl p-5 sm:p-6 border border-[#C5A059]/40 bg-[#0B1B2D] text-white shadow-lg">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-1.5 h-4 rounded-full bg-[#C5A059]" />
-                      <span className="text-[11px] font-bold tracking-widest uppercase text-[#C5A059]">Our Vision</span>
-                    </div>
-                    <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-medium">
-                      To build the world's most intelligent B2B marketplace for destination travel — making it easier for every DMC to reach global Travel Agents and for every Travel Agent to create the right travel solution for every traveller.
-                    </p>
-                  </div>
+                {/* Right Column: Single Unified Executive Card */}
+                <div className="lg:col-span-5">
+                  <div className="rounded-2xl p-7 sm:p-8 bg-[#0B1B2D] text-white border-2 border-[#C5A059]/40 shadow-xl space-y-6 relative overflow-hidden">
+                    <div className="absolute -right-16 -bottom-16 w-40 h-40 bg-[#C5A059]/15 rounded-full blur-3xl pointer-events-none" />
 
-                  {/* One Line Quote Card */}
-                  <div className="rounded-xl p-5 sm:p-6 border border-slate-200 bg-[#F8FAFC] luxury-card-shadow relative">
-                    <Quote className="w-6 h-6 text-[#C5A059]/30 absolute top-4 right-4" />
-                    <span className="text-[11px] font-bold tracking-widest uppercase text-slate-500 mb-1.5 block">In One Line</span>
-                    <blockquote className="text-slate-700 text-xs sm:text-sm leading-relaxed italic font-serif">
-                      "DMCXchange connects DMCs and Travel Agents through an intelligent marketplace that matches travellers with the right destinations, products and experiences — and gives Travel Agents the flexibility to make them their own."
-                    </blockquote>
+                    {/* Our Vision */}
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-1.5 h-4 rounded-full bg-[#C5A059]" />
+                        <span className="text-[11px] font-bold tracking-widest uppercase text-[#C5A059]">Our Vision</span>
+                      </div>
+                      <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
+                        To build the world's most intelligent B2B marketplace for destination travel — making it easier for every DMC to reach global Travel Agents and for every Travel Agent to create the right travel solution for every traveller.
+                      </p>
+                    </div>
+
+                    <div className="w-full h-px bg-slate-800" />
+
+                    {/* Summary Quote */}
+                    <div className="relative">
+                      <Quote className="w-7 h-7 text-[#C5A059]/25 absolute -top-1 right-0" />
+                      <span className="text-[11px] font-bold tracking-widest uppercase text-[#C5A059] mb-1.5 block">DMCXchange In Summary</span>
+                      <blockquote className="text-slate-300 text-xs sm:text-sm leading-relaxed italic font-serif">
+                        "DMCXchange connects DMCs and Travel Agents through an intelligent marketplace that matches travellers with the right destinations, products and experiences — and gives Travel Agents the flexibility to make them their own."
+                      </blockquote>
+                    </div>
                   </div>
                 </div>
 
