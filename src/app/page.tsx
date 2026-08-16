@@ -94,9 +94,9 @@ export default function LandingPage() {
       {/* Top Header / Navbar */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[#C5A059]/25 bg-white/95 backdrop-blur-md shadow-sm">
         <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12">
-          <div className="flex items-center justify-between min-h-[100px] lg:min-h-[120px] py-3">
+          <div className="flex items-center justify-between min-h-[85px] lg:min-h-[95px] py-2 sm:py-2.5">
             
-            {/* Enlarged Prominent Logo */}
+            {/* Perfectly Proportioned Logo */}
             <Link href="/" className="flex items-center shrink-0 py-1">
               <Logo size="lg" />
             </Link>
@@ -142,7 +142,7 @@ export default function LandingPage() {
       </header>
 
       {/* Main Content Area */}
-      <div className="pt-32 sm:pt-36 lg:pt-40">
+      <div className="pt-24 sm:pt-28 lg:pt-32">
         <main>
           
           {/* Hero Section */}

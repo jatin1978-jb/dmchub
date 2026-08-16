@@ -14,10 +14,10 @@ export default function Logo({
   darkNav = false,
 }: LogoProps) {
   const heightMap = {
-    sm: 'h-12 sm:h-14',
-    md: 'h-16 sm:h-20',
-    lg: 'h-24 sm:h-28 lg:h-32',
-    xl: 'h-36 sm:h-44',
+    sm: 'h-9 sm:h-10',
+    md: 'h-12 sm:h-14',
+    lg: 'h-16 sm:h-18 lg:h-20',
+    xl: 'h-24 sm:h-28',
   };
 
   return (
