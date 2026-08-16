@@ -631,6 +631,67 @@ export default function LandingPage() {
             </div>
           </section>
 
+          {/* Our Leadership Team Section (#team) */}
+          <section id="team" className="py-8 sm:py-10 lg:py-12 bg-white border-t border-b border-slate-200">
+            <div className="w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-12">
+              <div className="mb-8 text-center max-w-2xl mx-auto">
+                <span className="inline-block text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-md border border-[#C5A059]/40 text-[#9E782F] bg-[#C5A059]/10 mb-2">
+                  Leadership & Vision
+                </span>
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B1B2D] font-serif">
+                  Meet Our <span className="gold-gradient-text">Founding Leadership</span>
+                </h2>
+                <p className="text-xs text-slate-600 mt-1">
+                  The visionary co-founders building the world's most intelligent B2B marketplace for destination travel.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {/* Jatin Bhai */}
+                <div className="bg-[#F8FAFC] rounded-2xl p-6 border border-slate-200 luxury-card-shadow hover:border-[#C5A059] transition-all text-center flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#0B1B2D] to-[#162B44] border-2 border-[#C5A059] flex items-center justify-center text-white font-serif font-bold text-xl mb-4 shadow-md">
+                    JB
+                  </div>
+                  <h3 className="text-lg font-bold font-serif text-[#0B1B2D] mb-1">Jatin Bhai</h3>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#9E782F] bg-[#C5A059]/15 px-3 py-1 rounded-full border border-[#C5A059]/30 mb-3 inline-block">
+                    Co-Founder & CEO
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Driving corporate vision, strategic growth, and global partnerships across the DMC and travel agent ecosystem.
+                  </p>
+                </div>
+
+                {/* Amit Gupta */}
+                <div className="bg-[#F8FAFC] rounded-2xl p-6 border border-slate-200 luxury-card-shadow hover:border-[#C5A059] transition-all text-center flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#0B1B2D] to-[#162B44] border-2 border-[#C5A059] flex items-center justify-center text-white font-serif font-bold text-xl mb-4 shadow-md">
+                    AG
+                  </div>
+                  <h3 className="text-lg font-bold font-serif text-[#0B1B2D] mb-1">Amit Gupta</h3>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#9E782F] bg-[#C5A059]/15 px-3 py-1 rounded-full border border-[#C5A059]/30 mb-3 inline-block">
+                    Co-Founder & CGO
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Leading commercial expansion, supplier onboarding, and global travel buyer network acquisition.
+                  </p>
+                </div>
+
+                {/* M S Shastry */}
+                <div className="bg-[#F8FAFC] rounded-2xl p-6 border border-slate-200 luxury-card-shadow hover:border-[#C5A059] transition-all text-center flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#0B1B2D] to-[#162B44] border-2 border-[#C5A059] flex items-center justify-center text-white font-serif font-bold text-xl mb-4 shadow-md">
+                    MS
+                  </div>
+                  <h3 className="text-lg font-bold font-serif text-[#0B1B2D] mb-1">M S Shastry</h3>
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#9E782F] bg-[#C5A059]/15 px-3 py-1 rounded-full border border-[#C5A059]/30 mb-3 inline-block">
+                    Co-Founder & CTO
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Architecting the intelligent marketplace engine, algorithmic matching, and enterprise platform technology.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Contact Us Section (#contact) */}
           <section id="contact" className="py-8 sm:py-10 lg:py-12 bg-[#F8FAFC] border-t border-b border-slate-200">
             <div className="w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-12">
@@ -736,6 +797,7 @@ export default function LandingPage() {
               <ul className="space-y-2 text-xs">
                 <li><a href="#about" className="hover:text-white transition-colors">What is DMCXchange</a></li>
                 <li><a href="#how-it-works" className="hover:text-white transition-colors">How it works</a></li>
+                <li><a href="#team" className="hover:text-white transition-colors">Our Team</a></li>
                 <li><a href="#about" className="hover:text-white transition-colors">About us</a></li>
                 <li><a href="#contact" className="hover:text-white transition-colors">Contact us</a></li>
               </ul>
@@ -755,6 +817,7 @@ export default function LandingPage() {
               <ul className="space-y-2 text-xs">
                 <li><a href="#for-dmcs" className="hover:text-white transition-colors">For DMCs</a></li>
                 <li><a href="#how-it-works" className="hover:text-white transition-colors">For Travel Agents</a></li>
+                <li><a href="#team" className="hover:text-white transition-colors">Leadership Team</a></li>
                 <li><a href="#contact" className="hover:text-white transition-colors">Support Desk</a></li>
               </ul>
             </div>
