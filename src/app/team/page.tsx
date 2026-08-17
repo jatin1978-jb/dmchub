@@ -24,8 +24,7 @@ export default function TeamPage() {
       name: "Jatin",
       role: "Co-Founder & CEO | Product & Strategy",
       initials: "J",
-      image: "/team/jatin-raw.jpg",
-      rawImage: "/team/jatin-raw.jpg",
+      image: "/team/jatin.jpg",
       bio: "Co-Founder & CEO of DMCXchange, leading product vision, marketplace strategy, UX, workflows and overall business direction. With 18+ years in travel technology and B2B platforms, Jatin focuses on designing intelligent travel marketplaces that simplify DMC discovery, distribution and collaboration between global suppliers and travel buyers.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#1E3A5F]"
     },
@@ -33,8 +32,7 @@ export default function TeamPage() {
       name: "Amit Gupta",
       role: "Co-Founder & Chief Commercial Officer",
       initials: "AG",
-      image: "/team/shastry-raw.jpg",
-      rawImage: "/team/shastry-raw.jpg",
+      image: "/team/amit.jpg",
       bio: "Co-Founder & CCO of DMCXchange, leading global commercial strategy, DMC acquisition, buyer acquisition, strategic partnerships and revenue growth. Amit focuses on building a strong two-sided ecosystem connecting quality DMCs with travel agencies, tour operators and other global travel buyers.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#2A4D7A]"
     },
@@ -42,8 +40,7 @@ export default function TeamPage() {
       name: "Veerabhadra Shastry Marla",
       role: "Co-Founder & Chief Technology Officer",
       initials: "VSM",
-      image: "/team/shastry-raw.jpg",
-      rawImage: "/team/shastry-raw.jpg",
+      image: null,
       bio: "Co-Founder & CTO of DMCXchange, leading technology architecture, engineering, APIs, integrations, infrastructure, security and platform scalability. Shastry focuses on building the robust technology backbone required to power a reliable, scalable and intelligent global DMC marketplace.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#14283E]"
     }
@@ -163,12 +160,18 @@ export default function TeamPage() {
                         
                         {/* Executive Portrait Frame / Photo Container */}
                         <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full p-1.5 bg-gradient-to-tr from-[#C5A059] via-[#F9E29C] to-[#C5A059] shadow-2xl group-hover:scale-105 transition-transform duration-300">
-                          <div className="w-full h-full rounded-full bg-[#0B1B2D] border-2 border-[#0B1B2D] shadow-inner overflow-hidden relative">
-                            <img
-                              src={member.image}
-                              alt={member.name}
-                              className="w-full h-full object-cover object-top rounded-full"
-                            />
+                          <div className="w-full h-full rounded-full bg-[#0B1B2D] border-2 border-[#0B1B2D] shadow-inner overflow-hidden relative flex flex-col items-center justify-center">
+                            {member.image ? (
+                              <img
+                                src={member.image}
+                                alt={member.name}
+                                className="w-full h-full object-cover object-top rounded-full"
+                              />
+                            ) : (
+                              <span className="text-3xl sm:text-4xl font-serif font-bold text-white tracking-widest gold-gradient-text">
+                                {member.initials}
+                              </span>
+                            )}
                           </div>
                         </div>
 
