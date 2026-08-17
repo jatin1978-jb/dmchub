@@ -21,27 +21,24 @@ export default function TeamPage() {
 
   const teamMembers = [
     {
-      name: "Jatin Bhai",
-      role: "Co-Founder & CEO",
-      tagline: "Travel Technology & Marketplace Strategist | Building DMCXchange",
-      initials: "JB",
-      bio: "Co-Founder & CEO of DMCXchange, driving the company's vision, product strategy and global expansion. With 18+ years of experience across travel technology, B2B distribution and digital marketplaces, Jatin focuses on connecting DMC supply with global travel demand through technology, data and AI.",
+      name: "Jatin",
+      role: "Co-Founder & CEO | Product & Strategy",
+      initials: "J",
+      bio: "Co-Founder & CEO of DMCXchange, leading product vision, marketplace strategy, UX, workflows and overall business direction. With 18+ years in travel technology and B2B platforms, Jatin focuses on designing intelligent travel marketplaces that simplify DMC discovery, distribution and collaboration between global suppliers and travel buyers.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#1E3A5F]"
     },
     {
       name: "Amit Gupta",
       role: "Co-Founder & Chief Commercial Officer",
-      tagline: "Global Travel Commercial & Growth Leader | DMC & Buyer Ecosystem",
       initials: "AG",
-      bio: "Co-Founder & CCO of DMCXchange, responsible for global commercial growth, DMC acquisition, buyer acquisition, strategic partnerships and revenue. Amit focuses on building the two-sided marketplace by creating strong relationships across the DMC, travel agency and supplier ecosystem.",
+      bio: "Co-Founder & CCO of DMCXchange, leading global commercial strategy, DMC acquisition, buyer acquisition, strategic partnerships and revenue growth. Amit focuses on building a strong two-sided ecosystem connecting quality DMCs with travel agencies, tour operators and other global travel buyers.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#2A4D7A]"
     },
     {
       name: "Veerabhadra Shastry Marla",
-      role: "Co-Founder & Chief Product & Technology Officer",
-      tagline: "Travel Technology & Platform Architecture Leader | Building Scalable Marketplaces",
+      role: "Co-Founder & Chief Technology Officer",
       initials: "VSM",
-      bio: "Co-Founder & CPTO of DMCXchange, leading product engineering, technology architecture, APIs, integrations, data and platform scalability. Veerabhadra focuses on building a secure, intelligent and scalable marketplace infrastructure that enables seamless DMC discovery, proposals and bookings.",
+      bio: "Co-Founder & CTO of DMCXchange, leading technology architecture, engineering, APIs, integrations, infrastructure, security and platform scalability. Shastry focuses on building the robust technology backbone required to power a reliable, scalable and intelligent global DMC marketplace.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#14283E]"
     }
   ];
@@ -180,18 +177,15 @@ export default function TeamPage() {
                       {/* Content Body */}
                       <div className="p-6 sm:p-8 space-y-4">
                         <div>
-                          <h3 className="text-2xl font-bold font-serif text-[#0B1B2D] mb-1 leading-snug">
+                          <h3 className="text-2xl font-bold font-serif text-[#0B1B2D] mb-1.5 leading-snug">
                             {member.name}
                           </h3>
-                          <div className="text-xs font-bold uppercase tracking-wider text-[#9E782F] bg-[#C5A059]/15 px-3 py-1 rounded-lg border border-[#C5A059]/30 inline-block mb-3">
+                          <div className="text-xs font-bold uppercase tracking-wider text-[#9E782F] bg-[#C5A059]/15 px-3 py-1 rounded-lg border border-[#C5A059]/30 inline-block">
                             {member.role}
-                          </div>
-                          <div className="text-xs font-semibold text-[#0B1B2D] leading-snug border-l-2 border-[#C5A059] pl-3 py-0.5">
-                            {member.tagline}
                           </div>
                         </div>
 
-                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-2 border-t border-slate-200">
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-3 border-t border-slate-200">
                           {member.bio}
                         </p>
                       </div>
