@@ -24,7 +24,7 @@ export default function TeamPage() {
       name: "Jatin",
       role: "Co-Founder & CEO | Product & Strategy",
       initials: "J",
-      image: "/team/jatin-pro.jpg",
+      image: "/team/jatin-raw.jpg",
       rawImage: "/team/jatin-raw.jpg",
       bio: "Co-Founder & CEO of DMCXchange, leading product vision, marketplace strategy, UX, workflows and overall business direction. With 18+ years in travel technology and B2B platforms, Jatin focuses on designing intelligent travel marketplaces that simplify DMC discovery, distribution and collaboration between global suppliers and travel buyers.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#1E3A5F]"
@@ -33,7 +33,7 @@ export default function TeamPage() {
       name: "Amit Gupta",
       role: "Co-Founder & Chief Commercial Officer",
       initials: "AG",
-      image: "/team/shastry-pro.jpg",
+      image: "/team/shastry-raw.jpg",
       rawImage: "/team/shastry-raw.jpg",
       bio: "Co-Founder & CCO of DMCXchange, leading global commercial strategy, DMC acquisition, buyer acquisition, strategic partnerships and revenue growth. Amit focuses on building a strong two-sided ecosystem connecting quality DMCs with travel agencies, tour operators and other global travel buyers.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#2A4D7A]"
@@ -42,7 +42,7 @@ export default function TeamPage() {
       name: "Veerabhadra Shastry Marla",
       role: "Co-Founder & Chief Technology Officer",
       initials: "VSM",
-      image: "/team/shastry-pro.jpg",
+      image: "/team/shastry-raw.jpg",
       rawImage: "/team/shastry-raw.jpg",
       bio: "Co-Founder & CTO of DMCXchange, leading technology architecture, engineering, APIs, integrations, infrastructure, security and platform scalability. Shastry focuses on building the robust technology backbone required to power a reliable, scalable and intelligent global DMC marketplace.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#14283E]"
