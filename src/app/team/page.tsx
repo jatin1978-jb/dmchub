@@ -40,7 +40,7 @@ export default function TeamPage() {
       name: "Veerabhadra Shastry Marla",
       role: "Co-Founder & Chief Technology Officer",
       initials: "VSM",
-      image: null,
+      image: "/team/shastry.jpg",
       bio: "Co-Founder & CTO of DMCXchange, leading technology architecture, engineering, APIs, integrations, infrastructure, security and platform scalability. Shastry focuses on building the robust technology backbone required to power a reliable, scalable and intelligent global DMC marketplace.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#14283E]"
     }
