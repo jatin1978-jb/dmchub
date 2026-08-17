@@ -153,22 +153,22 @@ export default function TeamPage() {
                     className="bg-[#F8FAFC] rounded-3xl border border-slate-200 luxury-card-shadow hover:border-[#C5A059] transition-all duration-300 overflow-hidden flex flex-col justify-between group"
                   >
                     <div>
-                      {/* Executive Photo Container Placeholder */}
-                      <div className="relative w-full h-72 sm:h-80 bg-gradient-to-b from-[#0B1B2D] via-[#162B44] to-[#0B1B2D] flex items-center justify-center p-6 border-b border-[#C5A059]/30 overflow-hidden">
-                        {/* Background Ambient Glow */}
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.15),transparent_70%)]" />
+                      {/* Executive Photo Container */}
+                      <div className="relative w-full h-72 sm:h-80 bg-gradient-to-b from-slate-50 via-white to-slate-100 flex items-center justify-center p-6 border-b border-slate-200 overflow-hidden">
+                        {/* Background Ambient Gold Glow */}
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.12),transparent_70%)]" />
                         
                         {/* Executive Portrait Frame / Photo Container */}
-                        <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full p-1.5 bg-gradient-to-tr from-[#C5A059] via-[#F9E29C] to-[#C5A059] shadow-2xl group-hover:scale-105 transition-transform duration-300">
-                          <div className="w-full h-full rounded-full bg-[#0B1B2D] border-2 border-[#0B1B2D] shadow-inner overflow-hidden relative flex flex-col items-center justify-center">
+                        <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full p-1.5 bg-gradient-to-tr from-[#C5A059] via-[#F9E29C] to-[#C5A059] shadow-xl group-hover:scale-105 transition-transform duration-300">
+                          <div className="w-full h-full rounded-full bg-white border-2 border-white shadow-inner overflow-hidden relative flex flex-col items-center justify-center">
                             {member.image ? (
                               <img
                                 src={member.image}
                                 alt={member.name}
-                                className="w-full h-full object-cover object-top rounded-full"
+                                className="w-full h-full object-cover object-top rounded-full bg-white"
                               />
                             ) : (
-                              <span className="text-3xl sm:text-4xl font-serif font-bold text-white tracking-widest gold-gradient-text">
+                              <span className="text-3xl sm:text-4xl font-serif font-bold text-[#0B1B2D] tracking-widest gold-gradient-text">
                                 {member.initials}
                               </span>
                             )}
@@ -177,7 +177,7 @@ export default function TeamPage() {
 
                         {/* Executive Badge */}
                         <div className="absolute bottom-4 left-6 right-6 text-center">
-                          <span className="text-[10px] font-mono font-bold text-[#C5A059] uppercase tracking-widest bg-[#0B1B2D]/90 border border-[#C5A059]/40 px-3 py-1 rounded-full shadow-md backdrop-blur-md">
+                          <span className="text-[10px] font-mono font-bold text-[#0B1B2D] uppercase tracking-widest bg-white/95 border border-[#C5A059]/40 px-3 py-1 rounded-full shadow-md backdrop-blur-md">
                             DMCXchange Co-Founder
                           </span>
                         </div>
