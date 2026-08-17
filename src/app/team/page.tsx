@@ -21,9 +21,9 @@ export default function TeamPage() {
 
   const teamMembers = [
     {
-      name: "Jatin",
+      name: "Jatin Bhai",
       role: "Co-Founder & CEO | Product & Strategy",
-      initials: "J",
+      initials: "JB",
       image: "/team/jatin.jpg",
       bio: "Co-Founder & CEO of DMCXchange, leading product vision, marketplace strategy, UX, workflows and overall business direction. With 18+ years in travel technology and B2B platforms, Jatin focuses on designing intelligent travel marketplaces that simplify DMC discovery, distribution and collaboration between global suppliers and travel buyers.",
       gradient: "from-[#0B1B2D] via-[#162B44] to-[#1E3A5F]"
@@ -184,24 +184,30 @@ export default function TeamPage() {
                       </div>
 
                       {/* Content Body */}
-                      <div className="p-6 sm:p-8 space-y-4">
+                      <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
                         <div>
-                          <h3 className="text-2xl font-bold font-serif text-[#0B1B2D] mb-1.5 leading-snug">
-                            {member.name}
-                          </h3>
-                          <div className="text-xs font-bold uppercase tracking-wider text-[#9E782F] bg-[#C5A059]/15 px-3 py-1 rounded-lg border border-[#C5A059]/30 inline-block">
-                            {member.role}
+                          {/* Name & Role Header - Uniform Height */}
+                          <div className="min-h-[85px] sm:min-h-[95px] flex flex-col justify-start">
+                            <h3 className="text-xl sm:text-2xl font-bold font-serif text-[#0B1B2D] mb-2 leading-tight">
+                              {member.name}
+                            </h3>
+                            <div>
+                              <span className="text-[11px] font-bold uppercase tracking-wider text-[#9E782F] bg-[#C5A059]/15 px-3 py-1 rounded-lg border border-[#C5A059]/30 inline-block">
+                                {member.role}
+                              </span>
+                            </div>
                           </div>
-                        </div>
 
-                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-3 border-t border-slate-200">
-                          {member.bio}
-                        </p>
+                          {/* Bio Paragraph - Equal Spacing */}
+                          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-4 border-t border-slate-200 font-normal">
+                            {member.bio}
+                          </p>
+                        </div>
                       </div>
                     </div>
 
                     {/* Card Footer Accent */}
-                    <div className="px-6 sm:px-8 pb-6 pt-2 flex items-center justify-between text-xs text-slate-400 border-t border-slate-100 mt-4">
+                    <div className="px-6 sm:px-8 pb-6 pt-3 flex items-center justify-between text-xs text-slate-400 border-t border-slate-100">
                       <span className="font-semibold text-[#0B1B2D]">DMCXchange Executive Board</span>
                       <span className="w-2 h-2 rounded-full bg-[#C5A059]" />
                     </div>
