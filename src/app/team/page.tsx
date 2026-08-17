@@ -8,7 +8,6 @@ import {
   Sparkles,
   Menu,
   X,
-  Linkedin,
   Mail,
   Globe,
   Building2,
