@@ -137,11 +137,9 @@ export default function QuotationModal({ pkg, basePrice }: QuotationModalProps) 
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger>
-        <Button className="h-11 px-6 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-xl shadow-md transition-all flex items-center gap-2">
-          <FileSpreadsheet className="w-4 h-4" />
-          Send Quotation
-        </Button>
+      <DialogTrigger className="h-11 px-6 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer">
+        <FileSpreadsheet className="w-4 h-4" />
+        Send Quotation
       </DialogTrigger>
 
       {/* FULL-SIZE WIDE HIGH-END MODAL */}

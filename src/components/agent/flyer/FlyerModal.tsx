@@ -75,11 +75,9 @@ export default function FlyerModal({ pkg, basePrice }: FlyerModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger>
-        <Button variant="outline" className="h-11 px-6 border-blue-200 text-blue-800 bg-blue-50/80 hover:bg-blue-100 font-bold rounded-xl shadow-xs transition-all flex items-center gap-2">
-          <FileText className="w-4 h-4 text-blue-600" />
-          Send Flyer
-        </Button>
+      <DialogTrigger className="h-11 px-6 border border-blue-200 text-blue-800 bg-blue-50/80 hover:bg-blue-100 font-bold rounded-xl shadow-xs transition-all flex items-center gap-2 cursor-pointer">
+        <FileText className="w-4 h-4 text-blue-600" />
+        Send Flyer
       </DialogTrigger>
 
       {/* FULL-SIZE WIDE HIGH-END MODAL */}
