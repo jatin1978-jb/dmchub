@@ -7,6 +7,9 @@ import { Clock, Globe, MapPin, CheckCircle2, AlertCircle } from "lucide-react"
 import BookingForm from "@/components/agent/BookingForm"
 import ItineraryViewer from "@/components/agent/itinerary/ItineraryViewer"
 
+import FlyerModal from "@/components/agent/flyer/FlyerModal"
+import QuotationModal from "@/components/agent/quotation/QuotationModal"
+
 export default function PackageDetailsClient({ pkg, existingHold }: { pkg: any, existingHold: any }) {
   const searchParams = useSearchParams()
   const nationalityParam = searchParams.get("nationality") || searchParams.get("targetNationality")
@@ -43,6 +46,19 @@ export default function PackageDetailsClient({ pkg, existingHold }: { pkg: any, 
           <div className="absolute top-6 left-6 flex gap-3">
             <Badge className="bg-white/95 backdrop-blur-sm text-slate-900 text-sm font-bold uppercase tracking-widest px-4 py-2 shadow-xl">{pkg.destination}</Badge>
             <Badge className="bg-blue-600/95 backdrop-blur-sm text-white text-sm font-bold uppercase tracking-widest px-4 py-2 shadow-xl">{pkg.targetNationalities} Targeted</Badge>
+          </div>
+        </div>
+
+        {/* AGENT CUSTOMER ACTIONS BAR */}
+        <div className="bg-slate-900 text-white p-6 rounded-3xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 block mb-0.5">Travel Agent Sales Tools</span>
+            <h3 className="text-lg font-extrabold text-white">Share Package with Client</h3>
+            <p className="text-xs text-slate-300">Generate a marketing flyer or customize a day-by-day quotation.</p>
+          </div>
+          <div className="flex gap-3 shrink-0">
+            <FlyerModal pkg={pkg} basePrice={currentBasePrice} />
+            <QuotationModal pkg={pkg} basePrice={currentBasePrice} />
           </div>
         </div>
 
