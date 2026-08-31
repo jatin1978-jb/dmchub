@@ -9,11 +9,9 @@ import {
   ArrowRight,
   ChevronRight,
   Package,
-  Camera,
   Car,
   Hotel,
   Briefcase,
-  FileText,
   Globe,
   CheckCircle2,
   Users,
@@ -21,28 +19,33 @@ import {
   Sparkles,
   Menu,
   X,
-  Sliders,
   Compass,
   Layers,
   Utensils,
   Calendar,
-  Cpu,
-  Quote,
-  User,
   KeyRound,
   Eye,
   EyeOff,
   AlertCircle,
   Mail,
   Phone,
-  MapPin
+  MapPin,
+  ShieldCheck,
+  TrendingUp,
+  Award,
+  FileSpreadsheet,
+  Handshake,
+  Search,
+  Zap,
+  Globe2,
+  FileText
 } from "lucide-react";
 
 export default function LandingPage() {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Hero Login Card State
+  // Hero Login Card State (Kept as user explicitly requested!)
   const [loginRole, setLoginRole] = useState<'DMC' | 'AGENT'>('DMC');
   const [email, setEmail] = useState('dmc@example.com');
   const [password, setPassword] = useState('password123');
@@ -89,691 +92,490 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col font-sans selection:bg-[#C5A059]/20 selection:text-[#0B1B2D] overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0F294A] flex flex-col font-sans selection:bg-[#C49A45]/20 selection:text-[#1B4985] overflow-x-hidden">
       
       {/* Top Header / Navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[#C5A059]/25 bg-white/95 backdrop-blur-md shadow-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[#C49A45]/20 bg-white/95 backdrop-blur-md shadow-sm">
         <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12">
-          <div className="flex items-center justify-between min-h-[75px] lg:min-h-[85px] py-1.5 sm:py-2">
+          <div className="flex items-center justify-between min-h-[80px] py-2">
             
-            {/* Perfectly Proportioned Logo */}
-            <Link href="/" className="flex items-center shrink-0 py-1">
+            {/* Brand Logo */}
+            <Link href="/" className="flex items-center shrink-0">
               <Logo size="lg" />
             </Link>
 
-            {/* Top Right Navigation - ONLY 4 CLEAN LINKS */}
-            <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-8 xl:gap-10 ml-auto">
-              <a href="#about" className="text-sm font-semibold text-[#0B1B2D] hover:text-[#C5A059] transition-colors">
-                What is DMCXchange
+            {/* Top Navigation Bar */}
+            <nav aria-label="Main navigation" className="hidden xl:flex items-center gap-8 ml-auto">
+              <a href="#what-we-are" className="text-sm font-bold text-[#1B4985] hover:text-[#C49A45] transition-colors">
+                What We Are
               </a>
-              <a href="#how-it-works" className="text-sm font-semibold text-[#0B1B2D] hover:text-[#C5A059] transition-colors">
-                How it works
+              <a href="#the-x-factor" className="text-sm font-bold text-[#1B4985] hover:text-[#C49A45] transition-colors">
+                The "X" Factor
               </a>
-              <a href="#about" className="text-sm font-semibold text-[#0B1B2D] hover:text-[#C5A059] transition-colors">
-                About us
+              <a href="#4-layer-platform" className="text-sm font-bold text-[#1B4985] hover:text-[#C49A45] transition-colors">
+                4-Layer Platform
               </a>
-              <a href="#contact" className="text-sm font-semibold text-[#0B1B2D] hover:text-[#C5A059] transition-colors">
-                Contact us
+              <a href="#who-we-serve" className="text-sm font-bold text-[#1B4985] hover:text-[#C49A45] transition-colors">
+                Who We Serve
+              </a>
+              <a href="#leadership" className="text-sm font-bold text-[#1B4985] hover:text-[#C49A45] transition-colors">
+                Leadership
+              </a>
+              <a href="#contact" className="text-sm font-bold text-[#1B4985] hover:text-[#C49A45] transition-colors">
+                Contact
               </a>
             </nav>
+
+            {/* Header Direct Login Buttons */}
+            <div className="hidden sm:flex items-center gap-3 ml-8">
+              <button 
+                onClick={() => { handleRoleSwitch('DMC'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                className="px-4 py-2 text-xs font-extrabold text-[#1B4985] border border-[#1B4985]/30 rounded-xl hover:bg-[#1B4985]/5 transition-all"
+              >
+                DMC Portal
+              </button>
+              <button 
+                onClick={() => { handleRoleSwitch('AGENT'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                className="px-5 py-2 text-xs font-black text-white bg-[#1B4985] hover:bg-[#0F3260] rounded-xl shadow-md transition-all flex items-center gap-1.5"
+              >
+                Travel Agent Portal <ChevronRight className="w-3.5 h-3.5 text-[#C49A45]" />
+              </button>
+            </div>
 
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl border border-slate-200 text-[#0B1B2D] hover:bg-slate-100 transition-colors ml-auto"
-              aria-label="Toggle Navigation Menu"
+              className="xl:hidden p-2 rounded-xl border border-slate-200 text-[#1B4985] hover:bg-slate-100 transition-colors ml-auto"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Dropdown Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-[#C5A059]/30 px-6 py-4 space-y-2.5 shadow-xl animate-in fade-in slide-in-from-top-2">
-            <nav className="flex flex-col gap-2.5 text-sm font-semibold text-[#0B1B2D]">
-              <a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C5A059] py-1 border-b border-slate-100">What is DMCXchange</a>
-              <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C5A059] py-1 border-b border-slate-100">How it works</a>
-              <a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C5A059] py-1 border-b border-slate-100">About us</a>
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C5A059] py-1 border-b border-slate-100">Contact us</a>
+          <div className="xl:hidden bg-white border-b border-[#C49A45]/30 px-6 py-4 space-y-3 shadow-xl">
+            <nav className="flex flex-col gap-3 text-sm font-bold text-[#1B4985]">
+              <a href="#what-we-are" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C49A45] py-1 border-b border-slate-100">What We Are</a>
+              <a href="#the-x-factor" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C49A45] py-1 border-b border-slate-100">The "X" Factor</a>
+              <a href="#4-layer-platform" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C49A45] py-1 border-b border-slate-100">4-Layer Platform</a>
+              <a href="#who-we-serve" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C49A45] py-1 border-b border-slate-100">Who We Serve</a>
+              <a href="#leadership" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C49A45] py-1 border-b border-slate-100">Leadership</a>
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#C49A45] py-1 border-b border-slate-100">Contact</a>
             </nav>
           </div>
         )}
       </header>
 
-      {/* Main Content Area */}
-      <div className="pt-20 sm:pt-22 lg:pt-24">
-        <main>
-          
-          {/* Hero Section */}
-          <section className="relative flex flex-col justify-center overflow-hidden bg-gradient-to-b from-[#F8FAFC] via-[#F1F5F9] to-white py-8 sm:py-10 lg:py-12" aria-label="Hero">
-            {/* Subtle Grid Pattern */}
-            <svg aria-hidden="true" className="absolute inset-0 w-full h-full pointer-events-none opacity-40" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#C5A059" strokeWidth="0.5" strokeOpacity="0.15" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#hero-grid)" />
-            </svg>
-
-            {/* Radial Gold Ambient Glow */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(197,160,89,0.12),transparent_65%)]" />
-            <div className="absolute left-0 top-1/4 bottom-1/4 w-1.5 rounded-r bg-gradient-to-b from-transparent via-[#C5A059] to-transparent" />
-
-            <div className="relative z-10 w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-12">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      {/* Main Content */}
+      <div className="pt-20 sm:pt-24">
+        
+        {/* HERO SECTION (Left Brand Presentation + Right Login Card as User Requested) */}
+        <section className="relative flex flex-col justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 py-12 lg:py-20 border-b border-[#C49A45]/20">
+          <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+              
+              {/* Left Column: Brand Hero Presentation */}
+              <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
                 
-                {/* Left Column: Hero Value Proposition */}
-                <div className="lg:col-span-7">
-                  <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border border-[#C5A059]/40 bg-[#C5A059]/10 text-[#9E782F] text-xs font-bold uppercase tracking-wider">
-                    <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-                    Intelligent Global B2B Marketplace
-                  </div>
+                {/* 4 Pillars Badge */}
+                <div className="inline-flex items-center gap-2 bg-[#1B4985]/10 border border-[#1B4985]/20 px-4 py-2 rounded-full shadow-xs">
+                  <span className="w-2 h-2 rounded-full bg-[#C49A45] animate-ping" />
+                  <span className="text-xs font-black uppercase tracking-widest text-[#1B4985]">
+                    MARKETPLACE • TRUST • INTELLIGENCE • COMMERCE
+                  </span>
+                </div>
 
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight text-[#0B1B2D] mb-4 font-serif">
-                    Connecting DMCs & Travel Agents. <br />
-                    <span className="gold-gradient-text">Create. Discover. Customize. Sell.</span>
+                <div className="space-y-4">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-[#1B4985] leading-[1.1]">
+                    Powering Global DMC & Travel Commerce
                   </h1>
-
-                  <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed mb-5 font-normal">
-                    DMCXchange is an intelligent global B2B marketplace connecting Destination Management Companies (DMCs) with Travel Agents, enabling them to create, discover, customize, and sell destination experiences through one connected platform.
+                  
+                  <p className="text-lg sm:text-xl font-medium text-slate-700 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    <strong className="text-[#1B4985] font-extrabold">dmcXchange</strong> — a B2B Global Destination Marketplace connecting verified destination expertise with global travel buyers.
                   </p>
+                </div>
 
-                  {/* Core Idea Banner */}
-                  <div className="p-4 sm:p-4.5 rounded-xl bg-[#0B1B2D] text-white border-l-4 border-[#C5A059] shadow-md mb-6 max-w-2xl">
-                    <div className="text-[10px] uppercase tracking-widest text-[#C5A059] font-bold mb-0.5">Our Core Idea</div>
-                    <p className="text-xs sm:text-sm font-serif italic text-slate-100 leading-snug">
-                      "The right destination product should reach the right traveller, through the right Travel Agent, at the right time."
-                    </p>
-                  </div>
-
-                  <div className="flex flex-wrap gap-3 mb-2">
-                    <Link
-                      href="/auth/register/dmc"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-[#0B1B2D] text-white hover:bg-[#162B44] shadow-md shadow-[#0B1B2D]/15 transition-all duration-200"
-                    >
-                      <span>Register as a DMC</span>
-                      <ArrowRight className="w-4 h-4 text-[#C5A059]" />
-                    </Link>
-                    <Link
-                      href="/auth/register/agent"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm border-2 border-[#C5A059] text-[#0B1B2D] hover:bg-[#C5A059]/10 transition-all duration-200"
-                    >
-                      <span>Register as a Travel Agent</span>
-                      <ChevronRight className="w-4 h-4 text-[#C5A059]" />
-                    </Link>
+                {/* Core Principle Callout Box */}
+                <div className="bg-gradient-to-r from-[#1B4985] to-[#0F3260] text-white p-6 rounded-3xl shadow-xl border border-[#C49A45]/40 text-left relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#C49A45]/10 rounded-full blur-2xl pointer-events-none" />
+                  <div className="flex items-start gap-4 relative z-10">
+                    <div className="p-3 bg-[#C49A45] text-slate-950 rounded-2xl shrink-0 font-black">
+                      <Sparkles className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-black uppercase tracking-widest text-[#C49A45] mb-1">Our Core Principle</h4>
+                      <p className="text-sm sm:text-base font-semibold leading-relaxed text-slate-100">
+                        "The right destination product to reach the right traveller, through the right travel company, at the right time."
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Right Column: LIVE LOGIN CARD */}
-                <div className="lg:col-span-5">
-                  <div className="relative rounded-2xl p-5 sm:p-6 bg-[#0B1B2D] text-white border-2 border-[#C5A059]/50 shadow-xl overflow-hidden">
-                    <div className="absolute -right-16 -top-16 w-36 h-36 bg-[#C5A059]/20 rounded-full blur-3xl" />
-                    
-                    {/* Header */}
-                    <div className="mb-4">
-                      <h3 className="text-xl font-bold font-serif text-white mb-0.5">Login to your account</h3>
-                      <p className="text-[11px] text-slate-300">Select your account type and enter credentials</p>
-                    </div>
+                {/* Quick Brand Features Pill list */}
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+                  <span className="bg-white border border-slate-200 px-4 py-2 rounded-xl text-xs font-bold text-slate-700 shadow-xs flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" /> Verified DMCs & Supply
+                  </span>
+                  <span className="bg-white border border-slate-200 px-4 py-2 rounded-xl text-xs font-bold text-slate-700 shadow-xs flex items-center gap-2">
+                    <Globe2 className="w-4 h-4 text-blue-600" /> Visa-Aware Traveller Intelligence
+                  </span>
+                  <span className="bg-white border border-slate-200 px-4 py-2 rounded-xl text-xs font-bold text-slate-700 shadow-xs flex items-center gap-2">
+                    <FileSpreadsheet className="w-4 h-4 text-amber-600" /> Instant Quote & Flyer Engine
+                  </span>
+                </div>
+              </div>
 
-                    {/* Role Selector Tabs */}
-                    <div className="grid grid-cols-2 gap-1.5 p-1 bg-[#162B44] rounded-lg border border-slate-700 mb-4">
-                      <button
-                        type="button"
-                        onClick={() => handleRoleSwitch('DMC')}
-                        className={`flex items-center justify-center gap-1.5 py-2 rounded-md text-xs font-bold transition-all ${
-                          loginRole === 'DMC'
-                            ? 'bg-[#C5A059] text-[#0B1B2D] shadow-sm'
-                            : 'text-slate-300 hover:text-white'
-                        }`}
-                      >
-                        <Building2 className="w-3.5 h-3.5" />
-                        <span>DMC Supplier</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleRoleSwitch('AGENT')}
-                        className={`flex items-center justify-center gap-1.5 py-2 rounded-md text-xs font-bold transition-all ${
-                          loginRole === 'AGENT'
-                            ? 'bg-[#C5A059] text-[#0B1B2D] shadow-sm'
-                            : 'text-slate-300 hover:text-white'
-                        }`}
-                      >
-                        <Users className="w-3.5 h-3.5" />
-                        <span>Travel Agent</span>
-                      </button>
+              {/* Right Column: Hero Login Card (PRESERVED AS USER REQUESTED!) */}
+              <div className="lg:col-span-5 w-full max-w-md mx-auto lg:max-w-none">
+                <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(27,73,133,0.15)] border-2 border-[#1B4985]/20 relative overflow-hidden">
+                  
+                  {/* Card Header Badge */}
+                  <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#C49A45] block">Instant B2B Access</span>
+                      <h3 className="text-xl font-serif font-black text-[#1B4985]">Portal Sign In</h3>
                     </div>
+                    <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-3 py-1 rounded-full border border-emerald-200">
+                      Live Platform
+                    </span>
+                  </div>
 
-                    {/* Error Alert */}
+                  {/* Dual Role Selector Tabs */}
+                  <div className="grid grid-cols-2 gap-2 p-1.5 bg-slate-100 rounded-2xl mb-6">
+                    <button
+                      type="button"
+                      onClick={() => handleRoleSwitch('DMC')}
+                      className={`py-2.5 px-3 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-2 ${
+                        loginRole === 'DMC'
+                          ? 'bg-[#1B4985] text-white shadow-md'
+                          : 'text-slate-600 hover:text-[#1B4985]'
+                      }`}
+                    >
+                      <Building2 className="w-4 h-4" /> DMC Operator
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleRoleSwitch('AGENT')}
+                      className={`py-2.5 px-3 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-2 ${
+                        loginRole === 'AGENT'
+                          ? 'bg-[#1B4985] text-white shadow-md'
+                          : 'text-slate-600 hover:text-[#1B4985]'
+                      }`}
+                    >
+                      <Briefcase className="w-4 h-4" /> Travel Agent
+                    </button>
+                  </div>
+
+                  {/* Login Form */}
+                  <form onSubmit={handleHeroLogin} className="space-y-4">
                     {loginError && (
-                      <div className="mb-3 p-2.5 bg-red-950/80 border border-red-500/50 rounded-lg flex items-center gap-2 text-red-300 text-xs animate-in fade-in">
-                        <AlertCircle className="w-3.5 h-3.5 text-red-400 shrink-0" />
-                        <span>{loginError}</span>
+                      <div className="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl flex items-center gap-2 font-semibold">
+                        <AlertCircle className="w-4 h-4 shrink-0" />
+                        {loginError}
                       </div>
                     )}
 
-                    {/* Form */}
-                    <form onSubmit={handleHeroLogin} className="space-y-3">
-                      <div className="space-y-1">
-                        <label className="text-[11px] font-semibold text-slate-200 block">Email / Username</label>
-                        <div className="relative">
-                          <User className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                          <input
-                            type="email"
-                            placeholder="Email / Username"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="w-full bg-[#162B44] border border-slate-700 rounded-lg pl-9 pr-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#C5A059] transition-all"
-                          />
-                        </div>
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-700 block">Work Email Address</label>
+                      <div className="relative">
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="e.g. name@company.com"
+                          required
+                          className="w-full h-11 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#1B4985] focus:ring-2 focus:ring-[#1B4985]/20"
+                        />
+                        <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                       </div>
-
-                      <div className="space-y-1">
-                        <div className="flex items-center justify-between">
-                          <label className="text-[11px] font-semibold text-slate-200 block">Password</label>
-                          <a href="#" className="text-[11px] text-[#C5A059] hover:underline font-medium">Forgot Password?</a>
-                        </div>
-                        <div className="relative">
-                          <KeyRound className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                          <input
-                            type={showPassword ? 'text' : 'password'}
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="w-full bg-[#162B44] border border-slate-700 rounded-lg pl-9 pr-9 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#C5A059] transition-all"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200"
-                          >
-                            {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-                          </button>
-                        </div>
-                      </div>
-
-                      <button
-                        type="submit"
-                        disabled={loginLoading}
-                        className="w-full bg-[#C5A059] text-[#0B1B2D] font-bold text-xs hover:bg-[#D4AF37] shadow-md py-2.5 rounded-lg transition-all flex items-center justify-center gap-1.5 mt-1"
-                      >
-                        {loginLoading ? 'Logging in...' : 'Login →'}
-                      </button>
-                    </form>
-
-                    {/* Footer Registration Link */}
-                    <div className="mt-4 pt-3.5 border-t border-slate-800 text-center text-[11px] text-slate-300">
-                      <span>Don't have an account? </span>
-                      <Link href={loginRole === 'DMC' ? '/auth/register/dmc' : '/auth/register/agent'} className="text-[#C5A059] font-bold hover:underline">
-                        Register with us
-                      </Link>
                     </div>
 
-                  </div>
-                </div>
-
-              </div>
-
-              {/* High-level Summary Metrics Bar */}
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 rounded-xl border border-[#C5A059]/30 bg-white/95 shadow-md divide-x divide-slate-100">
-                <div className="p-4 text-center sm:text-left">
-                  <div className="text-xl sm:text-2xl font-bold text-[#0B1B2D] font-serif gold-gradient-text">DMC Supplier</div>
-                  <div className="text-[11px] font-semibold text-slate-500 mt-0.5">Create, Configure & Sell</div>
-                </div>
-                <div className="p-4 text-center sm:text-left">
-                  <div className="text-xl sm:text-2xl font-bold text-[#0B1B2D] font-serif gold-gradient-text">Travel Agent</div>
-                  <div className="text-[11px] font-semibold text-slate-500 mt-0.5">Discover, Personalize & Buy</div>
-                </div>
-                <div className="p-4 text-center sm:text-left">
-                  <div className="text-xl sm:text-2xl font-bold text-[#0B1B2D] font-serif gold-gradient-text">Configure & Buy</div>
-                  <div className="text-[11px] font-semibold text-slate-500 mt-0.5">Customize Your Way</div>
-                </div>
-                <div className="p-4 text-center sm:text-left">
-                  <div className="text-xl sm:text-2xl font-bold text-[#0B1B2D] font-serif gold-gradient-text">Intelligent</div>
-                  <div className="text-[11px] font-semibold text-slate-500 mt-0.5">Visa & Market Matching</div>
-                </div>
-              </div>
-
-            </div>
-          </section>
-
-          {/* Section 1: What is DMCXchange? (#about) - Clean Redesigned Layout */}
-          <section id="about" className="py-10 sm:py-12 lg:py-16 bg-white border-t border-b border-slate-200">
-            <div className="w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-12">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-                
-                {/* Left Column: Clean Editorial Copy & 3 Pillars (No Boxes) */}
-                <div className="lg:col-span-7 space-y-6">
-                  <div>
-                    <span className="text-[11px] font-bold tracking-widest uppercase text-[#9E782F] block mb-1.5">Overview</span>
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0B1B2D] leading-tight font-serif">
-                      What is DMCXchange?
-                    </h2>
-                  </div>
-
-                  <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
-                    DMCXchange is an intelligent global B2B marketplace connecting Destination Management Companies (DMCs) with Travel Agents, enabling them to create, discover, customize, and sell destination experiences through one connected platform.
-                  </p>
-
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                    DMCXchange is built around a simple idea: <strong className="text-[#0B1B2D]">the right destination product should reach the right traveller, through the right Travel Agent, at the right time.</strong>
-                  </p>
-
-                  {/* 3-Pillar Clean Flow (Line Divided - Zero Cards) */}
-                  <div className="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div className="border-l-2 border-[#C5A059] pl-3.5 space-y-1">
-                      <div className="text-xs font-bold text-[#0B1B2D] uppercase tracking-wider flex items-center gap-1.5">
-                        <Building2 className="w-3.5 h-3.5 text-[#9E782F]" />
-                        <span>DMCs Bring</span>
+                    <div className="space-y-1.5">
+                      <div className="flex justify-between items-center">
+                        <label className="text-xs font-bold text-slate-700 block">Password</label>
+                        <a href="#contact" className="text-[11px] font-bold text-[#C49A45] hover:underline">Forgot?</a>
                       </div>
-                      <p className="text-xs text-slate-600 leading-relaxed">Destination expertise, products & inventory.</p>
-                    </div>
-
-                    <div className="border-l-2 border-slate-400 pl-3.5 space-y-1">
-                      <div className="text-xs font-bold text-[#0B1B2D] uppercase tracking-wider flex items-center gap-1.5">
-                        <Users className="w-3.5 h-3.5 text-[#9E782F]" />
-                        <span>Agents Bring</span>
+                      <div className="relative">
+                        <input
+                          type={showPassword ? 'text' : 'password'}
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          required
+                          className="w-full h-11 pl-10 pr-10 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#1B4985] focus:ring-2 focus:ring-[#1B4985]/20"
+                        />
+                        <KeyRound className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3.5 top-3.5 text-slate-400 hover:text-slate-600"
+                        >
+                          {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        </button>
                       </div>
-                      <p className="text-xs text-slate-600 leading-relaxed">The traveller & customer requirement.</p>
                     </div>
 
-                    <div className="border-l-2 border-[#C5A059] pl-3.5 space-y-1">
-                      <div className="text-xs font-bold text-[#0B1B2D] uppercase tracking-wider flex items-center gap-1.5">
-                        <Cpu className="w-3.5 h-3.5 text-[#9E782F]" />
-                        <span>Platform Brings</span>
-                      </div>
-                      <p className="text-xs text-slate-600 leading-relaxed">Technology connecting demand & supply.</p>
-                    </div>
-                  </div>
-                </div>
+                    <button
+                      type="submit"
+                      disabled={loginLoading}
+                      className="w-full h-12 bg-gradient-to-r from-[#1B4985] to-[#0F3260] hover:from-[#0F3260] hover:to-[#1B4985] text-white font-extrabold rounded-xl shadow-lg shadow-[#1B4985]/25 transition-all text-sm flex items-center justify-center gap-2 mt-2"
+                    >
+                      {loginLoading ? 'Signing In...' : `Sign In as ${loginRole === 'DMC' ? 'DMC Supplier' : 'Travel Agent'}`}
+                      {!loginLoading && <ArrowRight className="w-4 h-4 text-[#C49A45]" />}
+                    </button>
+                  </form>
 
-                {/* Right Column: Single Unified Executive Card */}
-                <div className="lg:col-span-5">
-                  <div className="rounded-2xl p-7 sm:p-8 bg-[#0B1B2D] text-white border-2 border-[#C5A059]/40 shadow-xl space-y-6 relative overflow-hidden">
-                    <div className="absolute -right-16 -bottom-16 w-40 h-40 bg-[#C5A059]/15 rounded-full blur-3xl pointer-events-none" />
-
-                    {/* Our Vision */}
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-1.5 h-4 rounded-full bg-[#C5A059]" />
-                        <span className="text-[11px] font-bold tracking-widest uppercase text-[#C5A059]">Our Vision</span>
-                      </div>
-                      <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                        To build the world's most intelligent B2B marketplace for destination travel — making it easier for every DMC to reach global Travel Agents and for every Travel Agent to create the right travel solution for every traveller.
-                      </p>
-                    </div>
-
-                    <div className="w-full h-px bg-slate-800" />
-
-                    {/* Summary Quote */}
-                    <div className="relative">
-                      <Quote className="w-7 h-7 text-[#C5A059]/25 absolute -top-1 right-0" />
-                      <span className="text-[11px] font-bold tracking-widest uppercase text-[#C5A059] mb-1.5 block">DMCXchange In Summary</span>
-                      <blockquote className="text-slate-300 text-xs sm:text-sm leading-relaxed italic font-serif">
-                        "DMCXchange connects DMCs and Travel Agents through an intelligent marketplace that matches travellers with the right destinations, products and experiences — and gives Travel Agents the flexibility to make them their own."
-                      </blockquote>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </section>
-
-          {/* Section 2: For DMCs — Create, Configure & Sell (#for-dmcs) */}
-          <section id="for-dmcs" className="py-8 sm:py-10 lg:py-12 bg-[#F8FAFC]">
-            <div className="w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-12">
-              
-              <div className="mb-6 text-center max-w-3xl mx-auto">
-                <span className="inline-block text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-md border border-[#C5A059]/50 text-[#9E782F] bg-[#C5A059]/10 mb-2">
-                  For Destination Management Companies
-                </span>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B1B2D] font-serif">
-                  For DMCs — <span className="gold-gradient-text">Create, Configure & Sell</span>
-                </h2>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-                
-                {/* Left Deep Dive Text */}
-                <div className="lg:col-span-6 rounded-xl p-5 sm:p-7 border border-[#C5A059]/40 bg-[#0B1B2D] text-white flex flex-col justify-between shadow-lg">
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white font-serif mb-3 leading-snug">
-                      Transform your local destination knowledge into structured, bookable products.
-                    </h3>
-                    <p className="text-xs text-slate-300 mb-4 leading-relaxed">
-                      DMCs can use DMCXchange to create and publish multiple destination packages and products, combining everything a traveller may need in one place.
+                  {/* Quick Demo Credentials Footer */}
+                  <div className="mt-6 pt-4 border-t border-slate-100 text-center">
+                    <p className="text-[11px] text-slate-500 font-semibold mb-1">
+                      Demo Account: <code className="bg-slate-100 text-[#1B4985] px-2 py-0.5 rounded font-mono font-bold">{email}</code>
                     </p>
-
-                    <div className="space-y-4">
-                      <div className="flex gap-3">
-                        <div className="w-7 h-7 rounded-lg bg-[#C5A059]/20 flex items-center justify-center shrink-0 text-[#C5A059]">
-                          <Layers className="w-3.5 h-3.5" />
-                        </div>
-                        <div>
-                          <h4 className="text-xs font-semibold text-white font-serif mb-0.5">Complete Component Publishing</h4>
-                          <p className="text-[11px] text-slate-300 leading-relaxed">
-                            Combine hotels, room types, transfers, activities, sightseeing, restaurants, meals, services, and day-wise itineraries in structured packages.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-3">
-                        <div className="w-7 h-7 rounded-lg bg-[#C5A059]/20 flex items-center justify-center shrink-0 text-[#C5A059]">
-                          <Globe className="w-3.5 h-3.5" />
-                        </div>
-                        <div>
-                          <h4 className="text-xs font-semibold text-white font-serif mb-0.5">Nationality & Market-Specific Options</h4>
-                          <p className="text-[11px] text-slate-300 leading-relaxed">
-                            Define options based on traveller nationality. A hotel, room category, or activity that works well for Indian travellers may not be the best option for Arab, UK, or European nationalities.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                    <p className="text-[10px] text-slate-400">Password: <code className="font-mono font-bold">password123</code></p>
                   </div>
 
-                  <div className="mt-6 pt-3 border-t border-slate-700">
-                    <Link
-                      href="/auth/register/dmc"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C5A059] hover:text-[#E5C158] transition-all"
-                    >
-                      <span>Create Your DMC Storefront</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
                 </div>
-
-                {/* Right Components Grid */}
-                <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {[
-                    { icon: Hotel, title: "Hotels & Room Types", desc: "Define exact hotel categories, room types, and family bedding configurations." },
-                    { icon: Car, title: "Transfers & Transport", desc: "Private cars, coaches, airport transfers, and intercity transit options." },
-                    { icon: Camera, title: "Activities & Sightseeing", desc: "Excursions, city tours, adventure, and local cultural experiences." },
-                    { icon: Utensils, title: "Restaurants & Meals", desc: "Dietary options including Halal, Pure Veg, Jain, and international menus." },
-                    { icon: FileText, title: "Services & Visas", desc: "Travel documentation, visa assistance, guides, and ground support." },
-                    { icon: Calendar, title: "Day-wise Itineraries", desc: "Structured day-by-day itineraries tailored for specific market segments." }
-                  ].map((item, idx) => (
-                    <div key={idx} className="bg-white rounded-xl p-4 border border-slate-200 luxury-card-shadow flex flex-col justify-between">
-                      <div>
-                        <div className="w-8 h-8 rounded-lg bg-[#C5A059]/15 flex items-center justify-center mb-2.5 text-[#9E782F]">
-                          <item.icon className="w-4 h-4" />
-                        </div>
-                        <h4 className="text-sm font-bold text-[#0B1B2D] font-serif mb-1">{item.title}</h4>
-                        <p className="text-[11px] text-slate-600 leading-relaxed">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
               </div>
+
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Section 6: One Marketplace. Two Powerful Sides. (#how-it-works) */}
-          <section id="how-it-works" className="py-8 sm:py-10 lg:py-12 bg-white border-t border-slate-200">
-            <div className="w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-12">
-              
-              <div className="mb-6 text-center max-w-3xl mx-auto">
-                <span className="inline-block text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-md border border-[#C5A059]/40 text-[#9E782F] bg-[#C5A059]/10 mb-2">
-                  Workflow Architecture
-                </span>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B1B2D] font-serif">
-                  One Marketplace. <span className="gold-gradient-text">Two Powerful Sides.</span>
-                </h2>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                
-                {/* For DMCs Workflow */}
-                <div className="bg-[#0B1B2D] text-white p-5 sm:p-7 rounded-xl border border-[#C5A059]/40 shadow-lg flex flex-col justify-between">
-                  <div>
-                    <div className="mb-4">
-                      <span className="text-[10px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded border border-[#C5A059]/50 text-[#C5A059] bg-[#C5A059]/10">
-                        For DMCs
-                      </span>
-                    </div>
-
-                    {/* Step Flow Banner */}
-                    <div className="text-[10px] font-mono text-[#C5A059] mb-4 pb-2.5 border-b border-slate-700">
-                      Create → Configure → Publish → Reach → Sell → Grow
-                    </div>
-
-                    <div className="space-y-3.5">
-                      <div className="flex gap-2.5">
-                        <span className="text-lg font-serif font-bold text-[#C5A059] w-5">1.</span>
-                        <div>
-                          <h4 className="font-bold text-white font-serif text-xs">Create & Configure</h4>
-                          <p className="text-[11px] text-slate-300 leading-relaxed">Build product packages with hotels, transfers, sightseeing, and services.</p>
-                        </div>
-                      </div>
-                      <div className="flex gap-2.5">
-                        <span className="text-lg font-serif font-bold text-[#C5A059] w-5">2.</span>
-                        <div>
-                          <h4 className="font-bold text-white font-serif text-xs">Publish & Reach</h4>
-                          <p className="text-[11px] text-slate-300 leading-relaxed">Distribute to Travel Agents globally categorized by nationality preferences.</p>
-                        </div>
-                      </div>
-                      <div className="flex gap-2.5">
-                        <span className="text-lg font-serif font-bold text-[#C5A059] w-5">3.</span>
-                        <div>
-                          <h4 className="font-bold text-white font-serif text-xs">Sell & Grow</h4>
-                          <p className="text-[11px] text-slate-300 leading-relaxed">Receive structured enquiries, issue quotes, and expand your market reach.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 pt-3 border-t border-slate-700">
-                    <Link
-                      href="/auth/register/dmc"
-                      className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg text-xs font-bold bg-[#C5A059] text-[#0B1B2D] hover:bg-[#D4AF37] transition-all"
-                    >
-                      <span>Join as a DMC Supplier</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                </div>
-
-                {/* For Travel Agents Workflow */}
-                <div className="bg-[#F8FAFC] p-5 sm:p-7 rounded-xl border border-slate-200 luxury-card-shadow flex flex-col justify-between">
-                  <div>
-                    <div className="mb-4">
-                      <span className="text-[10px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded border border-slate-200 text-slate-600 bg-slate-200">
-                        For Travel Agents
-                      </span>
-                    </div>
-
-                    {/* Step Flow Banner */}
-                    <div className="text-[10px] font-mono text-[#0B1B2D] mb-4 pb-2.5 border-b border-slate-200 font-semibold">
-                      Discover → Compare → Customize → Quote → Buy → Serve
-                    </div>
-
-                    <div className="space-y-3.5">
-                      <div className="flex gap-2.5">
-                        <span className="text-lg font-serif font-bold text-slate-400 w-5">1.</span>
-                        <div>
-                          <h4 className="font-bold text-[#0B1B2D] font-serif text-xs">Discover & Compare</h4>
-                          <p className="text-[11px] text-slate-600 leading-relaxed">Search packages personalized to your customer's nationality and dates.</p>
-                        </div>
-                      </div>
-                      <div className="flex gap-2.5">
-                        <span className="text-lg font-serif font-bold text-slate-400 w-5">2.</span>
-                        <div>
-                          <h4 className="font-bold text-[#0B1B2D] font-serif text-xs">Customize & Quote</h4>
-                          <p className="text-[11px] text-slate-600 leading-relaxed">Adjust hotels, room types, activities, and transfers to fit customer needs.</p>
-                        </div>
-                      </div>
-                      <div className="flex gap-2.5">
-                        <span className="text-lg font-serif font-bold text-slate-400 w-5">3.</span>
-                        <div>
-                          <h4 className="font-bold text-[#0B1B2D] font-serif text-xs">Buy & Serve</h4>
-                          <p className="text-[11px] text-slate-600 leading-relaxed">Lock in 48-hour holds, confirm bookings, and deliver exceptional trips.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 pt-3 border-t border-slate-200">
-                    <Link
-                      href="/auth/register/agent"
-                      className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg text-xs font-bold border-2 border-[#C5A059] text-[#0B1B2D] hover:bg-[#C5A059]/10 transition-all"
-                    >
-                      <span>Join as a Travel Buyer</span>
-                      <ChevronRight className="w-3.5 h-3.5 text-[#C5A059]" />
-                    </Link>
-                  </div>
-                </div>
-
-              </div>
+        {/* SECTION 2: WHAT WE ARE (Page 2) */}
+        <section id="what-we-are" className="py-16 sm:py-20 bg-white border-b border-slate-100">
+          <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
+            <div className="max-w-3xl space-y-4">
+              <span className="text-xs font-black uppercase tracking-widest text-[#C49A45]">Platform Definition</span>
+              <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#1B4985] tracking-tight">What We Are</h2>
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
+                <strong>dmcXchange</strong> is an intelligent global B2B Destination Marketplace connecting verified Destination Management Companies with the global travel ecosystem — making destination expertise accessible, trusted, bookable and scalable through one connected platform.
+              </p>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                The platform enables destination products to be discovered, customised, distributed and transacted by travel agents, tour operators, OTAs, TMCs and other professional travel buyers through a trusted, technology-enabled marketplace.
+              </p>
             </div>
-          </section>
 
-          {/* Contact Us Section (#contact) */}
-          <section id="contact" className="py-8 sm:py-10 lg:py-12 bg-[#F8FAFC] border-t border-b border-slate-200">
-            <div className="w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-12">
-              <div className="mb-6 text-center max-w-2xl mx-auto">
-                <span className="inline-block text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-md border border-[#C5A059]/40 text-[#9E782F] bg-[#C5A059]/10 mb-2">
-                  Get In Touch
-                </span>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B1B2D] font-serif">
-                  Contact <span className="gold-gradient-text">DMCXchange Team</span>
-                </h2>
-                <p className="text-xs text-slate-600 mt-1">
-                  Have questions about listing as a DMC or joining as a Travel Agent? Reach out to our global team.
+            {/* Purpose, Mission & Brand Promise (Page 3) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+              <div className="bg-[#1B4985] text-white p-8 rounded-3xl shadow-xl space-y-3 border-2 border-[#C49A45]/30 relative overflow-hidden">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#C49A45]">Our Vision</span>
+                <h3 className="text-2xl font-serif font-black">Vision</h3>
+                <p className="text-sm text-slate-200 leading-relaxed">
+                  To become the world's leading marketplace for destination expertise and destination commerce.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-                <div className="bg-white p-4.5 rounded-xl border border-slate-200 luxury-card-shadow flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#0B1B2D] text-[#C5A059] flex items-center justify-center shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-[#0B1B2D] font-serif mb-0.5">Email Support</h4>
-                    <p className="text-[11px] text-slate-600">support@dmcxchange.com</p>
-                    <p className="text-[11px] text-slate-600">partnerships@dmcxchange.com</p>
-                  </div>
-                </div>
+              <div className="bg-[#1B4985] text-white p-8 rounded-3xl shadow-xl space-y-3 border-2 border-[#C49A45]/30 relative overflow-hidden">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#C49A45]">Our Mission</span>
+                <h3 className="text-2xl font-serif font-black">Mission</h3>
+                <p className="text-sm text-slate-200 leading-relaxed">
+                  To simplify global destination sourcing by connecting travel businesses with trusted local destination experts through one unified B2B marketplace.
+                </p>
+              </div>
 
-                <div className="bg-white p-4.5 rounded-xl border border-slate-200 luxury-card-shadow flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#0B1B2D] text-[#C5A059] flex items-center justify-center shrink-0">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-[#0B1B2D] font-serif mb-0.5">Global Desk</h4>
-                    <p className="text-[11px] text-slate-600">+1 (800) 555-DMCX</p>
-                    <p className="text-[11px] text-slate-600">24/7 B2B Marketplace Support</p>
-                  </div>
-                </div>
-
-                <div className="bg-white p-4.5 rounded-xl border border-slate-200 luxury-card-shadow flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#0B1B2D] text-[#C5A059] flex items-center justify-center shrink-0">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-[#0B1B2D] font-serif mb-0.5">Headquarters</h4>
-                    <p className="text-[11px] text-slate-600">DMCXchange Global Network</p>
-                    <p className="text-[11px] text-slate-600">Global Travel Marketplace Hub</p>
-                  </div>
-                </div>
+              <div className="bg-gradient-to-br from-[#0F3260] to-[#1B4985] text-white p-8 rounded-3xl shadow-xl space-y-3 border-2 border-[#C49A45] relative overflow-hidden">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#C49A45]">Brand Promise</span>
+                <h3 className="text-2xl font-serif font-black">Brand Promise</h3>
+                <p className="text-base font-extrabold text-[#C49A45] leading-snug">
+                  "One Platform. Every Destination. Every Option."
+                </p>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Section 7: Final Banner */}
-          <section className="py-8 sm:py-10 lg:py-12 bg-[#0B1B2D] text-white relative overflow-hidden">
-            <div className="relative z-10 w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-12 text-center max-w-2xl">
-              <div className="w-12 h-1 rounded bg-[#C5A059] mx-auto mb-4" />
+        {/* SECTION 3: THE "X" IN dmcXchange (Page 4 & 5) */}
+        <section id="the-x-factor" className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
+          <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
+            <div className="text-center max-w-3xl mx-auto space-y-4">
+              <span className="text-xs font-black uppercase tracking-widest text-[#C49A45]">The "X" Factor</span>
+              <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#1B4985]">The "X" in dmcXchange</h2>
+              <p className="text-sm sm:text-base text-slate-600">
+                The name <strong>dmcXchange</strong> reflects what the platform stands for. The "X" represents five core pillars:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              {[
+                { title: "Exchange", desc: "Connecting travel businesses with trusted local partners through one unified marketplace.", icon: Handshake },
+                { title: "Experience", desc: "Curating exceptional, memorable journeys that exceed the expectations of every traveller.", icon: Sparkles },
+                { title: "Expertise", desc: "Leveraging deep local knowledge from verified destination specialists around the globe.", icon: Award },
+                { title: "Exploration", desc: "Unlocking new destinations and possibilities for travel businesses and their clients.", icon: Compass },
+                { title: "Expansion", desc: "Empowering partners to grow their reach and scale across the world's top destinations.", icon: TrendingUp },
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-200 shadow-md hover:shadow-xl transition-all space-y-4 group">
+                  <div className="w-12 h-12 rounded-2xl bg-[#1B4985]/10 text-[#1B4985] group-hover:bg-[#1B4985] group-hover:text-white transition-all flex items-center justify-center">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-serif font-black text-[#1B4985]">{item.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: THE 4-LAYER PLATFORM (Page 7) */}
+        <section id="4-layer-platform" className="py-16 sm:py-20 bg-white border-b border-slate-100">
+          <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
+            <div className="text-center max-w-3xl mx-auto space-y-4">
+              <span className="text-xs font-black uppercase tracking-widest text-[#C49A45]">Architecture</span>
+              <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#1B4985]">The 4-Layer Platform</h2>
+              <p className="text-sm sm:text-base text-slate-600">
+                dmcXchange is not another aggregator or supplier directory — it is a destination commerce platform.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { layer: "1. Marketplace", desc: "Connects verified local destination supply with global B2B demand through destination discovery, structured packages, comparison and distribution.", icon: ShoppingBagIcon },
+                { layer: "2. Trust", desc: "Onboarding, due diligence, compliance, quality scoring, performance visibility, ratings and verified buyer credentials.", icon: ShieldCheck },
+                { layer: "3. Intelligence", desc: "Visa-aware discovery, traveller-profile intelligence and personalised recommendations based on traveller nationality.", icon: CpuIcon },
+                { layer: "4. Commerce", desc: "Structured workflows across quotation, booking, documentation, communication, amendments and reporting.", icon: FileSpreadsheet },
+              ].map((item, idx) => (
+                <div key={idx} className="bg-slate-50 p-6 rounded-3xl border-2 border-[#1B4985]/20 shadow-sm space-y-4 hover:border-[#1B4985] transition-all">
+                  <div className="p-3 bg-[#1B4985] text-white rounded-2xl w-fit">
+                    <item.icon className="w-6 h-6 text-[#C49A45]" />
+                  </div>
+                  <h3 className="text-xl font-serif font-black text-[#1B4985]">{item.layer}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 5: WHO WE SERVE & VALUE CREATION (Page 8, 15 & 16) */}
+        <section id="who-we-serve" className="py-16 sm:py-20 bg-slate-900 text-white border-b border-slate-800">
+          <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
+            <div className="text-center max-w-3xl mx-auto space-y-4">
+              <span className="text-xs font-black uppercase tracking-widest text-[#C49A45]">Target Ecosystem</span>
+              <h2 className="text-3xl sm:text-4xl font-serif font-black text-white">Who We Serve</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-slate-800/80 p-8 rounded-3xl border border-slate-700 space-y-4">
+                <div className="text-[#C49A45] font-black text-lg">1. DMCs Bring</div>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Destination expertise, local knowledge, products, supplier relationships and on-ground execution.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-[#1B4985] to-[#0F3260] p-8 rounded-3xl border-2 border-[#C49A45] space-y-4 shadow-xl">
+                <div className="text-[#C49A45] font-black text-lg">2. dmcXchange Brings</div>
+                <p className="text-sm text-slate-100 leading-relaxed">
+                  Technology, trust and verification, traveller intelligence, structured workflow and global distribution.
+                </p>
+              </div>
+
+              <div className="bg-slate-800/80 p-8 rounded-3xl border border-slate-700 space-y-4">
+                <div className="text-[#C49A45] font-black text-lg">3. Travel Companies Bring</div>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  The traveller, customer relationships, requirements, source-market demand and sales capability.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#1B4985]/40 border border-[#C49A45]/40 p-6 rounded-2xl text-center max-w-3xl mx-auto">
+              <p className="text-sm sm:text-base font-extrabold text-[#C49A45]">
+                The Outcome: Local destination expertise becomes globally discoverable, customisable, bookable and commercially scalable.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 6: LEADERSHIP TEAM (Page 23) */}
+        <section id="leadership" className="py-16 sm:py-20 bg-white border-b border-slate-100">
+          <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
+            <div className="text-center max-w-3xl mx-auto space-y-4">
+              <span className="text-xs font-black uppercase tracking-widest text-[#C49A45]">Founders</span>
+              <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#1B4985]">Leadership Team</h2>
+              <p className="text-sm sm:text-base text-slate-600">
+                The team combines travel domain expertise, commercial growth and technology leadership.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { name: "Amit Gupta", title: "Co-Founder", role: "Industry Vision & Leadership", desc: "Travel-industry leader with experience across DMC, Holidays, Corporate Travel & MICE. Leads corporate strategy, strategic partnerships, governance and expansion." },
+                { name: "Jatin Bhai", title: "Co-Founder", role: "Travel Commerce & Product", desc: "Travel-technology leader focused on marketplace adoption, product commercialisation and strategic distribution partnerships." },
+                { name: "M.V. Shastry", title: "Co-Founder", role: "Technology & Platform Engineering", desc: "Technology leader responsible for platform architecture, scalable infrastructure, API framework, security, integrations and long-term technology roadmap." }
+              ].map((leader, idx) => (
+                <div key={idx} className="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-md space-y-4 text-center">
+                  <div className="w-20 h-20 bg-[#1B4985] text-white rounded-full mx-auto flex items-center justify-center font-black text-2xl shadow-lg border-2 border-[#C49A45]">
+                    {leader.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-serif font-black text-[#1B4985]">{leader.name}</h3>
+                    <p className="text-xs font-extrabold text-[#C49A45] uppercase tracking-wider">{leader.title} — {leader.role}</p>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">{leader.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 7: FOOTER & CONTACT US (Page 25) */}
+        <footer id="contact" className="bg-[#0B2545] text-white pt-16 pb-12 border-t-4 border-[#C49A45]">
+          <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white font-serif leading-tight mb-4">
-                DMCXchange — The Global Marketplace <br />
-                <span className="gold-gradient-text">for Destination Travel</span>
-              </h2>
-
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 max-w-xl mx-auto">
-                Together, DMCs and Travel Agents create a connected marketplace where destination suppliers and travel sellers can do business more efficiently.
-              </p>
-
-              <div className="flex flex-wrap justify-center gap-3">
-                <Link
-                  href="/auth/register/dmc"
-                  className="px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-[#C5A059] text-[#0B1B2D] hover:bg-[#D4AF37] shadow-md transition-all"
-                >
-                  Join as a DMC Supplier
-                </Link>
-                <Link
-                  href="/auth/register/agent"
-                  className="px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm border-2 border-slate-400 text-white hover:border-[#C5A059] hover:text-[#C5A059] transition-all"
-                >
-                  Join as a Travel Agent
-                </Link>
+              {/* Col 1: Logo & Mission */}
+              <div className="space-y-4">
+                <Logo size="lg" />
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Connecting verified destination expertise with global travel demand through one connected B2B platform.
+                </p>
               </div>
-            </div>
-          </section>
 
-        </main>
+              {/* Col 2: Direct Email Contacts */}
+              <div className="space-y-3">
+                <h4 className="text-xs font-black uppercase tracking-widest text-[#C49A45]">Email Contacts</h4>
+                <div className="space-y-1 text-xs text-slate-300">
+                  <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-[#C49A45]" /> amit@dmcxchange.com</p>
+                  <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-[#C49A45]" /> jatin@dmcxchange.com</p>
+                </div>
+              </div>
+
+              {/* Col 3: Direct Phone Numbers */}
+              <div className="space-y-3">
+                <h4 className="text-xs font-black uppercase tracking-widest text-[#C49A45]">Global Offices</h4>
+                <div className="space-y-1 text-xs text-slate-300">
+                  <p className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-[#C49A45]" /> UAE: +971-56 412 5850</p>
+                  <p className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-[#C49A45]" /> India: +91 99 583 72226</p>
+                </div>
+              </div>
+
+              {/* Col 4: Web */}
+              <div className="space-y-3">
+                <h4 className="text-xs font-black uppercase tracking-widest text-[#C49A45]">Website</h4>
+                <p className="text-xs font-bold text-white flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-[#C49A45]" /> www.dmcXchange.com
+                </p>
+              </div>
+
+            </div>
+
+            <div className="pt-8 border-t border-slate-800 text-center text-xs text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p>© {new Date().getFullYear()} dmcXchange. All rights reserved.</p>
+              <p className="text-[#C49A45] font-semibold">One Platform. Every Destination. Every Option.</p>
+            </div>
+          </div>
+        </footer>
+
       </div>
-
-      {/* Frozen Footer */}
-      <footer className="bg-[#061121] border-t border-[#C5A059]/20 py-10 text-slate-400 text-xs">
-        <div className="w-full max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
-            
-            <div className="lg:col-span-2">
-              <Link href="/" className="inline-block mb-3">
-                <Logo size="md" darkNav={true} />
-              </Link>
-              <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-                An intelligent global B2B marketplace connecting Destination Management Companies with Travel Agents.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#C5A059] mb-3">Navigation</h4>
-              <ul className="space-y-2 text-xs">
-                <li><a href="#about" className="hover:text-white transition-colors">What is DMCXchange</a></li>
-                <li><a href="#how-it-works" className="hover:text-white transition-colors">How it works</a></li>
-                <li><Link href="/team" className="hover:text-white transition-colors font-bold text-[#C5A059]">Our Team</Link></li>
-                <li><a href="#about" className="hover:text-white transition-colors">About us</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact us</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#C5A059] mb-3">Portals & Accounts</h4>
-              <ul className="space-y-2 text-xs">
-                <li><Link href="/auth/register/dmc" className="hover:text-white transition-colors">Register as DMC</Link></li>
-                <li><Link href="/auth/register/agent" className="hover:text-white transition-colors">Register as Travel Agent</Link></li>
-                <li><Link href="/auth/login" className="hover:text-white transition-colors">Portal Login</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#C5A059] mb-3">Platform</h4>
-              <ul className="space-y-2 text-xs">
-                <li><a href="#for-dmcs" className="hover:text-white transition-colors">For DMCs</a></li>
-                <li><a href="#how-it-works" className="hover:text-white transition-colors">For Travel Agents</a></li>
-                <li><Link href="/team" className="hover:text-white transition-colors">Leadership Team</Link></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Support Desk</a></li>
-              </ul>
-            </div>
-
-          </div>
-
-          <div className="pt-4 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-2.5 text-[11px]">
-            <p>© 2026 DMCXchange. The Global Marketplace for Destination Travel. All rights reserved.</p>
-            <div className="flex items-center gap-5">
-              <a href="#" className="hover:text-[#C5A059] transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-[#C5A059] transition-colors">Terms of Service</a>
-              <a href="#contact" className="hover:text-[#C5A059] transition-colors">Contact Support</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-
     </div>
   );
+}
+
+// Icon Helper Components
+function ShoppingBagIcon(props: any) {
+  return <Briefcase {...props} />
+}
+function CpuIcon(props: any) {
+  return <Cpu {...props} />
+}
+function Cpu(props: any) {
+  return <Globe {...props} />
 }
