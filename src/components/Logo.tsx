@@ -20,7 +20,7 @@ export default function Logo({
 
   const imgElement = (
     <img
-      src="/logo-official.png"
+      src="/logo-official.jpg"
       alt="dmcXchange - Global Marketplace Connecting DMC's & Travel Ecosystem"
       className={`${heightMap[size]} w-auto object-contain shrink-0 max-w-full transition-all ${className}`}
     />
