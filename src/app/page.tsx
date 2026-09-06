@@ -103,18 +103,18 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#FDFDFD] text-[#0A2240] flex flex-col font-sans selection:bg-[#C49A45]/20 selection:text-[#0A2240] overflow-x-hidden">
       
-      {/* 1. TOP HEADER / NAVBAR */}
+      {/* 1. TOP HEADER / NAVBAR (LARGE HEIGHT FOR BIG LOGO) */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-slate-100 bg-white/95 backdrop-blur-md shadow-xs">
         <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12">
-          <div className="flex items-center justify-between h-[85px] py-2">
+          <div className="flex items-center justify-between min-h-[110px] lg:min-h-[125px] py-3">
             
-            {/* Logo */}
-            <Link href="/" className="flex items-center shrink-0">
-              <Logo size="md" />
+            {/* BIG BOLD LOGO */}
+            <Link href="/" className="flex items-center shrink-0 py-1">
+              <Logo size="xl" />
             </Link>
 
             {/* Navigation Links */}
-            <nav className="hidden xl:flex items-center gap-7 text-[13px] font-semibold text-[#0A2240]">
+            <nav className="hidden xl:flex items-center gap-7 text-[14px] font-bold text-[#0A2240]">
               <button onClick={() => setActiveModal("about")} className="hover:text-[#C49A45] transition-colors cursor-pointer">About Us</button>
               <button onClick={() => setActiveModal("marketplace")} className="hover:text-[#C49A45] transition-colors cursor-pointer">Marketplace</button>
               <button onClick={() => setActiveModal("how-it-works")} className="hover:text-[#C49A45] transition-colors cursor-pointer">How It Works</button>
@@ -128,16 +128,16 @@ export default function LandingPage() {
             <div className="hidden sm:flex items-center gap-3">
               <button
                 onClick={() => setLoginModalOpen(true)}
-                className="h-10 px-5 border border-[#0A2240]/40 text-[#0A2240] font-bold text-xs rounded-full hover:bg-[#0A2240] hover:text-white transition-all flex items-center gap-2 cursor-pointer shadow-xs"
+                className="h-11 px-6 border border-[#0A2240]/40 text-[#0A2240] font-bold text-xs rounded-full hover:bg-[#0A2240] hover:text-white transition-all flex items-center gap-2 cursor-pointer shadow-xs"
               >
-                <User className="w-4 h-4" /> Login
+                <User className="w-4 h-4 text-[#C49A45]" /> Login
               </button>
             </div>
 
             {/* Mobile Hamburger Menu */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-xl border border-slate-200 text-[#0A2240] hover:bg-slate-100 transition-colors"
+              className="xl:hidden p-2.5 rounded-xl border border-slate-200 text-[#0A2240] hover:bg-slate-100 transition-colors"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -164,10 +164,10 @@ export default function LandingPage() {
       </header>
 
       {/* MAIN CONTAINER */}
-      <main className="pt-24 lg:pt-28 pb-16 flex-1">
+      <main className="pt-32 lg:pt-36 pb-16 flex-1">
         <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
           
-          {/* 2. HERO SECTION WITH DOTTED WORLD MAP & ARCS */}
+          {/* 2. HERO SECTION WITH EXACT MOCKUP GRAPHIC */}
           <section className="relative min-h-[480px] lg:min-h-[520px] flex items-center justify-between overflow-hidden pt-4 pb-8">
             
             {/* Left Column: Hero Text */}
@@ -198,41 +198,14 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Right Column: Dynamic SVG Dotted World Map with Ascending Arrow Arc Graphic */}
-            <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-1/2 z-0 pointer-events-none opacity-90">
-              <div className="relative w-full h-full flex items-center justify-center">
-                {/* SVG Dotted Map Background Graphic */}
-                <svg className="w-full h-full max-h-[500px]" viewBox="0 0 900 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* World Map Dotted Pattern */}
-                  <defs>
-                    <pattern id="dotGrid" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
-                      <circle cx="2" cy="2" r="1.5" fill="#CBD5E1" opacity="0.6" />
-                    </pattern>
-                  </defs>
-                  
-                  {/* World Map Outline Mask using dots */}
-                  <rect width="900" height="500" fill="url(#dotGrid)" clipPath="url(#worldClip)" />
-                  
-                  {/* Connecting Arcs */}
-                  <path d="M 150 250 Q 300 100 620 220" stroke="#C49A45" strokeWidth="2" strokeDasharray="4 4" opacity="0.7" />
-                  <path d="M 220 350 Q 400 180 620 220" stroke="#C49A45" strokeWidth="2" opacity="0.8" />
-                  <path d="M 380 200 Q 500 120 620 220" stroke="#C49A45" strokeWidth="2" strokeDasharray="3 3" opacity="0.7" />
-                  <path d="M 620 220 Q 750 300 850 240" stroke="#C49A45" strokeWidth="2" opacity="0.6" />
-                  
-                  {/* Nodes on Map */}
-                  <circle cx="150" cy="250" r="4" fill="#C49A45" />
-                  <circle cx="220" cy="350" r="4" fill="#C49A45" />
-                  <circle cx="380" cy="200" r="4" fill="#C49A45" />
-                  <circle cx="750" cy="300" r="4" fill="#C49A45" />
-                  <circle cx="850" cy="240" r="4" fill="#C49A45" />
-
-                  {/* Golden Central X Logo Symbol with Arrow */}
-                  <g transform="translate(580, 160) scale(1.4)">
-                    <text x="0" y="45" fontFamily="serif" fontSize="48" fontWeight="900" fill="#0A2240">X</text>
-                    <path d="M 5 45 L 35 12" stroke="#C49A45" strokeWidth="4" strokeLinecap="round" />
-                    <polygon points="35,12 25,12 35,22" fill="#C49A45" />
-                  </g>
-                </svg>
+            {/* Right Column: Exact Graphic from Shared Mockup Image */}
+            <div className="hidden lg:flex w-1/2 justify-end items-center relative z-10 pl-8">
+              <div className="relative w-full h-[450px] lg:h-[500px] overflow-hidden rounded-3xl border border-slate-100/60 shadow-md">
+                <img 
+                  src="/homepage-mockup.jpg" 
+                  alt="dmcXchange Global Network Map" 
+                  className="w-full h-full object-cover object-[92%_10%] scale-[1.38] transform translate-x-14 translate-y-4"
+                />
               </div>
             </div>
 
