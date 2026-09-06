@@ -198,15 +198,13 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Right Column: Exact Graphic from Shared Mockup Image */}
+            {/* Right Column: Standalone Exact World Map & Ascending Golden Arc Graphic */}
             <div className="hidden lg:flex w-1/2 justify-end items-center relative z-10 pl-8">
-              <div className="relative w-full h-[450px] lg:h-[500px] overflow-hidden rounded-3xl border border-slate-100/60 shadow-md">
-                <img 
-                  src="/homepage-mockup.jpg" 
-                  alt="dmcXchange Global Network Map" 
-                  className="w-full h-full object-cover object-[92%_10%] scale-[1.38] transform translate-x-14 translate-y-4"
-                />
-              </div>
+              <img 
+                src="/hero-world-map.png" 
+                alt="dmcXchange Global Network Map" 
+                className="w-full h-auto object-contain max-h-[480px]"
+              />
             </div>
 
           </section>
