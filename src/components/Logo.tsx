@@ -8,15 +8,15 @@ interface LogoProps {
 
 export default function Logo({
   className = '',
-  size = 'lg',
+  size = 'md',
   darkNav = false,
 }: LogoProps) {
-  // Dramatically increased logo height sizes
+  // Balanced, refined logo height dimensions
   const heightMap = {
-    sm: 'h-14 sm:h-16',
-    md: 'h-20 sm:h-24',
-    lg: 'h-24 sm:h-28 lg:h-32',
-    xl: 'h-32 sm:h-36 lg:h-40',
+    sm: 'h-8 sm:h-9',
+    md: 'h-10 sm:h-12 lg:h-14',
+    lg: 'h-14 sm:h-16 lg:h-18',
+    xl: 'h-18 sm:h-20 lg:h-22',
   };
 
   const imgElement = (
@@ -29,7 +29,7 @@ export default function Logo({
 
   if (darkNav) {
     return (
-      <div className="inline-block rounded-2xl bg-white p-2 sm:p-3 shadow-lg border border-[#C49A45]/30">
+      <div className="inline-block rounded-xl bg-white p-1.5 shadow-md border border-[#C49A45]/30">
         {imgElement}
       </div>
     );

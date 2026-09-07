@@ -103,18 +103,18 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#FDFDFD] text-[#0A2240] flex flex-col font-sans selection:bg-[#C49A45]/20 selection:text-[#0A2240] overflow-x-hidden">
       
-      {/* 1. TOP HEADER / NAVBAR (LARGE HEIGHT FOR BIG LOGO) */}
+      {/* 1. TOP HEADER / NAVBAR (SLEEK BALANCED HEIGHT) */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-slate-100 bg-white/95 backdrop-blur-md shadow-xs">
         <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12">
-          <div className="flex items-center justify-between min-h-[110px] lg:min-h-[125px] py-3">
+          <div className="flex items-center justify-between min-h-[72px] lg:min-h-[80px] py-1.5 sm:py-2">
             
-            {/* BIG BOLD LOGO */}
-            <Link href="/" className="flex items-center shrink-0 py-1">
-              <Logo size="xl" />
+            {/* BALANCED LOGO */}
+            <Link href="/" className="flex items-center shrink-0">
+              <Logo size="md" />
             </Link>
 
             {/* Navigation Links */}
-            <nav className="hidden xl:flex items-center gap-7 text-[14px] font-bold text-[#0A2240]">
+            <nav className="hidden xl:flex items-center gap-7 text-[13px] font-semibold text-[#0A2240]">
               <button onClick={() => setActiveModal("about")} className="hover:text-[#C49A45] transition-colors cursor-pointer">About Us</button>
               <button onClick={() => setActiveModal("marketplace")} className="hover:text-[#C49A45] transition-colors cursor-pointer">Marketplace</button>
               <button onClick={() => setActiveModal("how-it-works")} className="hover:text-[#C49A45] transition-colors cursor-pointer">How It Works</button>
@@ -128,18 +128,18 @@ export default function LandingPage() {
             <div className="hidden sm:flex items-center gap-3">
               <button
                 onClick={() => setLoginModalOpen(true)}
-                className="h-11 px-6 border border-[#0A2240]/40 text-[#0A2240] font-bold text-xs rounded-full hover:bg-[#0A2240] hover:text-white transition-all flex items-center gap-2 cursor-pointer shadow-xs"
+                className="h-9 px-5 border border-[#0A2240]/40 text-[#0A2240] font-bold text-xs rounded-full hover:bg-[#0A2240] hover:text-white transition-all flex items-center gap-2 cursor-pointer shadow-xs"
               >
-                <User className="w-4 h-4 text-[#C49A45]" /> Login
+                <User className="w-3.5 h-3.5 text-[#C49A45]" /> Login
               </button>
             </div>
 
             {/* Mobile Hamburger Menu */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2.5 rounded-xl border border-slate-200 text-[#0A2240] hover:bg-slate-100 transition-colors"
+              className="xl:hidden p-2 rounded-xl border border-slate-200 text-[#0A2240] hover:bg-slate-100 transition-colors"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -164,7 +164,7 @@ export default function LandingPage() {
       </header>
 
       {/* MAIN CONTAINER */}
-      <main className="pt-32 lg:pt-36 pb-16 flex-1">
+      <main className="pt-20 lg:pt-24 pb-16 flex-1">
         <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
           
           {/* 2. HERO SECTION WITH EXACT MOCKUP GRAPHIC */}
