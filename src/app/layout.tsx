@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import AuthProvider from "@/components/providers/SessionProvider";
+import { InventoryProvider } from "@/context/InventoryContext";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
-  title: "DMCXchange | Global B2B Travel Marketplace",
-  description: "Connect DMCs with Travel Agents worldwide through an intelligent marketplace platform",
+  title: "PCOXchange | Connecting Events, Delegates & Travel Solutions",
+  description: "Official PCOXchange Platform — Connecting Events, Delegates & Travel Solutions",
 };
 
 export default function RootLayout({
@@ -17,10 +18,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className="font-sans antialiased">
         <AuthProvider>
-          {children}
-          <Toaster />
+          <InventoryProvider>
+            {children}
+            <Toaster />
+          </InventoryProvider>
         </AuthProvider>
       </body>
     </html>
   );
 }
+

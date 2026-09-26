@@ -48,14 +48,21 @@ export default function Sidebar() {
     { name: "Bookings", href: "/dmc/bookings", icon: FileText },
   ]
 
-  const agentLinks = [
-    { name: "Dashboard", href: "/agent", icon: LayoutDashboard },
-    { name: "Marketplace", href: "/agent/search", icon: Search },
-    { name: "My Holds", href: "/agent/holds", icon: Clock },
-    { name: "My Bookings", href: "/agent/bookings", icon: FileText },
+  const pcoLinks = [
+    { name: "PCO Dashboard", href: "/pco", icon: LayoutDashboard },
+    { name: "Congress Events", href: "/pco/events", icon: Package },
+    { name: "Preferred Travel Agents", href: "/pco/agents", icon: Users },
+    { name: "Pickup Analytics", href: "/pco/analytics", icon: FileText },
   ]
 
-  const links = role === "ADMIN" ? adminLinks : role === "DMC" ? dmcLinks : agentLinks
+  const agentLinks = [
+    { name: "Agent Dashboard", href: "/agent", icon: LayoutDashboard },
+    { name: "Marketplace Search", href: "/agent/search", icon: Search },
+    { name: "Group Holds & Allotments", href: "/agent/holds", icon: Clock },
+    { name: "Delegate Bookings", href: "/agent/bookings", icon: FileText },
+  ]
+
+  const links = role === "ADMIN" ? adminLinks : role === "DMC" ? dmcLinks : role === "PCO" ? pcoLinks : agentLinks
 
   return (
     <div className="flex flex-col w-64 bg-[#0B1B2D] text-white min-h-screen sticky top-0 border-r border-[#C5A059]/20">
