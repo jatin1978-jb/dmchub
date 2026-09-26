@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/Logo';
+import AddHotelModal from '@/components/AddHotelModal';
 import { 
   useInventory, 
   SaaSUserRole, 
@@ -1221,32 +1222,7 @@ export default function SaaSBackendControlPanel() {
       )}
 
       {/* MODAL: ADD HOTEL ALLOTMENT */}
-      {showAddHotelModal && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl max-w-4xl w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-              <h2 className="text-2xl font-bold font-serif text-[#0B1B2D]">Add Complete Hotel Allotment</h2>
-              <button onClick={() => setShowAddHotelModal(false)} className="p-2 rounded-xl bg-slate-100 text-slate-500"><X className="w-5 h-5" /></button>
-            </div>
-            <form onSubmit={handleSaveHotel} className="space-y-4 text-xs">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="font-bold text-slate-500 uppercase text-[10px]">Hotel Name</label>
-                  <input type="text" value={hotelName} onChange={(e) => setHotelName(e.target.value)} className="w-full h-10 px-3 bg-slate-50 rounded-xl border border-slate-300 font-bold" required />
-                </div>
-                <div>
-                  <label className="font-bold text-slate-500 uppercase text-[10px]">Address</label>
-                  <input type="text" value={hotelAddress} onChange={(e) => setHotelAddress(e.target.value)} className="w-full h-10 px-3 bg-slate-50 rounded-xl border border-slate-300 font-bold" required />
-                </div>
-              </div>
-              <div className="flex justify-end gap-3 border-t pt-3">
-                <button type="button" onClick={() => setShowAddHotelModal(false)} className="h-10 px-4 rounded-xl border border-slate-300 font-bold">Cancel</button>
-                <button type="submit" className="h-10 px-6 rounded-xl bg-[#0B1B2D] text-white font-bold">Save Allotment</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      <AddHotelModal isOpen={showAddHotelModal} onClose={() => setShowAddHotelModal(false)} />
 
       {/* MODAL: MAP TA TO EXHIBITION SCOPE */}
       {mappingModalTA && (
